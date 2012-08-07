@@ -1,0 +1,95 @@
+<html xmlns:wicket>
+<wicket:panel>
+<!-- 
+<div class="row">
+ 		<div class="header">Weight</div> 
+		<div class="headername">Favorite</div>
+		<div class="headernumber">Fav Score</div>
+		<div class="headernumber">Spread</div>
+		<div class="headername">Underdog</div>
+		<div class="headernumber">Dog Score</div>
+		<div class="headername">Game Time</div>
+	</div>
+<div wicket:id="weightContainer" class="connectedSortable dataview">
+ 
+	
+	
+	<div wicket:id="simple" class="row">
+ 		<div class="column">
+			
+			<table>
+				<tr>
+					<td>
+						<input wicket:id="weight" size="2" maxlength="2" disabled="disabled"/>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td>
+									<a href="#" wicket:id="up"><img wicket:id="upArrow" height="8" width="30" border="0"/></a>	
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#" wicket:id="down"><img wicket:id="downArrow" height="8" width="30" border="0"/></a>
+								</td>
+							</tr>
+						</table>	
+					</td>
+				</tr>
+			</table>			
+		</div>
+ 
+        <div class="columnname"><span wicket:id="favContainer"><img wicket:id="fav_check"/><a href="#" wicket:id="fav"><span wicket:id="favLabel"></span></a></span></div>
+        <div class="columnnumber"><span wicket:id="favScore"></span></div>
+		<div class="columnnumber"><span wicket:id="spread"></span></div>
+		<div class="columnname"><span wicket:id="dogContainer"><img wicket:id="dog_check"/><a href="#" wicket:id="dog"><span wicket:id="dogLabel"></span></a></span></div>
+		<div class="columnnumber"><span wicket:id="dogScore"></span></div>
+		<div class="columnname"><span wicket:id="gameStart"></span></div>
+    </div>    
+</div>	
+   -->
+
+<div wicket:id="weightContainer" class="connectedSortable">
+<table cellspacing="0" class="dataview">
+	<tr>
+		<th>Weight</th>
+		<th>Favorite</th>
+		<th>Fav Score</th>
+		<th>Spread</th>
+		<th>Underdog</th>
+		<th>Dog Score</th>
+		<th>Game Time</th>
+	</tr>
+	<tr wicket:id="simple">
+		<td>
+			
+			<table>
+				<tr>
+					<td width="30">
+						<a href="#" wicket:id="up"><img wicket:id="upArrow" height="30" width="25" border="0"/></a>&nbsp;	
+					</td>
+					<td>
+						<span wicket:id="weight"/>
+					</td>
+					<td width="30">
+						<a href="#" wicket:id="down"><img wicket:id="downArrow" height="30" width="25" border="0"/></a>&nbsp;
+					</td>
+				</tr>
+			</table>			
+		</td>
+        <td align="center"><div wicket:id="favContainer"><img wicket:id="fav_check"/><a href="#" wicket:id="fav"><span wicket:id="favLabel"></span></a></div></td>
+        <td><div wicket:id="favScore"></div></td>
+		<td><span wicket:id="spread"></span></td>
+		<td align="center"><div wicket:id="dogContainer"><img wicket:id="dog_check"/><a href="#" wicket:id="dog"><span wicket:id="dogLabel"></span></a></div></td>
+		<td><div wicket:id="dogScore"></div></td>
+		<td><span wicket:id="gameStart"></span></td>
+    </tr>    
+</table>
+</div>	
+
+<span wicket:id="feedbackpanel"></span>
+
+</wicket:panel>
+</html>
+  

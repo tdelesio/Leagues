@@ -1,0 +1,38 @@
+<html xmlns:wicket>
+<head>
+
+<link href="file:///Macintosh HD/Users/gregoryspies/Documents/workspace/va/hotels/src/main/webapp/styles/va_style.css"rel="stylesheet" type="text/css" />
+</head>
+<body>
+<wicket:panel>
+
+    <form wicket:id="simpleUpload">
+     <fieldset>
+      <legend>Upload form</legend>
+        <p>
+        <div wicket:id="fileInput" class="mfuex"/>
+        </p>
+        <input type="submit" value="Upload!"/>
+        <span wicket:id="progress">[[ajax upload progressbar]]</span>
+     </fieldset>
+    </form>
+
+
+     <div>
+        <span wicket:id="uploadFeedback"/>
+     </div>
+
+    <div>
+      <span wicket:id="dir">(dir)</span>
+      <table>
+        <tr wicket:id="fileList">
+            <td width="200"><span wicket:id="file">(file)</span></td>
+            <td><img wicket:id="image"/></td>
+            <td><a href="#" wicket:id="delete">Delete Image</a></td>
+        </tr>
+      </table>
+    </div>
+    
+</wicket:panel>
+</body>
+</html>    

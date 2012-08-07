@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+@IMPORT url("master.css");
+
+
+#logo
+{
+	float: left;
+	width: 240px;
+	height: 110px;
+	background-color: #fcd15d;	
+	background-image:url(suicide.jpg); 
+}
+
+.suicideloser
+{
+	background-color: red;
+	border: 1px solid black;
+}
+
+tr.singlesuicidelose
+{
+	background-color: #fbcd4a;
+}
+
+tr.doublesuicidelose
+{
+	background-color: red;
+}
+
+.pickedteam
+{
+	font-size: 14pt;
+	color: #f7cb4a;
+	font-weight: bold;
+	float: right;	
+	text-shadow: black;
+	background: black;
+	padding: 2px;
+}
+
+div.weekpick
+{
+	border: 1px solid black;
+	padding: 1px;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.prevpicked
+{
+	text-decoration: line-through;	
+}
+
+		
+/*
+#menu{background-image:url(bg_menu.gif); background-repeat:repeat-x;}
+*/

@@ -1,0 +1,39 @@
+<html xmlns:wicket>
+<wicket:head>
+		 <!-- <link wicket:id="mycss" rel="Stylesheet" type="text/css" href="styles/league.css"/>-->
+      </wicket:head>
+
+<body>
+	<table id="container" cellpadding="0" cellspacing="0" border="0">
+		<tr valign="top">
+			<td >
+				<div id="left_container">
+					<div id="leftnav_container">
+						<div id="logo"></div>
+						<!-- <div id="leftnav" wicket:id="leaguePanel"></div> -->
+					</div>
+					<table id="leftnavbottom_container" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="left" valign="bottom" width="15"><img src="styles/btm_left_round.jpg"/></td>
+							<td>&nbsp;</td>
+							<td align="right" valign="bottom" width="15"><img src="styles/btm_right_round.jpg"/></td>
+						</tr>
+					</table>
+					<div id="ad1"></div>
+				</div>	
+			</td>
+			<td width="100%" align="left">
+				<div id="content_container">
+					<div id="header" wicket:id="header"></div>		
+					<div id="content">
+						<wicket:child/>					
+					</div>
+				</div>		
+			</td>
+		</tr>
+	</table>		
+	
+	<div id="footer" wicket:id="footer"></div>
+</body>
+
+</html>

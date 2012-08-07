@@ -1,0 +1,47 @@
+<html xmlns:wicket>
+<wicket:panel>
+	
+		<div id="leftnav_container">
+			<div id="leftnav">
+				<div wicket:id="wiAccordion">
+					<wicket:container wicket:id="accordionListView">
+						<h3>
+							<a href="div">
+								<wicket:container wicket:id="sectionNameLbl"></wicket:container>
+							</a>
+						</h3>
+						<div>
+							<wicket:container wicket:id="subNavPanel"></wicket:container> 
+		                </div>
+					</wicket:container>
+				</div>
+				
+				<div class="ui-accordion ui-widget ui-helper-reset">
+					<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+						<span class="ui-icon ui-icon-triangle-1-e"></span>
+						<a href="#" wicket:id="createLeague">Create League<br/></a>
+						
+					</h3>	
+				</div>
+				<div class="ui-accordion ui-widget ui-helper-reset">
+					<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+						<span class="ui-icon ui-icon-triangle-1-e"></span>
+						<a href="#" wicket:id="joinLeague" class="leftnavtext">Join League<br/></a>
+					</h3>	
+				</div>
+				<div class="ui-accordion ui-widget ui-helper-reset">
+					<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+						<span class="ui-icon ui-icon-triangle-1-e"></span>
+						<a href="#" wicket:id="adminPage" class="leftnavtext">Admin<br/></a>
+					</h3>	
+				</div>
+				
+								
+				
+				
+			</div>	
+		</div>
+		
+</wicket:panel>
+
+</html>

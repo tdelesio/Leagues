@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.delesio</groupId>
+	<artifactId>services-framework</artifactId>
+	<packaging>jar</packaging>
+	<name>Services Framework</name>
+	<version>0.5-SNAPSHOT</version>
+ 	<parent>
+ 		<groupId>com.delesio</groupId>
+  		<artifactId>framework-build</artifactId>
+ 		<version>0.5-SNAPSHOT</version>
+ 	</parent>
+ 	<repositories>
+<!-- 		<repository>
+			<id>delesio-repo</id>
+			<name>Delesio Repo</name>
+			<url>http://delesio.com/artifactory/libs-releases-local</url>
+		</repository>
+ -->	
+ 		<repository>
+ 			<id>delesio-framework</id>
+ 			<name>Delesio Framework</name>
+ 			<url>http://delesio.com/nexus/content/repositories/releases</url>
+ 		</repository>	
+	</repositories>
+
+
+</project>

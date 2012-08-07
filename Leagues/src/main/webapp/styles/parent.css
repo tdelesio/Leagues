@@ -1,0 +1,173 @@
+@CHARSET "ISO-8859-1";
+
+/*GRAY PANEL*/
+.graypanel{
+	border:solid 1px #666666; background-color:#F7F7F7; padding:10px; margin:10px;
+}
+
+/*TEXT STYLES*/
+.bodytext {
+	font: 0.7em Tahoma, sans-serif;
+	color: #666666;
+}
+
+.leagueTitle {
+	font: 0.7em Tahoma, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	color:#CC0000;
+	text-align: center;
+}
+.titletext {
+	font: 0.7em Tahoma, sans-serif;
+	font-size:36px;
+	font-weight:bold;
+	color:#CC0000;
+}
+.whitetitle {
+	font: 0.7em Tahoma, sans-serif;
+	font-size:36px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+.smalltitle {
+	font: 0.7em Tahoma, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	color:#CC0000;
+}
+
+.smallblacktitle {
+	font: 0.7em Tahoma, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	color:#000000;
+}
+
+.smallwhitetext {
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	color: #FFFFFF;
+}
+.smallwhitetext a{
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	color: #FFFFFF;
+	text-decoration:none;
+}
+.smallwhitetext a:hover{
+	text-decoration:underline;
+}
+
+.brackettext {
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 9px;
+	color:#000000;
+	text-align: center;
+
+}
+
+.smallgraytext {
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	color:#999999;
+}
+.smallgraytext a{
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	color:#999999;
+	text-decoration:none;
+}
+
+.verysmallgraytext a{
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 8px;
+	font-weight:bold;
+	color:#999999;
+	text-decoration:none;
+}
+
+.smallgraytext a:hover{
+	text-decoration:underline;
+}
+.smallredtext {
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	color:#CC0000;
+}
+
+.redtext {
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 13px;
+	font-weight:bold;
+	color:#CC0000;
+}
+
+.smallredtext a{
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	color:#CC0000;
+	text-decoration:none;
+}
+.smallredtext a:hover{
+	text-decoration:underline;
+}
+
+.smallbluetext a{
+	font: 0.7em Tahoma, sans-serif;
+	font-size: 9px;
+	font-weight:bold;
+	color:#0000FF;
+}
+
+.makepicksdropdown select{
+	background-color: #666699; 
+ 	color: #ffffff; 	
+}
+
+table.dataview {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #0079d6;
+	font-size: 1em;
+	font-family: arial;
+}
+
+table.dataview tr { padding-top: 2px; padding-bottom: 2px; }
+table.dataview tr.even { background-color: #ffebcd; }
+table.dataview tr.odd { background-color: #fff; }
+table.dataview tr td { padding-left: 8px; padding-right: 30px; }
+table.dataview tr th { color: black; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; padding-right: 30px; background-color: #c1e4ff; border-bottom: 1px solid #0079d6; border-top: 1px solid #0079d6; text-align: left; white-space: nowrap; vertical-align: middle;}
+
+table.dataview tr th { background-position: right; background-repeat:no-repeat; }
+table.dataview tr th.wicket_orderDown {
+	background-color: #87cbff; background-image: url(displaytag/img/arrow_down.png); }
+table.dataview tr th.wicket_orderUp {
+	background-color: #87cbff; background-image: url(displaytag/img/arrow_up.png); }
+table.dataview tr th.wicket_orderNone {
+	background-image: url(displaytag/img/arrow_off.png);
+}
+table.dataview tr th a { font-weight: normal; }
+table.dataview #message { padding-left: 3px; }
+table.dataview caption { padding-bottom: 2px; }
+
+.home { color: red;}
+
+.newmail { background-image: url(envolope.jpg); }
+
+li {
+   border: 1px solid;
+   list-style: none;
+}
+
+.leaguetext
+{
+	color: white;
+	size: 10em;
+}
+

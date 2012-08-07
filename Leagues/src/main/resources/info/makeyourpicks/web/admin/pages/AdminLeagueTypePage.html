@@ -1,0 +1,39 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<div wicket:id="feedbackpanel"></div>
+<div wicket:id="title"></div>
+<form wicket:id="leagueTypeForm" class="inputForm">
+	<div class="titletext">Create League Type</div>
+	<table>
+		<tr>
+			<td>Start</td>
+			<td>End</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><span wicket:id="start"></span></td>
+			<td><span wicket:id="end"></span></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>League Type</td>
+			<td>Display Name</td>
+			<td>Parent League Type</td>
+		</tr>
+		<tr>
+			<td><input type="text" wicket:id="typeOfLeague"></input></td>
+			<td><input type="text" wicket:id="leagueTypeDisplay"></input></td>
+			<td><input type="text" wicket:id="parentTypeOfLeague"></input></td>
+		</tr>
+		
+		<tr>
+			<td colspan="3"><input type="submit" wicket:id="add"/></td>
+		</tr>
+	</table>
+</form>
+</wicket:extend>  
+</body>
+</html>
+
+

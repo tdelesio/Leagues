@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<ResourceLink 
+	            name="jdbc/leagues"
+	            global="jdbc/leagues"
+	            type="com.mchange.v2.c3p0.ComboPooledDataSource"
+	          /> 	
+
+ <!-- 
+<Resource 
+		name="jdbc/leagues" 
+		auth="Container"
+		type="javax.sql.DataSource"
+		username="tdelesi0_web" 
+		password="rage311"
+		driverClassName="com.mysql.jdbc.Driver"
+		factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+		url="jdbc:mysql://localhost/tdelesi0_leagues"
+		maxActive="50"
+		maxIdle="30"
+		removeAbandoned="true" 
+		removeAbandonedTimeout="60"
+		logAbandoned="true"
+   		defaultAutoCommit="true"
+   		timeBetweenEvictionRunsMillis="900"
+   		minEvictableIdleTimeMillis="65000"
+   		testWhileIdle="true"
+   		validationQuery="SELECT 1"
+   		compression="on"
+   		compressableMimeType="text/css,text/javascript,application/javascript"
+		
+		
+	> 
+	</Resource> 	 	
+ -->
+</Context>

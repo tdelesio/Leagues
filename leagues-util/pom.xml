@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>info.makeyourpicks</groupId>
+  <artifactId>leagues-util</artifactId>
+  <version>0.5-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <parent>
+		<groupId>com.delesio</groupId>
+		<artifactId>web-build</artifactId>
+		<version>0.5-SNAPSHOT</version>
+	</parent> 
+  <description/>
+  
+  <dependencies>
+  <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+  
+  		
+	<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>5.5.15</version>
+			<scope>compile</scope>
+		</dependency>		
+	<dependency>
+		<groupId>com.delesio</groupId>
+		<artifactId>services-framework</artifactId>
+		<version>0.5-SNAPSHOT</version>
+		<type>jar</type>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.delesio</groupId>
+		<artifactId>wicket-web-framework</artifactId>
+		<version>0.5-SNAPSHOT</version>
+		<type>jar</type>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>info.makeyourpicks</groupId>
+		<artifactId>league-service</artifactId>
+		<version>0.5-SNAPSHOT</version>
+		<type>jar</type>
+		<scope>compile</scope>
+	</dependency>
+  </dependencies>
+ 
+</project>

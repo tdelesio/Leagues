@@ -1,0 +1,15 @@
+.fromPlayer
+{
+	display: inline;
+}
+
+.fromDate
+{
+	font-size: 10px;
+}
+
+.message
+{
+	font-family: serif;
+	font-size: 13px;
+}

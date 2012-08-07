@@ -1,0 +1,159 @@
+@CHARSET "ISO-8859-1";
+@IMPORT url("master.css");
+
+
+#logo
+{
+	float: left;
+	width: 240px;
+	height: 110px;
+	background-color: #fcd15d;	
+	background-image:url(basketball.jpg); 
+}
+
+.suicideloser
+{
+	background-color: red;
+	border: 1px solid black;
+}
+
+tr.singlesuicidelose
+{
+	background-color: #fbcd4a;
+}
+
+tr.doublesuicidelose
+{
+	background-color: red;
+}
+
+.pickedteam
+{
+	font-size: 14pt;
+	color: #f7cb4a;
+	font-weight: bold;
+	float: right;	
+	text-shadow: black;
+	background: black;
+	padding: 2px;
+}
+
+div.weekpick
+{
+	border: 1px solid black;
+	padding: 1px;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.prevpicked
+{
+	text-decoration: line-through;	
+}
+
+div.dataview 
+{
+	margin-bottom: 10px;
+	border: 1px solid #3b3b3b;
+	font-size: 8pt;
+	font-family: arial;
+	margin-left: auto;
+	margin-right: auto;
+	float: left;
+	
+
+}
+
+div.headername
+{ 
+	color: #ffffff;
+	font-family: arial;
+	background-color: #3b3b3b;
+	vertical-align: middle;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 7pt;
+	border-top-style: double; 
+	text-decoration: none;
+	font-weight: bold;
+	float: left;
+	padding-left: 5px; 
+	padding-right: 5px; 
+	width: 175px;
+	height: 25px;
+/*border: 1px solid red;*/
+}
+
+div.headernumber
+{ 
+	color: #ffffff;
+	font-family: arial;
+	background-color: #3b3b3b;
+	vertical-align: middle;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 7pt;
+	border-top-style: double; 
+	text-decoration: none;
+	font-weight: bold;
+	float: left;
+	padding-left: 5px; 
+	padding-right: 5px; 
+	width: 30px;
+	height: 25px;
+/*border: 1px solid red;*/
+}
+
+.columnname
+{
+	width: 175px; 
+	padding-left: 5px; 
+	padding-right: 5px;
+	float: left; 
+	text-align: center;
+}
+
+.columnnumber
+{
+	width: 30px; 
+	padding-left: 5px; 
+	padding-right: 5px;
+	float: left; 
+	text-align: center;
+}
+
+
+.row ul { list-style: none; margin: 0px; overflow: auto; }
+.row .firstUL { margin: 10px 0px 0px 0px; }
+.row .lastUL { margin: 0px 0px 10px 0px; }
+.row li { height: 20px; float: left; line-height: 20px; white-space: nowrap; }
+#resultsDiv { clear: both; }
+.row { border-top: 1px solid #ccd5dc; position: relative; clear: both; overflow: auto; border-left: 1px solid #ccd5dc; border-right: 1px solid #ccd5dc; }
+.row a { color: #22649e; display: block; float: left; text-decoration: none; }
+.row a:hover { text-decoration: underline; }
+
+.liCol1 
+{ 
+	width: 30%; 
+	overflow: hidden; 
+	padding-left: 1% 
+}
+
+.liCol2 
+{ 
+	width: 30%; 
+	overflow: hidden; 
+	padding-left: 1%; 
+}
+
+.picks
+{
+	background-color: #cccccc;
+	border: 1px solid black;
+}		
+
+.cBothThin { height: 1px; overflow: hidden; clear: both; font-size: 1px; }
+/*
+#menu{background-image:url(bg_menu.gif); background-repeat:repeat-x;}
+*/

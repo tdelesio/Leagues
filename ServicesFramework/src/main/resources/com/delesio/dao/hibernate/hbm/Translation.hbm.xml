@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.delesio.model">
+  <class name="Translation" table="translations">
+  <id column="translationId" name="id" type="long" unsaved-value="0">
+   <generator class="increment"/>
+  </id>
+  <property name="locale" column="translation_locale" not-null="true" type="java.util.Locale"/>
+  <property name="translationKey" column="translation_key" not-null="true" unique="true"/>
+  <property name="translatedValue" column="translation_value" not-null="true"/>
+  </class>
+</hibernate-mapping>

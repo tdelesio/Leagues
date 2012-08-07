@@ -1,0 +1,65 @@
+#middleColumn {
+	width: 820px;	
+	 
+}
+
+#rightColumn {
+	width: 0px;	
+}
+
+.winner
+{
+	background-color: #fbcd4a;
+	color: white;
+	border: 1px solid black;
+}
+/*
+table
+{
+	width: 100%;
+}
+*/
+td.double
+{
+	color: #2068f9;
+	font-weight: bold;
+}
+
+.winning
+{
+	border: 1px solid red;
+}
+
+.even { background-color: #E6E6E6; }
+
+.odd { background-color: #fff; }
+
+table .viewpicks
+{
+	width: 100%;
+}
+
+th .viewpicks
+{
+	font-family:serif;
+}
+
+td .viewpicks
+{
+	text-align: center;
+	font-family:serif;
+	width: 100px;
+}
+
+.playerwinner
+{
+	background-color: #3b3b3b;
+	color: white;
+	border: 1px solid black;
+	
+}
+
+.player
+{
+	border: 1px solid black;
+}

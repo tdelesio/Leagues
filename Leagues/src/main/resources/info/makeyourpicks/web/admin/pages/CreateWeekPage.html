@@ -1,0 +1,20 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<form wicket:id="weekForm" class="inputForm">
+<div class="smalltitletext"><span wicket:id="season.displaySeason"></span></div>
+<table>
+		<tr>
+			<td>Week</td>
+			<td><input type="text" wicket:id="weekNumber" size="2" maxlength="2"></input></td>
+		</tr>
+		<tr>
+			<td>Start Time</td>
+			<td><span wicket:id="weekStart"></span></td>
+		</tr>
+		<tr><td colspan="2"><input type="submit" wicket:id="add" value="Create Week"></input></td></tr>
+	</table>
+</form>	
+</wicket:extend>  
+</body>
+</html>

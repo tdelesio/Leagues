@@ -1,0 +1,74 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<span class="smailltitle"><a href="#" wicket:id="createLeagueType">Create League Type</a> <a href="#" wicket:id="createLeague">Create League</a> <a href="#" wicket:id="createSeasonPage">Create Season</a></span> <br />
+
+
+<div class="titletext">Leagues Types:</div>
+<table cellspacing="0" class="dataview">
+		<tr>
+	        <th>Select League</th>
+	        <th>League Type</th>
+	        <th>Display</th>
+	        <th>Start</th>
+	        <th>End</th>
+	    </tr>
+		<tr wicket:id="repeatingTypes">
+			<td><a href="#" wicket:id="select">Details</a></td>
+			<td><span wicket:id="typeOfLeague"></span></td>
+			<td><span wicket:id="leagueTypeDisplay"></span></td>
+			<td><span wicket:id="startDisplay"></span></td>
+			<td><span wicket:id="endDisplay"></span></td>
+		</tr>
+	</table>
+
+<div class="titletext">Leagues</div>
+<table cellspacing="0" class="dataview">
+		<tr>
+	        <th>Select League</th>
+	        <th>League Name</th>
+	        <th>League Type</th>
+	        <th>League Size</th>
+	        <th>Max Size</th>
+	        <th>Admin</th>
+	        <th>Active</th>
+	        <th>Free</th>
+	        <th>Spreads?</th>
+	        <th>Start</th>
+	        <th>End</th>
+	    </tr>
+		<tr wicket:id="leagueDataView">
+			<td><a href="#" wicket:id="select">Details</a></td>
+			<td><span wicket:id="leagueName"></span></td>
+			<td><span wicket:id="season.leagueType.leagueTypeDisplay"></span></td>
+			<td><span wicket:id="numberPeople"></span></td>
+			<td><span wicket:id="maxSize"></span></td>
+			<td><span wicket:id="admin.username""></span></td>
+			<td><span wicket:id="active"></span></td>
+			<td><span wicket:id="free"></span></td>
+			<td><span wicket:id="spreads"></span></td>
+			<td><span wicket:id="season.leagueType.startDisplay"></span></td>
+			<td><span wicket:id="season.leagueType.endDisplay"></span></td>
+		</tr>
+	</table>
+	
+<div class="titletext">Seasons:</div>
+<table cellspacing="0" class="dataview">
+		<tr>
+	        <th>Edit</th>
+	        <th>Start Year</th>
+	        <th>End Year</th>
+	        <th>League Type</th>
+	    </tr>
+		<tr wicket:id="seasonDataView">
+			<td><a href="#" wicket:id="editSeason">Details</a></td>
+			<td><span wicket:id="startYear"></span></td>
+			<td><span wicket:id="endYear"></span></td>
+			<td><span wicket:id="leagueType.leagueTypeDisplay"></span></td>
+		</tr>
+	</table>
+		
+</wicket:extend>  
+</body>
+</html>
+

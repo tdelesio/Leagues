@@ -1,0 +1,39 @@
+<html xmlns:wicket>
+<wicket:panel>
+	<span wicket:id="feedbackPanel"></span>
+	<form wicket:id="profileForm" class="inputForm">
+	<table>
+		<tr>
+			<td colspan="2"><label for="name">UserName</label></td>
+			
+		</tr>
+		<tr>
+			<td colspan="2"><input wicket:id="username" id="name" type="text" size="20" maxlength="20"></td>
+		</tr>
+		<tr>
+			<td><label for="password1">Password</label></td>
+			<td><label for="repassword">Re-Type Password</label></td>
+		</tr>
+		<tr>
+			<td><input wicket:id="password" id="password" type="password" maxlength="10"> </td>
+			<td><input wicket:id="repassword" id="repassword" type="password" maxlength="10"> </td>
+		</tr>
+		<tr>
+			<td colspan="2"><label for="email">Email</label></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input wicket:id="email" id="email" type="text" size="20"/></td>
+		</tr>
+		<tr><td colspan="2"><input type="submit" wicket:id="submit" value="Join" /></td></tr>
+        
+       </table> 
+        
+        
+        
+	
+	
+		
+	</form>	
+</wicket:panel>
+
+</html>

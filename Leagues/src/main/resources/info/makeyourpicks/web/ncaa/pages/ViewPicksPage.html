@@ -1,0 +1,365 @@
+<html xmlns:wicket>
+<body>
+
+<wicket:extend>
+<div id="bracketcontent">
+<!-- 				
+				<div style="padding:10px">
+					<span class="titletext"><decorator:title /></span>
+				</div>
+ -->				
+					<div class="bodytext" style="padding:12px;" align="justify">
+	<span wicket:id="playerName" class="smallredtext"> Picks</span>
+	<div class="champ">Winner: <span wicket:id="week6-team1" class="champ"></span></div>
+<table>
+	<tr>
+	<td>	
+	<div id="mc">
+		<ul id="roundheaders">
+			<li class="rh fl">
+				<strong>1st ROUND</strong>
+			</li>
+			<li class="rh fl">
+				<strong>2nd ROUND</strong>
+			</li>
+			<li class="rh fl">
+				<strong>SWEET 16</strong>
+			</li>
+			<li class="rh fl">
+				<strong>ELITE EIGHT</strong>
+			</li>
+			<li class="rh fl">
+				<strong>FINAL FOUR</strong>
+			</li>
+			<li class="rh fl">
+				<strong>CHAMPION</strong>
+			</li>
+			<li class="rh fl">
+				<strong>FINAL FOUR</strong>
+			</li>
+			<li class="rh fl">
+				<strong>ELITE EIGHT</strong>
+			</li>
+			<li class="rh fl">
+				<strong>SWEET 16</strong>
+			</li>
+			<li class="rh fl">
+				<strong>2nd ROUND</strong>
+			</li>
+			<li class="rh fl">
+				<strong>1st ROUND</strong>
+			</li>
+		</ul>
+		<div id="bracket">
+			<div class="h1"><h4 class="semititle">Semifinal</h4>
+				<div class="region">
+					<h3 class="regtitle">East&nbsp;</h3>
+					<dl id="match47" class="match round1">
+						<dt ><span wicket:id="fav1"></span><br/><span wicket:id="dog1"></span></dt>
+						<dd><span wicket:id="fav_score1"></span><br/><span wicket:id="dog_score1"></span></dd>
+					</dl>
+					<dl id="match48" class="match round1">
+						<dt ><span wicket:id="fav2"></span><br/><span wicket:id="dog2"></span></dt>
+						<dd><span wicket:id="fav_score2"></span><br/><span wicket:id="dog_score2"></span></dd>
+					</dl>
+					<dl id="match49" class="match round2">		
+						<dt ><span wicket:id="week1-team1"></span><br/><span wicket:id="week1-team2"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match50" class="match round1">
+						<dt><span wicket:id="fav3"></span><br/><span wicket:id="dog3"></span></dt>
+						<dd><span wicket:id="fav_score3"></span><br/><span wicket:id="dog_score3"></span></dd>
+					</dl>
+					<dl id="match51" class="match round1">
+						<dt><span wicket:id="fav4"></span><br/><span wicket:id="dog4"></span></dt>
+						<dd><span wicket:id="fav_score4"></span><br/><span wicket:id="dog_score4"></span></dd>
+					</dl>
+					<dl id="match52" class="match round2">
+						<dt><span wicket:id="week1-team3"></span><br/><span wicket:id="week1-team4"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match54" class="match round1">
+						<dt><span wicket:id="fav5"></span><br/><span wicket:id="dog5"></span></dt>
+						<dd><span wicket:id="fav_score5"></span><br/><span wicket:id="dog_score5"></span></dd>
+					</dl>
+					<dl id="match55" class="match round1">
+						<dt><span wicket:id="fav6"></span><br/><span wicket:id="dog6"></span></dt>
+						<dd><span wicket:id="fav_score6"></span><br/><span wicket:id="dog_score6"></span></dd>
+					</dl>
+					<dl id="match56" class="match round2">
+						<dt><span wicket:id="week1-team5"></span><br/><span wicket:id="week1-team6"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match57" class="match round1">
+						<dt><span wicket:id="fav7"></span><br/><span wicket:id="dog7"></span></dt>
+						<dd><span wicket:id="fav_score7"></span><br/><span wicket:id="dog_score7"></span></dd>
+					</dl>
+					<dl id="match58" class="match round1">
+						<dt><span wicket:id="fav8"></span><br/><span wicket:id="dog8"></span></dt>
+						<dd><span wicket:id="fav_score8"></span><br/><span wicket:id="dog_score8"></span></dd>
+					</dl>
+					<dl id="match59" class="match round2">
+						<dt><span wicket:id="week1-team7"></span><br/><span wicket:id="week1-team8"></span></dt>
+						<dd></dd>
+					</dl>
+					<div id="match53" class="match round3">
+						<dl >
+							<dt><span wicket:id="week2-team1"></span><br/><span wicket:id="week2-team2"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match60" class="match round3">	
+						<dl >
+							<dt><span wicket:id="week2-team3"></span><br/><span wicket:id="week2-team4"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match61" class="match round4">	
+						<dl >
+							<dt><span wicket:id="week3-team1"></span><br/><span wicket:id="week3-team2"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>	
+				</div>	
+				<div class="region">
+					<h3 class="regtitle">Midwest&nbsp;</h3>
+					<dl id="match1" class="match round1">
+						<dt><span wicket:id="fav9"></span><br/><span wicket:id="dog9"></span></dt>
+						<dd><span wicket:id="fav_score9"></span><br/><span wicket:id="dog_score9"></span></dd>
+					</dl>
+					<dl id="match2" class="match round1">
+						<dt><span wicket:id="fav10"></span><br/><span wicket:id="dog10"></span></dt>
+						<dd><span wicket:id="fav_score10"></span><br/><span wicket:id="dog_score10"></span></dd>
+					</dl>
+					<dl id="match3" class="match round2">
+						<dt><span wicket:id="week1-team9"></span><br/><span wicket:id="week1-team10"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match4" class="match round1">
+						<dt><span wicket:id="fav11"></span><br/><span wicket:id="dog11"></span></dt>
+						<dd><span wicket:id="fav_score11"></span><br/><span wicket:id="dog_score11"></span></dd>
+					</dl>
+					<dl id="match5" class="match round1">
+						<dt><span wicket:id="fav12"></span><br/><span wicket:id="dog12"></span></dt>
+						<dd><span wicket:id="fav_score12"></span><br/><span wicket:id="dog_score12"></span></dd>
+					</dl>
+					<dl id="match6" class="match round2">
+						<dt><span wicket:id="week1-team11"></span><br/><span wicket:id="week1-team12"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match8" class="match round1">
+						<dt><span wicket:id="fav13"></span><br/><span wicket:id="dog13"></span></dt>
+						<dd><span wicket:id="fav_score13"></span><br/><span wicket:id="dog_score13"></span></dd>
+					</dl>
+					<dl id="match9" class="match round1">
+						<dt><span wicket:id="fav14"></span><br/><span wicket:id="dog14"></span></dt>
+						<dd><span wicket:id="fav_score14"></span><br/><span wicket:id="dog_score14"></span></dd>
+					</dl>
+					<dl id="match10" class="match round2">
+						<dt><span wicket:id="week1-team13"></span><br/><span wicket:id="week1-team14"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match11" class="match round1">
+						<dt><span wicket:id="fav15"></span><br/><span wicket:id="dog15"></span></dt>
+						<dd><span wicket:id="fav_score15"></span><br/><span wicket:id="dog_score15"></span></dd>
+					</dl>
+					<dl id="match12" class="match round1">
+						<dt><span wicket:id="fav16"></span><br/><span wicket:id="dog16"></span></dt>
+						<dd><span wicket:id="fav_score16"></span><br/><span wicket:id="dog_score16"></span></dd>
+					</dl>
+					<dl id="match13" class="match round2">
+						<dt><span wicket:id="week1-team15"></span><br/><span wicket:id="week1-team16"></span></dt>
+						<dd></dd>
+					</dl>
+					<div id="match7" class="match round3">
+						<dl >
+							<dt><span wicket:id="week2-team5"></span><br/><span wicket:id="week2-team6"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match14" class="match round3">	
+						<dl >
+							<dt><span wicket:id="week2-team7"></span><br/><span wicket:id="week2-team8"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match15" class="match round4">	
+						<dl >
+							<dt><span wicket:id="week3-team3"></span><br/><span wicket:id="week3-team4"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>	
+				</div>	
+			</div>
+			<div class="h2">
+				<h4 class="semititle">Semifinal</h4>
+				<div class="region">
+					<h3 class="regtitle">South&nbsp;</h3>
+					<dl id="match16" class="match round1">
+						<dt><span wicket:id="fav17"></span><br/><span wicket:id="dog17"></span></dt>
+						<dd><span wicket:id="fav_score17"></span><br/><span wicket:id="dog_score17"></span></dd>
+					</dl>
+					<dl id="match17" class="match round1">
+						<dt><span wicket:id="fav18"></span><br/><span wicket:id="dog18"></span></dt>
+						<dd><span wicket:id="fav_score18"></span><br/><span wicket:id="dog_score18"></span></dd>
+					</dl>
+					<dl id="match18" class="match round2">
+						<dt><span wicket:id="week1-team17"></span><br/><span wicket:id="week1-team18"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match19" class="match round1">
+						<dt><span wicket:id="fav19"></span><br/><span wicket:id="dog19"></span></dt>
+						<dd><span wicket:id="fav_score19"></span><br/><span wicket:id="dog_score19"></span></dd>
+					</dl>
+					<dl id="match20" class="match round1">
+						<dt><span wicket:id="fav20"></span><br/><span wicket:id="dog20"></span></dt>
+						<dd><span wicket:id="fav_score20"></span><br/><span wicket:id="dog_score20"></span></dd>
+					</dl>
+					<dl id="match21" class="match round2">
+						<dt><span wicket:id="week1-team19"></span><br/><span wicket:id="week1-team20"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match23" class="match round1">
+						<dt><span wicket:id="fav21"></span><br/><span wicket:id="dog21"></span></dt>
+						<dd><span wicket:id="fav_score21"></span><br/><span wicket:id="dog_score21"></span></dd>
+					</dl>
+					<dl id="match24" class="match round1">
+						<dt><span wicket:id="fav22"></span><br/><span wicket:id="dog22"></span></dt>
+						<dd><span wicket:id="fav_score22"></span><br/><span wicket:id="dog_score22"></span></dd>
+					</dl>
+					<dl id="match25" class="match round2">
+						<dt><span wicket:id="week1-team21"></span><br/><span wicket:id="week1-team22"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match26" class="match round1">
+						<dt><span wicket:id="fav23"></span><br/><span wicket:id="dog23"></span></dt>
+						<dd><span wicket:id="fav_score23"></span><br/><span wicket:id="dog_score23"></span></dd>
+					</dl>
+					<dl id="match27" class="match round1">
+						<dt><span wicket:id="fav24"></span><br/><span wicket:id="dog24"></span></dt>
+						<dd><span wicket:id="fav_score24"></span><br/><span wicket:id="dog_score24"></span></dd>
+					</dl>
+					<dl id="match28" class="match round2">
+						<dt><span wicket:id="week1-team23"></span><br/><span wicket:id="week1-team24"></span></dt>
+						<dd></dd>
+					</dl>
+					<div id="match22" class="match round3">	
+						<dl >
+							<dt><span wicket:id="week2-team9"></span><br/><span wicket:id="week2-team10"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match29" class="match round3">
+						<dl >
+							<dt><span wicket:id="week2-team11"></span><br/><span wicket:id="week2-team12"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+										<div id="match30" class="match round4">	
+						<dl >
+							<dt><span wicket:id="week3-team5"></span><br/><span wicket:id="week3-team6"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>	
+				</div>
+				<div class="region">
+					<h3 class="regtitle">West&nbsp;</h3>
+					<dl id="match32" class="match round1">
+						<dt><span wicket:id="fav25"></span><br/><span wicket:id="dog25"></span></dt>
+						<dd><span wicket:id="fav_score25"></span><br/><span wicket:id="dog_score25"></span></dd>
+					</dl>
+					<dl id="match33" class="match round1">
+						<dt><span wicket:id="fav26"></span><br/><span wicket:id="dog26"></span></dt>
+						<dd><span wicket:id="fav_score26"></span><br/><span wicket:id="dog_score26"></span></dd>
+					</dl>
+					<dl id="match34" class="match round2">
+						<dt><span wicket:id="week1-team25"></span><br/><span wicket:id="week1-team26"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match35" class="match round1">
+						<dt><span wicket:id="fav27"></span><br/><span wicket:id="dog27"></span></dt>
+						<dd><span wicket:id="fav_score27"></span><br/><span wicket:id="dog_score27"></span></dd>
+					</dl>
+					<dl id="match36" class="match round1">
+						<dt><span wicket:id="fav28"></span><br/><span wicket:id="dog28"></span></dt>
+						<dd><span wicket:id="fav_score28"></span><br/><span wicket:id="dog_score28"></span></dd>
+					</dl>
+					<dl id="match37" class="match round2">
+						<dt><span wicket:id="week1-team27"></span><br/><span wicket:id="week1-team28"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match39" class="match round1">
+						<dt><span wicket:id="fav29"></span><br/><span wicket:id="dog29"></span></dt>
+						<dd><span wicket:id="fav_score29"></span><br/><span wicket:id="dog_score29"></span></dd>
+					</dl>
+					<dl id="match40" class="match round1">
+						<dt><span wicket:id="fav30"></span><br/><span wicket:id="dog30"></span></dt>
+						<dd><span wicket:id="fav_score30"></span><br/><span wicket:id="dog_score30"></span></dd>
+					</dl>
+					<dl id="match41" class="match round2">
+						<dt><span wicket:id="week1-team29"></span><br/><span wicket:id="week1-team30"></span></dt>
+						<dd></dd>
+					</dl>
+					<dl id="match42" class="match round1">
+						<dt><span wicket:id="fav31"></span><br/><span wicket:id="dog31"></span></dt>
+						<dd><span wicket:id="fav_score31"></span><br/><span wicket:id="dog_score31"></span></dd>
+					</dl>
+					<dl id="match43" class="match round1">
+						<dt><span wicket:id="fav32"></span><br/><span wicket:id="dog32"></span></dt>
+						<dd><span wicket:id="fav_score32"></span><br/><span wicket:id="dog_score32"></span></dd>
+					</dl>
+					<dl id="match44" class="match round2">
+						<dt><span wicket:id="week1-team31"></span><br/><span wicket:id="week1-team32"></span></dt>
+						<dd></dd>
+					</dl>
+					<div id="match38" class="match round3">
+						<dl >
+							<dt><span wicket:id="week2-team13"></span><br/><span wicket:id="week2-team14"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match45" class="match round3">	
+						<dl >
+							<dt><span wicket:id="week2-team15"></span><br/><span wicket:id="week2-team16"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match46" class="match round4">	
+						<dl >
+							<dt><span wicket:id="week3-team7"></span><br/><span wicket:id="week3-team8"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>	
+				</div>
+				<div id="finalfour">
+					<div id="match31" class="match round5">
+						<dl >
+							<dt><span wicket:id="week4-team1"></span><br/><span wicket:id="week4-team2"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div id="match62" class="match round5">	
+						<dl >
+							<dt><span wicket:id="week4-team3"></span><br/><span wicket:id="week4-team4"></span></dt>
+							<dd></dd>
+						</dl>	
+					</div>
+					<div id="match63" class="match round6">	
+						<dl >
+							<dt><span wicket:id="week5-team1"></span><br/><span wicket:id="week5-team2"></span></dt>
+							<dd></dd>
+						</dl>
+					</div>
+				</div>	
+			</div>		
+		</div>
+	</div>		
+	</td>
+	</tr>
+	</table>
+	</div>
+	</div>
+</wicket:extend>		
+</body>
+</html>
+

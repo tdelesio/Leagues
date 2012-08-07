@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.0.4.v200803111444]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/resources/info/makeyourpicks/context/database-context.xml</config>
+		<config>src/main/resources/info/makeyourpicks/context/league-context.xml</config>
+		<config>src/main/resources/info/makeyourpicks/context/property-context.xml</config>
+		<config>src/main/resources/info/makeyourpicks/context/service-context.xml</config>
+	</configs>
+	<configSets>
+		<configSet>
+			<name><![CDATA[Leagues]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/info/makeyourpicks/context/database-context.xml</config>
+				<config>src/main/resources/info/makeyourpicks/context/league-context.xml</config>
+				<config>src/main/resources/info/makeyourpicks/context/property-context.xml</config>
+				<config>src/main/resources/info/makeyourpicks/context/service-context.xml</config>
+			</configs>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

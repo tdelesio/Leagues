@@ -1,0 +1,18 @@
+Hey, $to_email,
+						\n
+						\n
+						You have been invited to a $leagueType fantasy pool on MakeYourPicks.  
+						\n
+						\n
+						In order to join the league click <a href="">here</a>.  You can also go to the <a href="http://www.makeyourpicks.info">makeyourpicks homepage</a>, login (or register) and click on <a href="http://www.makeyourpicks.info/leagues/joinLeague.html">Join League</a>.  Then enter the following league information:
+						\n
+						\n
+						<b>League Name: $leagueName\n
+						password: $leaguePassword</b>
+						\n
+						\n
+						We will send you a confirmation with further details once you have completed the registration process.
+						\n
+						\n
+						League Admin,
+						$fromUsername ($fromEmail)

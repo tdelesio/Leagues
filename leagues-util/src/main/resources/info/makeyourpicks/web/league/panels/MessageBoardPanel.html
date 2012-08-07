@@ -1,0 +1,45 @@
+<html xmlns:wicket>
+<wicket:panel>
+	<span wicket:id="feedbackPanel"></span>
+	<h4>Updates, Messages, and Smack Talk</h4>
+	<table class="dataview" border="1">
+			<tr>
+				<th align="left" width="50">From</th>
+				<th align="ce">Message</th>
+			</tr>
+			<tr wicket:id="repeating">
+				<td valign="top">
+					<div class="fromPlayer"><wicket:container wicket:id="fromPlayer.username"/></div>
+					<br/>
+					<div class="fromDate"><wicket:container wicket:id="postedDisplay"/></div>
+				</td>
+				<td valign="top">
+					<div class="message"><wicket:container wicket:id="message"/></div>
+				</td>
+			</tr>
+		</table>
+		
+		<span wicket:id="navigator">[dataview navigator]</span>
+		<br/>
+		<br/>
+	<form wicket:id="messageBoardForm" class="inputForm">
+	<table>
+		<tr>
+			<th align="left">Compose Message</th>
+		</tr>
+		<tr>
+			<td align="left"><label for="toPlayer">
+				TO:</label> <select wicket:id="toPlayer"></select><input type="checkbox" wicket:id="entireLeague"/>
+			</td>
+		</tr>
+		<tr>
+			<td><textarea wicket:id = "message" cols="75" rows="2">Default</textarea></td>
+		</tr>
+		<tr>
+			<td align="left"><input type="submit" wicket:id="submit" value="Post Message" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/></td>
+		</tr>
+	</table>
+	</form>
+</wicket:panel>
+
+</html>

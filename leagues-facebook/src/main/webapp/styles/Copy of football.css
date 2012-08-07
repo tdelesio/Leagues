@@ -1,0 +1,29 @@
+/* CSS Document */
+@IMPORT url("parent.css");
+
+/*PAGE LAYOUT*/
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+#logo{float:left; background-image:url(nfl.gif); width:237px; height:97px; }
+#topheader{float:right; width:763px; height:43px; background-color:#F0F0F0; position:relative}
+#toplinks{position:absolute; right:10px; top:10px;}
+#menu{float:right; width:763px; height:32px; background-image:url(bg_menu.gif); background-repeat:repeat-x;}
+#submenu{float:right; width:817px; height:32px; background-image:url(bg_submenu.gif); background-position:top; background-repeat:repeat-x;}
+#contenttext{float:right; width:817px;}
+#leftpanel{float:left; width:183px;}
+#footer{float:left; width:1000px; background-color:#F0F0F0; padding:10px;}
+
+table.dataview td.double
+{
+	font-weight: bold;
+}
+
+table.dataview td.winner
+{
+	background-color: grey;
+}

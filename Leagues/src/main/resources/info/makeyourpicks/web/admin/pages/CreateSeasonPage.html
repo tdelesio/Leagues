@@ -1,0 +1,23 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<span wicket:id="feedbackpanel"></span>
+<form wicket:id="form">
+  		<table>
+  			<tr>
+  				<th>Start Year</th>
+  				<th>End Year</th>
+  				<th>league type</th>
+  			</tr>
+  			<tr>
+  				<td><input wicket:id="startYear" maxlength="4" size="4"></input></td>
+  				<td><input wicket:id="endYear" maxlength="4" size="4"></input></td>
+  				<td><select wicket:id="leagueType"></select></td>
+  			</tr>
+  		</table>
+  		<input type="submit" wicket:id="submit"></input>
+  </form>
+
+</wicket:extend>  
+</body>
+</html>

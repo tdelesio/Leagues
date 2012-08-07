@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="info.makeyourpicks.model">
+
+	<class name="PlayerLeague" table="player_leagues">
+		<cache usage="read-write"/>
+		<!-- Id -->
+    	<id name="id" column="playerLeagueId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		<many-to-one name="league" column="leagueId" lazy="false" fetch="join" cascade="none"/>
+		<many-to-one name="player" column="playerId" lazy="false" fetch="join" cascade="none"/>
+		<property name="sortOrder" column="sortorder" type="int"/>
+		<property name="displayInNav" column="displaynav" type="boolean"/>
+	</class>
+	
+	<class name="Player" table="profile">
+		<cache usage="read-write"/>
+		<!-- Id -->
+    	<id name="id" column="playerId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+        <property name="username" column="name" unique="true"/>
+        <property name="address1" column="address1"/>
+        <property name="city" column="city"/>
+        <property name="email" column="email"/>
+        <property name="firstName" column="fname"/>
+        <property name="lastName" column="lname"/>
+        <property name="memberLevel" column="member_level" type="int"/>
+        <property name="password" column="password"/>
+        <property name="retryAttempts" column="retry_attempts" type="int"/>
+        <property name="state" column="state"/>
+        <property name="zip" column="zip"/> 
+        <property name="verified" column="verified" type="boolean"/>
+        <property name="locked" column="locked" type="boolean"/>
+        <property name="facebookId" column="facebookId" type="long"/>
+ <!-- 
+        <set name="leagues" table="player_leagues" cascade="all" lazy="false" fetch="select" inverse="true">
+        	<key column="playerId"/>
+        	<many-to-many column="leagueId" lazy="false" fetch="select"  class="League"/>
+        </set>
+ -->               
+        <!-- sort="natural" order-by="weekNumber" -->
+<!--        
+		<set  name="picks" table="picks" cascade="save-update" lazy="false" inverse="true" fetch="select">
+        	<key column="username_id"/>
+        	<one-to-many class="Picks"/>
+       </set>
+-->       
+    </class>
+</hibernate-mapping>

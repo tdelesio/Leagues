@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>info.makeyourpicks</groupId>
+	<artifactId>leagues-facebook</artifactId>
+	<packaging>war</packaging>
+	<name>Leagues Facebook</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description />
+	<parent>
+		<groupId>com.delesio</groupId>
+		<artifactId>web-build</artifactId>
+		<version>0.4</version>
+	</parent> 
+	<build>
+		<plugins>
+			<plugin>
+       			<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-eclipse-plugin</artifactId>
+        		<configuration>
+        			<wtpContextName>facebook</wtpContextName>
+        			<wtpversion>1.5</wtpversion>
+		        </configuration>
+ 	     </plugin>
+		</plugins>
+	</build>
+<!-- 	<repositories>
+		<repository>
+ <id>wicket-stuff-repository</id>
+ <name>Wicket-Stuff Repository</name>
+ <url>http://www.wicketstuff.org/maven/repository</url>
+</repository>
+	</repositories>
+	 -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+<!-- 		<dependency>
+			<groupId>info.makeyourpicks</groupId>
+			<artifactId>league-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+ 		
+		<dependency>
+			<groupId>com.delesio</groupId>
+			<artifactId>wicket-web-framework</artifactId>
+			<version>0.2.0</version>
+		</dependency>
+		-->
+		<dependency>
+  	<groupId>com.delesio</groupId>
+  	<artifactId>services-framework</artifactId>
+  	<version>0.1.6</version>
+  </dependency>
+  <dependency>
+      <groupId>com.google.code.facebookapi</groupId>
+      <artifactId>facebook-java-api</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+  <dependency>
+		 <groupId>com.google.code.facebookapi</groupId>
+		 <artifactId>facebook-java-api-annotation-processor</artifactId>
+		 <version>3.0.2</version>
+</dependency>
+
+<dependency>
+		 <groupId>com.google.code.facebookapi</groupId>
+		 <artifactId>facebook-java-api-schema</artifactId>
+		 <version>3.0.2</version>
+</dependency>
+<dependency>
+		 <groupId>com.sun.xml.bind</groupId>
+		 <artifactId>jaxb-impl</artifactId>
+		 <version>2.1.9</version>
+</dependency>
+<dependency>
+		 <groupId>commons-logging</groupId>
+		 <artifactId>commons-logging</artifactId>
+		 <version>1.1.1</version>
+</dependency>
+<dependency>
+		 <groupId>org.json</groupId>
+		 <artifactId>json</artifactId>
+		 <version>20080701</version>
+</dependency>
+		<!-- 
+		<dependency>
+		 <groupId>org.wicketstuff</groupId>
+		 <artifactId>wicketstuff-jmx-panel</artifactId>
+		 <version>1.3.0-SNAPSHOT</version>
+		</dependency>
+		
+		 -->
+		<!--<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>5.5.15</version>
+			<scope>compile</scope>
+		</dependency>		
+
+		<dependency>
+		       <groupId>org.odlabs.wiquery</groupId>
+		        <artifactId>wiquery</artifactId>
+		        <version>1.0-SNAPSHOT</version>
+		</dependency>
+-->	
+	</dependencies>
+	
+</project>

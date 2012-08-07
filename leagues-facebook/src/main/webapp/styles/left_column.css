@@ -1,0 +1,144 @@
+
+#left_container
+{
+	float: left;
+	width: 240px;
+	
+}
+#leftnav_container
+{
+	float: left;
+	width: 240px;
+/*	border: 1px solid gray;*/
+}
+
+#logo
+{
+	float: left;
+	width: 240px;
+	height: 110px;
+	background-color: #fcd15d;		
+	background-image:url(football_logo_240x110.jpg);
+	
+/*	background-repeat: no-repeat;*/
+}
+
+#leftnav {
+	float: left;
+	clear: left;
+	margin-left: 11px;
+/*	margin-right: 16px;*/
+	width: 213px;
+	padding-top:20px;
+	background-image:url(bg_213x1.jpg);
+	background-repeat: repeat-y;
+	padding-bottom: 5px;
+	/*padding: 15px;*/
+	/*background-color: #3b3b3b;*/
+}
+
+
+#leftnavbottom_container
+{
+	float: left;
+	clear: left;
+	margin-left: 11px;
+	width: 213px;
+	height: 15px;
+/*	margin-right: 16px;*/
+	margin-bottom: 15px;
+	background-color: #3b3b3b;
+	
+	
+}
+
+/*
+#middle_corner
+{
+	background-color: #3b3b3b;
+	height: 15px;
+}
+
+#left_corner
+{
+	background-image:url(btm_left_round.jpg);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+}
+
+#right_corner
+{
+	background-image:url(btm_right_round.jpg);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+
+}
+*/
+#ad1
+{
+	float: left;
+	clear: left;
+	margin-left: 11px;
+	width: 210px;
+	height: 148;
+/*	margin-right: 19px;*/
+/*	background-image:url(banner.jpg);*/
+	background-repeat: no-repeat;
+}
+
+.leftnavtitle
+{
+	color: #ffffff;
+	font-size: 10pt;
+	font-weight: bold;
+	font-family: arial;
+	margin-left: 20px;
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+
+.leftnavtext
+{
+	font-size: 8pt;
+	color: #ffffff;	
+	font-family: arial;
+	margin-left: 20px;
+}
+
+#leftnav a.on
+{
+	color: #f7cb4a;
+	font-weight: bold;
+	
+	font-size: 10pt;
+	font-family: arial;
+	margin-left: 20px;
+}
+
+.leftnavwelcome
+{
+	color: 	#f7cb4a;
+	font-size: 10pt;
+	font-family: arial;
+	margin-left: 20px;
+}
+
+.leftnavnotuser
+{
+	color: #f7cb4a;
+	font-size: 8pt;
+	font-family: arial;
+	margin-left: 20px;
+
+}
+
+a.activatenavtext
+{
+	color: red;
+	font-size: 9pt;
+	font-family: arial;
+	margin-left: 20px;
+
+}

@@ -1,0 +1,38 @@
+<html xmlns:wicket>
+<wicket:panel>
+
+<table>
+	<tr>
+		<th colspan="7" align="center">
+			<table width="100%" class="cal-header">
+				<tr>
+					<td><a href="#" wicket:id="prevMonth">&lt;</a></td>
+					<td align="center"><span wicket:id="currentMonth"></span></td>
+					<td align="right"><a href="#" wicket:id="nextMonth">&gt;</a></td>
+				</tr>
+			</table>
+		</th>
+	</tr>
+	<tr>
+		<th wicket:id="sun"></th>
+		<th wicket:id="mon"></th>
+		<th wicket:id="tue"></th>
+		<th wicket:id="wed"></th>
+		<th wicket:id="thu"></th>
+		<th wicket:id="fri"></th>
+		<th wicket:id="sat"></th>
+	</tr>
+	<tr wicket:id="calendarData">
+		<td><span wicket:id="column1"></span></td>
+		<td><span wicket:id="column2"></span></td>
+		<td><span wicket:id="column3"></span></td>
+		<td><span wicket:id="column4"></span></td>
+		<td><span wicket:id="column5"></span></td>
+		<td><span wicket:id="column6"></span></td>
+		<td><span wicket:id="column7"></span></td>
+	</tr>
+
+</table>
+</wicket:panel>
+
+</html>

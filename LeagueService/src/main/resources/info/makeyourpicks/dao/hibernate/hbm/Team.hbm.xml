@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+	
+<hibernate-mapping package="info.makeyourpicks.model">
+    <class name="Team" table="teams">
+    	<cache usage="read-write"/>
+    	<!-- Id -->
+    	<id name="id" column="teamId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+		<!-- Properties -->
+		<property name="teamName" column="team_name" length="50" type="java.lang.String" not-null="true"/>
+		<property name="city" column="city" length="50" type="java.lang.String" not-null="true"/>
+		<property name="shortName" column="short_name" length="6" type="java.lang.String" not-null="true"/>
+		<property name="theme" column="theme" length="50" type="java.lang.String"/>
+		<property name="feedName" column="feed_name" length="50" type="java.lang.String" not-null="false"/>
+		<many-to-one name="leagueType" column="league_type_id" lazy="false" fetch="join" cascade="none" class="LeagueType" not-null="true"/>
+    </class>
+</hibernate-mapping>

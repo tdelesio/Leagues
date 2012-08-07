@@ -1,0 +1,136 @@
+
+.game
+{
+	border: 1px solid black;
+	width: 500px;
+	padding: 5px;
+	margin-left: 50px;
+	margin-bottom: 25px;
+	position: relative;
+
+/*
+	box-shadow: 3px 3px 3px #aaaaaa;
+	-moz-box-shadow: 3px 3px 3px #aaaaaa;
+	-webkit-box-shadow: 3px 3px 3px #aaaaaa;
+*/	
+}
+
+table.makepicks
+{
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;	
+}
+.loser
+{
+/*	
+	opacity: .30;
+	filter:Alpha(Opacity=30);
+*/	
+}
+
+
+
+.gameover
+{
+/*	
+	opacity: .30;
+	filter:Alpha(Opacity=30);	
+*/	
+}
+
+h4
+{
+	margin-left: 20px;
+}	
+
+th
+{
+	font-size: 14px;
+	background-color: #153041;
+	color: white;
+}
+
+/*
+644 total width
+*/
+.gameStart
+{
+	width: 45px;
+	font-size: 10px;
+	text-align: center;
+}
+
+.teamLink
+{
+	text-align: center;
+}
+
+.teamsPlaying
+{
+	width: 180px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.scores
+{
+	width: 45px;
+	font-size: 12px;
+}
+
+.spreads
+{
+	width: 76px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.icon
+{
+	width: 14px;
+	text-align: center;
+}
+
+
+.lost
+{
+/*	text-decoration: line-through; 	*/
+/*	color: red;*/
+}
+
+.doublePick
+{
+	font-size: 14px; 
+	margin-left: 140px;
+	margin-top: 20px;
+	clear: both;
+	
+}
+
+.winner
+{
+/*	color: green;*/	
+}
+
+.loser
+{
+
+}
+
+.doublePick select, .doublePick div, .doublePick img 
+{
+	display: inline;
+}	
+
+.pickselected
+{
+	text-decoration: none;
+}
+
+img
+{
+	border-style: none;
+}	
+
+

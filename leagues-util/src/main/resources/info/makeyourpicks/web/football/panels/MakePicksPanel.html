@@ -1,0 +1,93 @@
+<html xmlns:wicket>
+<wicket:panel>
+<h4 wicket:id=contentHeader></h4>
+<form wicket:id="makePicks">
+
+
+<div wicket:id="pickRow">
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<th class="teamsPlaying">
+			<wicket:container wicket:id="gameStart"/>
+		</th>
+		<th class="spreads">
+			Spread
+		</th> 
+		<th class="scores">
+			Score
+		</th>
+	</tr>
+	<tr>
+		<td class="teamsPlaying">
+			<div wicket:id="favContainer"><img wicket:id="fav_check"/><a href="#" wicket:id="fav"><span wicket:id="favLabel"></span></a></div>
+		</td>
+		<td class="spreads">
+			-<wicket:container wicket:id="spreadMinus"/>
+		</td>
+		<td class="scores">
+			<wicket:container wicket:id="favScore"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="teamsPlaying">
+			<div wicket:id="dogContainer"><img wicket:id="dog_check"/><a href="#" wicket:id="dog"><span wicket:id="dogLabel"></span></a></div>
+		</td>
+		<td class="spreads">
+			+<wicket:container wicket:id="spreadPlus"/>
+		</td>
+		<td class="scores">
+			<wicket:container wicket:id="dogScore"/>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="doublePick">
+	Double Pick <span wicket:id="modal2" class="modal"></span> <a wicket:id="showModal2"><img border="0" src="styles/help.jpg"></a> <select wicket:id="team" class="makepicks"></select>
+</div>
+
+
+</form>
+<span wicket:id="feedbackpanel"></span> 	
+</wicket:panel>
+</html>
+  
+<!-- 
+<html xmlns:wicket>
+<wicket:panel>
+<form wicket:id="makePicks">
+
+
+<table cellspacing="0" class="dataview">
+	<tr>
+		<th>Favorite</th>
+		<th>Fav Score</th>
+		<th>Spread</th>
+		<th>Underdog</th>
+		<th>Dog Score</th>
+		<th>Game Time</th>
+	</tr>
+	<tr wicket:id="simple">
+        <td align="center"><div wicket:id="favContainer"><img wicket:id="fav_check"/><a href="#" wicket:id="fav"><span wicket:id="favLabel"></span></a></div></td>
+        <td><div wicket:id="favScore"></div></td>
+		<td><span wicket:id="spread"></span></td>
+		<td align="center"><div wicket:id="dogContainer"><img wicket:id="dog_check"/><a href="#" wicket:id="dog"><span wicket:id="dogLabel"></span></a></div></td>
+		<td><div wicket:id="dogScore"></div></td>
+		<td><span wicket:id="gameStart"></span></td>
+    </tr>    
+    <tr>
+    	<td>&nbsp;</td>
+    	<td>&nbsp;</td>
+    	<td >Double Pick <span wicket:id="modal2" class="modal"></span>
+				<a wicket:id="showModal2"><img border="0" src="styles/help.jpg"></a></td>
+    	<td ><select wicket:id="team" class="makepicks"></select></td>    	
+		<td>&nbsp;</td>		
+	  	<td>&nbsp;</td>
+    </tr>   
+</table>
+	
+</form>
+<span wicket:id="feedbackpanel"></span> 	
+</wicket:panel>
+</html>  
+ -->

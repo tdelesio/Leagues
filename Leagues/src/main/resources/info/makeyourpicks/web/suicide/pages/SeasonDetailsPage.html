@@ -1,0 +1,23 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<table cellspacing="0" class="dataview">
+    <tr>
+        <th wicket:id="orderByWeek">Week</th>
+        <th wicket:id="orderByName">Name</th>
+        <th wicket:id="orderByPick">Pick</th>
+        <th wicket:id="orderByWin">Win?</th>
+        <th >Spread</th>
+    </tr>
+    <tr wicket:id="sorting">
+        <td><span wicket:id="week"></span> </td>
+        <td><span wicket:id="name"></span></td>
+        <td><span wicket:id="pick"></span></td>
+        <td><span wicket:id="winner"></span></td>
+        <td><span wicket:id="spread"></span></td>
+    </tr>
+</table>
+
+</wicket:extend>
+</body>
+</html>

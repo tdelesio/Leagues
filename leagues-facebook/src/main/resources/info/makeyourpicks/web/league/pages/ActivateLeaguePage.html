@@ -1,0 +1,45 @@
+<html xmlns:wicket>
+<head></head>
+<body>
+<wicket:extend>
+<div class="titletext">
+Activate League
+</div>
+
+
+<form wicket:id="form">
+<div wicket:id="feedbackpanel"/>
+<!-- 
+<input type="hidden" name="cmd" value="_xclick"/>
+<input type="hidden" name="USER" value="sdk-three_api1.sdk.com"/>
+<input type="hidden" name="PWD" value="QFZCWN5HZM8VBG7Q"/>
+<input type="hidden" name="SIGNATURE" value="A-IzJhZZjhg29XQ2qnhapuwxIDzyAZQ92FRP5dqBzVesOkzbdUONzmOU"/>
+<input type="hidden" name="currency_code" value="USD"/>
+<input type="hidden" name="item_name" value="Teddy Bear" wicket:id="item_name"/>
+<input type="hidden" name="amount" value="12.99" wicket:id="amount"/>
+<input type="image" src="http://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" wicket:id="submit">
+
+
+<form action='expresscheckout.java' METHOD='POST'>
+<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='PayPal'/>
+</form>
+
+
+
+ -->
+<div class="contexttextcontainer">
+ Your league is currently in-active.  If the amount below is not paid in full by the start of week 2 this league will be disabled.  All users will be unable to get view their picks.  To enable this account click the below link to check out with Paypal.  
+
+</div>
+<br/>
+<div class="subtitletext">
+League Name: <span wicket:id="league.leagueName"></span><br/>
+Number of Players in League: <span wicket:id="players"></span><br/>
+Cost: $<span wicket:id="amountDue"></span><br/>
+</div>
+<br/>
+<input type="image" wicket:id="submit" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"/>
+</form>
+</wicket:extend>
+</body>
+</html>

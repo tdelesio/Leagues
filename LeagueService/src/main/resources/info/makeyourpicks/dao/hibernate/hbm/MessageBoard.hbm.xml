@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+	
+<hibernate-mapping package="info.makeyourpicks.model">
+    <class name="MessageBoard" table="messageboard">
+    	
+    	<!-- Id -->
+    	<id name="id" column="messageId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+
+		<!-- Properties -->
+		<property name="posted" column="posted" type="java.sql.Timestamp" not-null="true"/>
+		<property name="message" column="message" length="2550" type="java.lang.String"/>
+		<property name="style" column="style" length="50" type="java.lang.String"/>
+		
+		<many-to-one name="fromPlayer" lazy="false" fetch="join" cascade="none" class="Player" not-null="true" column="from_email_id"/>
+		<many-to-one name="leagueName" lazy="false" fetch="join" cascade="none" class="League" not-null="true" column="league_id"/>
+<!-- 		
+		 <set name="toPlayers" table="player_messages" cascade="all" lazy="true" fetch="select">
+        	<key column="messageId"/>
+        	<many-to-many column="playerId" lazy="false" fetch="select" class="Player"/> 
+        </set>
+ -->        
+    </class>
+  
+    <class name="PlayerMessages" table="player_messages">
+		<id name="id" column="playerMessageId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+		<property name="read" column="player_read" type="boolean"/>
+		<many-to-one name="message" column="message_id" lazy="false" fetch="join" cascade="none"/>
+		<many-to-one name="player" column="player_id" lazy="false" fetch="join" cascade="none"/>
+			
+	</class>
+	  
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<html xmlns:wicket>
+<wicket:panel>
+<div class="titletext">
+		Join Private League
+	</div>
+	<br/>
+	<span wicket:id="feedbackPanel"></span>
+	<form wicket:id="joinLeagueForm" class="inputForm">
+	
+	<table>
+		<tr>
+			<td><label for="leagueName">League Name</label></td>
+			<td><input wicket:id="leagueName" id="leagueName" size="25" maxlength="50"/></td>
+		</tr>
+		<tr>
+			<td><label for="leagueType">League Password</label></td>
+			<td>
+				 <input wicket:id="password"></input>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" wicket:id="submit" value="Join League" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/></td>
+		</tr>
+	</table>
+	<br/>
+	</form>
+	<div wicket:id="container">
+	<div class="titletext">Free Leagues</div><br/>
+	<table cellspacing="0" class="dataview">
+	<tr>
+        <th>Join League</th>
+        <th>League Name</th>
+        <th>League Type</th>
+        <th>League Size</th>
+        <th>Admin</th>
+    </tr>
+		<tr wicket:id="freeLeaguesDataView">
+			<td><a href="#" wicket:id="joinLink">Join</a></td>
+			<td><span wicket:id="leagueName"></span></td>
+			<td><span wicket:id="season.leagueType.leagueTypeDisplay"></span></td>
+			<td><span wicket:id="numberPeople"></span></td>
+			<td><span wicket:id="admin.username"></span></td>
+		</tr>
+	</table>
+	
+	</div>
+</wicket:panel>
+</html>
+  

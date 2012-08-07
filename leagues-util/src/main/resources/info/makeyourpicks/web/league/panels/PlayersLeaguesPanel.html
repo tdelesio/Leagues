@@ -1,0 +1,28 @@
+<html xmlns:wicket>
+<wicket:panel>
+		<table cellspacing="0" class="dataview">
+		<tr>
+	        <th>Select League</th>
+	        <th>Nav Order</th>
+	        <th>Show in Nav?</th>
+	        <th>League Name</th>
+	        <th>League Type</th>
+	        <th>League Size</th>
+	        <th>Admin</th>
+	        <th>Active</th>
+	        <th>Spreads?</th>
+	    </tr>
+		<tr wicket:id="leaguesDataView">
+			<td><a href="#" wicket:id="select">Go to league</a></td>
+			<td><span wicket:id="sortOrder"></span></td>
+			<td><a href="#" wicket:id="displayInNavLink"><span wicket:id="displayInNavText"></span></a></td>
+			<td><span wicket:id="league.leagueName"></span></td>
+			<td><span wicket:id="league.season.leagueType.leagueTypeDisplay"></span></td>
+			<td><span wicket:id="numberPeople"></span></td>
+			<td><span wicket:id="league.admin.username"></span></td>
+			<td><span wicket:id="league.active"></span></td>			
+			<td><span wicket:id="league.spreads"></span></td>
+		</tr>
+	</table>	
+</wicket:panel>
+</html>

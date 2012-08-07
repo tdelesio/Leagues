@@ -1,0 +1,401 @@
+@IMPORT url("left_column.css");
+
+#container {
+	width: auto%;
+/*	margin: 10px auto;*/
+	background-color: #fff;
+	font-family: arial;
+	table-layout: auto;
+}
+
+#left_container
+{
+  float: left;
+  width: 5%;
+
+}
+
+#content_container
+{
+	float: left;
+	width: 100%;
+
+	
+/*border: 1px solid red;*/
+}
+
+#header {
+	float: left;
+	width: 100%;
+	background-color: #fbcd4a;
+	height: 80px;
+	margin-bottom: 10px;
+/*border: 1px solid red;*/
+}
+
+/*
+#makeyourpicks
+{
+	float: left;
+	width: 100%;
+	background-image: url(makeyourpics.jpg);
+}
+*/
+
+#content { 
+/*	position: absolute;
+	top: 100px;
+	left: 245px;
+	padding-left: 20px;
+*/
+	float: left;
+	width: 100%;	
+	color: #3b3b3b; 
+	font-size: 10px;
+
+/*border: 1px solid red;*/
+/*	margin-left: 200px;
+	border-left: 1px solid gray;
+	padding: 1em;
+	max-width: 36em;
+*/
+}
+
+
+
+#weeknav {
+	color: black;
+	font-size: 10px;
+}
+
+#leaguenav {
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+
+
+#footer {
+	clear: both;
+	color: #000000;
+	font-family: arial;
+	font-size: 7pt;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#googleSearch
+{
+	float: right;
+}
+
+select	
+{
+	padding: 2px;
+}
+
+select.makepicks
+{
+	background-color: #3b3b3b;
+	color: white;
+}
+
+.leaguenavmenu
+{
+	float: right;
+	font-size: 8pt;
+	color: #2551bb;
+	font-family: arial;
+	
+}
+
+.leaguenavleaguename
+{
+	font-size: 14pt;
+	color: #3b3b3b;
+	font-family: arial;
+	font-weight: bold;
+	color: #3b3b3b;
+}
+
+.leaguenavmenu a.on
+{
+	color: #3b3b3b;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 7pt;
+	font-family: arial;
+}
+
+.leaguenavinvite
+{
+	font-size: 8pt;
+	color: #2551bb;
+	font-family: arial;
+}
+
+table.dataview th.leaguedetails 
+{
+	text-align: left;
+}
+
+td.leaguedetailscontainer
+{
+	vertical-align: top;
+}
+
+table.dataview 
+{
+	margin-bottom: 10px;
+	border: 1px solid #3b3b3b;
+	font-size: 8pt;
+	font-family: arial;
+	margin-left: auto;
+	margin-right: auto;
+	float: left;
+	width: 100%;
+
+}
+
+table.dataview tr.even { background-color: #E6E6E6; }
+table.dataview tr.odd { background-color: #fff; }
+table.dataview tr th 
+{ 
+	color: #ffffff;
+	font-family: arial;
+/*	padding-top: 3px; 
+	padding-bottom: 3px; 
+	padding-left: 5px; 
+	padding-right: 5px; 
+	*/
+	background-color: #3b3b3b;
+/*	white-space: nowrap; */
+	vertical-align: middle;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 7pt;
+	border-top-style: double; 
+	text-decoration: none;
+	font-weight: bold;
+}
+
+table.dataview tr td
+{
+	text-align: center;
+}
+
+.winner
+{
+	background-color: #fbcd4a;
+	color: white;
+	border: 1px solid black;
+}
+
+
+
+.loser
+{
+/*	background-color: #cdcdcd;*/
+	color: black;
+/*	border: 1px solid black;*/
+	text-decoration: line-through;	
+}
+
+
+td.double
+{
+	color: #2068f9;
+	font-weight: bold;
+}
+
+/*
+a.on
+{
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+}
+*/
+.modal
+{
+	width: 200px;
+	height: 50px;
+}
+
+.circlecontent
+{
+	background-color: #3b3b3b;
+	width: auto;
+}
+
+.titletext
+{
+	font-weight: bold;
+	font-size: 12pt;
+	padding-bottom: 15px;
+}
+
+.subtitletext
+{
+	font-size: 10pt;
+	color: #2068f9;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.contexttextcontainer
+{
+	width: 500px;
+}
+
+a.orderLinkHeader
+{
+	color: #ffffff;
+	font-family: arial;
+	padding-top: 3px; 
+	padding-bottom: 3px; 
+	padding-left: 5px; 
+	padding-right: 5px; 
+	background-color: #3b3b3b;
+	white-space: nowrap; 
+	vertical-align: middle;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 8pt;
+	border-top-style: double; 
+	text-decoration: none;
+}
+
+
+.feedbackpanelerror
+{
+	color: red;
+	font-weight: bold;
+}
+
+.saved
+{
+	width: 15px;
+	height: 15px;
+	margin:0;
+	padding:0;
+	
+}
+
+.unsaved
+{
+	background-image: url(even-1x1.gif);
+	width: 15px;
+	height: 15px;
+	margin:0;
+	padding:0;
+	visibility: hidden;
+}
+
+
+.spreadfootnote
+{
+	font-style: italic;
+	font-size: 8px;
+	
+}
+
+
+
+.home
+{
+	font-weight: bold;
+	color: black;
+}
+
+.away
+{
+	color: black;
+}
+
+.pickselected
+{
+/*	
+	background-color: #f7cb4a;
+	background-color: #148c14;
+*/	
+	border: 1px solid black;
+	padding: 1px;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+span.winner
+{
+	border: none;
+}
+
+
+.closed
+{
+/*	background-color: #cccccc;*/
+}
+
+.logoHeader
+{
+	float: left;
+	margin-right: 15px;
+}
+
+.scoresContainer
+{
+
+}		
+
+.scoresHeader
+{
+	float: left;	
+	margin-top: 12px;
+	background-color: #f8dd90;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+/*	border-left: 1px solid black;*/
+	width: 45px;
+	margin-right: 5px;
+	padding-right: 5px;
+}
+
+/*
+.scorePanel
+{
+	color: white;
+	float: left;
+	border: 1px solid black;
+}
+*/
+
+.headerteamname
+{
+	color: white;
+	font-size: 9pt;
+	text-align: left;
+	width: 30px;
+}
+
+.headerscore
+{
+	width: 10px;
+	font-size: 8pt;
+	text-align: right;
+}
+
+.headerspread
+{
+	font-size: 7pt;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}		
+	
+.winning
+{
+	border: 1px solid red;
+}

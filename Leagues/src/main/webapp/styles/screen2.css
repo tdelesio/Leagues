@@ -1,0 +1,277 @@
+/*
+* 
+{ 
+	font-family:arial; 
+	/*font-size: 12px;*/
+/*}
+*/
+
+body
+{
+	width: 1024px;
+	margin: 0px auto;	
+	font-family:arial;
+/*	border: 1px solid black;*/
+}
+
+h2
+{
+	font-size: 12px;
+}	
+
+/*
+#wrapper1 {
+	position:relative;
+	text-align:left;
+	width:100%;
+	background:#FFF url("../images/rightcolor_bg.gif") repeat-y top right;
+	
+	}
+
+
+#wrapper2 {
+	position:relative;
+	text-align:left;
+	width:100%;
+	background:url("../images/leftcolor_bg.gif") repeat-y top left;
+	}
+*/
+
+
+#widgetHeader
+{
+	float: left;
+	font-size: 12px;
+	font-weight: bold; 
+}
+
+
+#widgetLineLeft
+{
+	float: left;
+	margin-left: 40px;
+	
+}
+
+#widgetLineRight
+{
+	float: right;
+	margin-right: 5px;
+}
+
+
+#header 
+{
+	text-align: left;
+	margin: 0 auto;
+	width: 100%;
+	height: 87px;	
+	float: left;
+	background-image:url('/leagues/images/bg/gradient_myp.gif');
+	background-repeat:repeat-x;
+	color: white;
+	margin-bottom: 10px;
+	font-size: 12px;
+	
+}
+
+#header a
+{
+	border: 0px;	
+}
+#leftHeader
+{
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+
+#longWidget
+{
+	background-color: black;
+	width: 400px;
+	float:left;
+}
+
+#leftHeader, #rightHeaderSub1
+{
+	float: left;
+}
+#rightHeader, #rightHeaderSub2
+{
+	float: right;
+	
+}
+
+#rightHeaderSub2 a, #rightHeaderSub2, #rightHeaderSub1
+{
+	color: black;	
+}
+
+#rightHeaderSub1
+{
+	margin-top: 10px;
+	padding: 10px;
+/*	background-color: black;*/
+	width: 150px;
+/*	border: 1px solid blue;*/
+	
+}
+
+#rightHeaderSub2
+{
+	text-align: left;
+	margin-left: 20px;
+	border: 1px solid #797979;
+	background-color: #ebebeb;
+	padding: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	
+	box-shadow: 3px 3px 3px #aaaaaa;
+	-moz-box-shadow: 3px 3px 3px #aaaaaa;
+	-webkit-box-shadow: 3px 3px 3px #aaaaaa;
+/*	padding: 15px 15px 15px 15px;*/
+}	
+
+#welcome
+{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#rightHeader, #rightHeader div, #rightHeader form, h1, #rightHeaderSub2 select
+{
+	display: inline;
+}
+
+
+.logo
+{
+	float: left;
+	border-style: none;
+	/*background-color: #fcd15d;*/		
+/*	background-image:url(http://localhost:8080/leagues/styles/logo.jpg);*/
+	
+/*	background-repeat: no-repeat;*/
+}
+
+#content-container {
+	clear:both;
+	position:relative;
+	margin:0;
+/*	padding:10px;*/
+}
+	
+	
+ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+	
+}
+
+li
+{
+	margin-bottom: 5px;
+}
+
+#leftColumn
+{
+	position:relative;
+/*	left:-10px;*/
+	float:left;
+	width:180px; /* actual value */
+/*	background:#ECB9E8;*/
+/*	background:#cccccc;*/
+	z-index:100;
+/*	border: 1px solid red;*/
+	display: inline;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#leftColumn h3
+{
+	font-size: 12px;
+	padding-left: 15px;
+}	
+
+#subNavContainer a
+{
+	font-size: 12px;	
+}
+
+
+
+
+#rightColumn {
+	position:relative;
+	float:right;
+	width:180px;
+	background-color: white;
+	margin-left: 10px;
+	margin-bottom: 10px;
+/*	border: 1px solid green;*/
+	}
+	
+
+	
+#middleColumn {
+	position:relative;
+/*	padding:0 190px;*/
+	float: left;
+	display: inline;
+	width: 644px;	
+	margin-bottom: 10px;
+	}
+	
+#middleColumn a {
+	color:#666;
+	}
+
+	
+#footer ,#footer a
+{
+	color:black;
+}	
+#footer 
+{
+	position:relative;
+/*	top:1px;*/
+	background-image:url('/leagues/images/bg/gradient_myp_bottom.gif');
+	background-repeat:repeat-x;
+	width:100%;
+	height: 54px;
+	clear:both;
+/*	margin:0;*/
+/*	padding:1% 0;*/
+	text-align:center;
+/*	vertical-align: middle;*/
+	
+}
+	
+
+
+#content
+{
+	width: 100%;
+	float: left;
+	border: 1px solid black;
+}
+
+h1
+{
+font-size: 24px;	
+color: black;	
+	
+	
+}
+/*	border: 1px solid black;*/
+
+
+
+	
+

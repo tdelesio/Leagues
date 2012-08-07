@@ -1,0 +1,89 @@
+<html xmlns:wicket>
+<wicket:panel>
+<span wicket:id="feedbackPanel"></span>
+<form wicket:id="step1Form" class="inputForm">
+
+	<h2>Create a League</h2>
+	<div class="createRow">
+		<div class="label">Step 1: League Type</div>
+		<div class="inputdata"><select wicket:id="season"></select></div>
+		<div class="description" wicket:id="poolDescription">A pick'em league is where you choose every game every week.  You can customize the pool to add a variety late in step 2.</div>
+	</div>
+	<div wicket:id="step2Container">
+		<div class="step">Step 2: Customize League</div>
+		<div class="createRow">
+			<div class="label">Max number of players</div>
+			<div class="inputdata"><input wicket:id="maxSize" maxlength="4" size="2"></input></div>
+			<div class="description">Maximum number of players allowed in the league.</div>
+		</div>
+		<div class="createRow" wicket:id="doubleContainer">
+			<div class="label">Double?</div>
+			<div class="inputdata"><select wicket:id="doubleEnabledEnum"></select></div>
+			<div class="description">Every week you choose one game that counts double points.</div>
+		</div>
+		<div class="createRow">
+			<div class="label">Play with spreads?</div>
+			<div class="inputdata"><select wicket:id="spreadsEnum"></select></div>
+			<div class="description">Spreads are entered automaticly into the system a few days before the game starts.</div>
+		</div>
+		<div class="createRow">
+			<div class="label">Do you want a banker?</div>
+			<div class="inputdata"><select wicket:id="bankerEnum"></select></div>
+			<div class="description">If you and your friends are going to be playing for "bottlecaps" we will keep track of you totals</div>
+		</div>
+		
+		<div wicket:id="bankContainer">
+			<div class="createRow" wicket:id="tieBreakContainer">
+				<div class="label">Tie Break</div>
+				<div class="inputdata"><select wicket:id="doubleTypeEnum"></select></div>
+				<div class="description" wicket:id="tieBreakerDescription">Ties are split evenly between week winners</div>
+			</div>
+			
+			<div class="createRow">
+				<div class="label">Entry Fee</div>
+				<div class="inputdata"><input wicket:id="entryFee" maxlength="5" size="2"></input></div>
+				<div class="description">This will go towards the prize pool for the over all winners.</div>
+			</div>
+		
+		
+			<div class="createRow" wicket:id="percentContiner">
+				<div class="feepercent">1st <input wicket:id="firstPlacePercent" size="2" maxlength="3"></input>%</div>
+				<div class="feepercent">2nd <input wicket:id="secondPlacePercent" size="2" maxlength="2"></input>%</div>
+				<div class="feepercent">3rd <input wicket:id="thirdPlacePercent" size="2" maxlength="2"></input>%</div>
+				<div class="feepercent">4th <input wicket:id="fourthPlacePercent" size="2" maxlength="2"></input>%</div>
+				<div class="feepercent">5th <input wicket:id="fifthPlacePercent" size="2" maxlength="2"></input>%</div>
+			</div>
+			
+			<div class="createRow" wicket:id="weeklyFeeContainer">
+				<div class="label">Weekly Fee</div>
+				<div class="inputdata"><input wicket:id="weeklyFee" size="2" maxlength="3"></input>x17 weeks = $<span wicket:id="weekCalc" class="weeklyfee"></span></div>
+				<div class="description">This will go to the person with the most points each week.</div>
+			</div>
+			
+			<div class="createRow" wicket:id="totalCostContainer">
+				<div class="label">Total per Player</div>
+				<div class="inputdata"><div wicket:id="totalCost"></div></div>
+				<div class="description"></div>
+			</div>
+		</div>
+			<div class="createRow">
+				<div class="label">Name your league</div>
+				<div class="inputdata"><input wicket:id="leagueName" size="20" maxlength="50"></input></div>
+				<div class="description">This is the name of your league that you will tell your friends about.</div>
+			</div>	
+			
+			<div class="createRow">
+				<div class="label">League Password</div>
+				<div class="inputdata"><input wicket:id="password" size="20" maxlength="50"></input></div>
+				<div class="description">This is so that only your friends join your league.</div>
+			</div>	
+		
+			<div class="createRow">
+				<input type="submit" wicket:id="submit" class="createLeagueSubmit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="Continue"></input>
+			</div>	
+	</div>	
+	
+	</form>
+</wicket:panel>
+</html>
+  

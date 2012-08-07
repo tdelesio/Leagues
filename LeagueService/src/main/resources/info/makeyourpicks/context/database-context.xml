@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+
+	<!-- Abstract Dao -->
+	<bean id="abstractDao" abstract="true" init-method="init">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+		
+		
+	<!-- Dao Implementations -->	
+	<bean id="dao" parent="abstractDao" class="com.delesio.dao.hibernate.Dao" />
+ 	<bean id="leagueDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.LeagueDaoImpl" />
+ 	<bean id="playerDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.PlayerDaoImpl" />
+ 	<bean id="teamDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.TeamDaoImpl" />
+ 	<bean id="gameDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.GameDaoImpl" />
+ 	<bean id="messageBoardDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.MessageBoardDaoImpl" />
+ 	<bean id="pickDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.PickDaoImpl" /> 
+	<bean id="paymentDao" parent="abstractDao" class="info.makeyourpicks.dao.hibernate.PaymentDao"/>
+	 	
+	 <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+         <property name="mappingResources">
+            <list>
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/League.hbm.xml</value>
+         	   <!-- <value>/info/makeyourpicks/dao/hibernate/hbm/LeagueType.hbm.xml</value> -->
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/Player.hbm.xml</value>
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/Team.hbm.xml</value>
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/MessageBoard.hbm.xml</value>
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/Picks.hbm.xml</value>
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/Game.hbm.xml</value>
+         	   <value>/info/makeyourpicks/dao/hibernate/hbm/Payment.hbm.xml</value>
+         	   <value>/com/delesio/dao/hibernate/hbm/Email.hbm.xml</value>
+         	   <!-- <value>/info/makeyourpicks/dao/hibernate/hbm/PlayerLeagues.hbm.xml</value> -->
+         	   
+             </list>
+        </property>
+        <property name="hibernateProperties">
+	        <props>
+	     	    <prop key="hibernate.show_sql">${hibernate.showSql}</prop> 
+	            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	            <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+	            <prop key="hibernate.bytecode.provider">${hibernate.bytecode.provider}</prop>
+	            <prop key="hibernate.cache.provider_class">${hibernate.cache.provider}</prop>
+	            <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+	            <prop key="hibernate.hibernate.cache.use_query_cache">${hibernate.hibernate.cache.use_query_cache}</prop>
+	            <prop key="hibernate.cache.configurationResourceName">${hibernate.cache.configurationResourceName}</prop>
+	            <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+	           <!--  
+	            <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
+	            <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop>
+	            <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements}</prop>
+	            <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
+	            
+	            <prop key="hibernate.connection.driver_class">${database.driver}</prop>
+	            <prop key="hibernate.connection.url">${database.url}</prop>
+	            <prop key="hibernate.connection.username">${database.username}</prop>
+	            <prop key="hibernate.connection.password">${database.password}</prop>
+ -->
+	        </props>
+        </property>
+    </bean>
+    
+    
+    <!-- Datasource -->
+     
+    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/leagues" />
+    
+    
+<!--
+	 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+
+		<bean id="unitTestdataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="${ut.database.driver}" />
+			<property name="url" value="${ut.database.url}" />
+			<property name="username" value="${ut.database.username}" />
+			<property name="password" value="${ut.database.password}" />
+		</bean>	
+		
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+				<property name="jndiName" value="jdbc/Leagues" />
+				<property name="resourceRef" value="true" />
+			</bean>
+				
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="${database.driver}" />
+			<property name="url" value="${database.url}" />
+			<property name="username" value="${database.username}" />
+			<property name="password" value="${database.password}" />
+		</bean>	
+
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${database.driver}" />
+		<property name="jdbcUrl" value="${database.url}" />
+		<property name="user" value="${database.username}" /> 
+	 	<property name="password" value="${database.password}" />			 	
+	</bean>
+-->	 
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" >
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+<!-- 
+	<bean id="jmxExporter"
+        class="org.springframework.jmx.export.MBeanExporter">
+        <property name="beans">
+            <map>
+                <entry key="Hibernate:name=statistics">
+                    <ref local="statisticsBean" />
+                </entry>
+            </map>
+        </property>
+    </bean> 
+
+    <bean id="statisticsBean" class="org.hibernate.jmx.StatisticsService">
+        <property name="statisticsEnabled">
+            <value>true</value>
+        </property>
+        <property name="sessionFactory"><ref local="sessionFactory"/></property>
+    </bean>
+ -->	
+</beans>

@@ -1,0 +1,71 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<a href="#" wicket:id="reloadJobs">Reload Quartz Jobs</a>
+<form wicket:id="weekForm" class="inputForm">
+<div class="smalltitletext"><span wicket:id="season.displaySeason"></span></div>
+<table>
+		<tr>
+			<td>Week</td>
+			<td><input type="text" wicket:id="weekNumber" size="2" maxlength="2"></input></td>
+		</tr>
+		<tr>
+			<td>Start Time</td>
+			<td><span wicket:id="weekStart"></span></td>
+		</tr>
+		<tr><td colspan="2"><input type="submit" wicket:id="add" value="Update Week"></input></td></tr>
+	</table>
+</form>	
+<form wicket:id="enterGameForm" class="inputForm">
+<table>
+	<tr>
+		<th>Favorite</th>
+		<th>Spread</th>
+		<th>Underdog</th>
+		<th>Favorite Home?</th>
+		<td>Game Start</td>
+	</tr>
+	<tr>
+		<td><select wicket:id="fav"></select></td>
+		<td><input wicket:id="spread" size="5" maxlength="5"></input></td>
+		<td><select wicket:id="dog"></select></td>
+		<td><input type="checkbox" wicket:id="favHome"></input></td>
+		<td><span wicket:id="gameStart"></span></td>
+	</tr>
+	<tr>
+		<td colspan="4"><input type="submit" wicket:id="submit" value="Add Game"></input></td>
+	</tr>
+</table>
+</form>
+<form wicket:id="updateScore">
+<table class="dataview">
+			<tr>
+				<th>Delete Game</th>
+				<th>Favorite</th>
+				<th>Fav Score</th>
+				<th>Spread</th>
+				<th>Underdog</th>
+				<th>Dog Score</th>
+				<th>Start</th>
+			</tr>
+			<tr wicket:id="repeating"> 
+				<td>
+					<a href="#" wicket:id="updateGame">Update</a><br/>
+ 					<a href="#" wicket:id="deleteGame">Delete</a>
+ 				</td>
+				<td><span wicket:id="fav.fullTeamName"></span></td>
+				<td><span wicket:id="favScore"></span></td>
+				<td><span wicket:id="spread"></span></td>
+				<td><span wicket:id="dog.fullTeamName"></span></td>
+				<td><span wicket:id="dogScore"></span></td>
+				<td><span wicket:id="gameStartDisplay"></span></td>
+			</tr>
+		</table>
+</form>		
+
+<form wicket:id="sendEmailForm">
+	<input wicket:id="sendEmail" type="submit" value="Send Week Setup Email"></input>
+</form>	
+</wicket:extend>  
+</body>
+</html>

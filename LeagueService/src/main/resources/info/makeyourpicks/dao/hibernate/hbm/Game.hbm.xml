@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="info.makeyourpicks.model">
+  <class name="Game" table="games">
+  	<cache usage="read-write"/>
+  	<id name="id" column="gameId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+	</id>
+	 <property name="spread" type="double" not-null="true">
+	 	<column name="spread" sql-type="decimal(9,1)"/>
+	 </property>
+	 <property name="favScore" column="favorite_score" type="int"/>
+	 <property name="dogScore" column="underdog_score" type="int"/>
+	 <property name="favHome" column="favorite_home" type="boolean"/>
+	 <property name="gameStart" column="game_start" type="timestamp" not-null="true"/>
+	 
+	 <many-to-one name="week" column="week_id" lazy="false" fetch="join" cascade="none" class="Week" not-null="true"/>
+	 <many-to-one name="fav" column="fav_game_id" lazy="false" fetch="join" cascade="none" class="Team" not-null="true"/>
+	 <many-to-one name="dog" column="dog_game_id" lazy="false" fetch="join" cascade="none" class="Team" not-null="true"/>
+	 
+  </class>
+  
+  <class name="Week" table="weeks">
+  	<cache usage="read-write"/>
+	  <id name="id" column="weekId" type="long" unsaved-value="0">
+				<generator class="increment"/>
+		</id>
+		<property name="weekNumber" column="weekNumber" type="int" not-null="true"/>
+		<property name="weekStart" column="weekStart" type="timestamp" not-null="true"/>
+		
+		<many-to-one name="season" column="season_id" lazy="false" fetch="join" cascade="none" not-null="true"/>
+<!--  		
+		<many-to-one name="leagueType" column="league_type_id" lazy="false" fetch="join" cascade="none"/>
+  		<set name="games" inverse="true" lazy="false" fetch="select" table="games">
+            <key column="week_id"/>
+            <one-to-many class="Game"/>
+        </set>
+        
+        <set name="picks" inverse="true" lazy="false" fetch="select" table="picks">
+            <key column="week_id"/>
+            <one-to-many class="Picks"/>
+        </set>
+-->        		
+  </class>
+</hibernate-mapping>

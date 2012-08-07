@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+	
+<hibernate-mapping package="info.makeyourpicks.model">
+    <class name="Picks" table="picks">
+    	
+    	<!-- Id -->
+    	<id name="id" column="pickId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+		<!-- Properties -->
+		<property name="weight" column="weight" type="int"/>
+
+		<many-to-one name="week" column="week_id" lazy="false" fetch="join" cascade="none" class="Week" />
+		<many-to-one name="league" column="league_id" lazy="false" fetch="join" cascade="none" class="League"/>
+		<many-to-one name="name" column="username_id" lazy="false" fetch="join" cascade="none" class="Player"/>
+		<many-to-one name="team" column="team_id" lazy="false" fetch="join" cascade="none" class="Team"/>
+		
+		<many-to-one name="game" class="Game" column="game_id" lazy="false" fetch="join" cascade="none"/>
+    </class>
+</hibernate-mapping>

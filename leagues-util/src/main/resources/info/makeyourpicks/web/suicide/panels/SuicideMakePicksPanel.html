@@ -1,0 +1,27 @@
+<html xmlns:wicket>
+<wicket:panel>
+<span wicket:id="feedbackpanel"></span>
+<br/>
+<div wicket:id="repeatingContainer">
+<table class="dataview">
+            <tr>
+                <th class="teamColumn">Favorite</th>
+                <th class="vsColumn">&nbsp;</th>
+                <th class="teamColumn">Underdog</th>
+                <th class="spreadColumn">Spread</th>
+            </tr>
+            <tr wicket:id="repeating">
+               
+                <td class="teamColumn"><div wicket:id="favContainer"><img wicket:id="favCheck"/><a href="#" wicket:id="fav"><span wicket:id="favLabel"></span></a></div></td>
+                <td class="vsColumn">VS</td>
+                <td class="teamColumn"><div wicket:id="dogContainer"><img wicket:id="dogCheck"/><a href="#" wicket:id="dog"><span wicket:id="dogLabel"></span></a></div></td>
+                <td class="spreadColumn"><span wicket:id="spread"></span></td>
+
+            </tr>
+        </table>
+ </div>      
+        <br/>
+        
+</wicket:panel>
+</html>
+  

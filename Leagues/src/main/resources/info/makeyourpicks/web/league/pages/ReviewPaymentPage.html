@@ -1,0 +1,72 @@
+<html xmlns:wicket>
+<head></head>
+<body>
+
+<wicket:extend><div wicket:id="feedbackpanel"></div><br/>
+<div class="titletext">Review Payment Details</div>
+<table>
+	<tr>
+		<td>Email</td>
+		<td><div wicket:id="email"></div></td>
+	</tr>
+	<tr>
+		<td>Name</td>
+		<td>
+			<div wicket:id="salutation"/> <div wicket:id="firstName"/> <div wicket:id="middleName"/> <div wicket:id="lastName"/> <div wicket:id="suffix"/>
+		</td>
+	</tr>
+	<tr>
+		<td>Street</td>
+		<td>
+			<div wicket:id="shipToStreet"/><br/><div wicket:id="shipToStreet2"/>
+		</td>
+	</tr>
+	<tr>
+		<td>City</td>
+		<td>
+			<div wicket:id="shipToCity"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			State
+		</td>
+		<td>
+			<div wicket:id="shipToState"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Zip
+		</td>
+		<td>
+			<div wicket:id="shipToZip"/>
+		</td>	
+	</tr>				
+	<tr>
+		<td>Country</td>
+		<td>					
+			<div wicket:id="shipToCntryCode"/>
+		</td>
+	</tr>
+	<tr>
+		<td>Phone</td>
+		<td><div wicket:id="phonNumber"/></td>
+	</tr>	
+</table>
+<form wicket:id="form">		
+<input type="image" src="/leagues/styles/next.jpg" wicket:id="paymentConfirmationPage"></input>
+</form> 
+
+					<div wicket:id="payerStatus"/><br/>
+				<div wicket:id="cntryCode"/><br/>
+				<div wicket:id="business"/><br/>
+				<div wicket:id="shipToName"/><br/>
+				<div wicket:id="addressStatus"/><br/>
+				<div wicket:id="invoiceNumber"/><br/>
+				<br/>
+				
+				
+				</wicket:extend>
+				</body>
+</html>

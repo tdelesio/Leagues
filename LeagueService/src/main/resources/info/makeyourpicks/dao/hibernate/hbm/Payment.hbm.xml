@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="info.makeyourpicks.model">
+  <class name="Payment">
+  	<id name="id" column="gameId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+	</id>
+	<property name="transactionDate" column="payment_date" lazy="false"/>
+	<property name="amountDue" type="double" not-null="true" column="amount_due"/>
+	<property name="amountPaid" type="double" column="amount_paid"/>
+	<property name="transactionId" column="transaction_id"/>
+	<many-to-one name="league" class="League" not-null="true" lazy="false" cascade="none" fetch="join"/>
+<!--  	<many-to-one name="player" class="Player" lazy="false" cascade="none" fetch="join"/>-->
+	<property name="paymentType" column="payment_type"/>
+	<property name="currencyCode" column="currency_code"/>
+	<property name="feeAmount" type="double" column="fee_amount"/>
+	<property name="seatleAmount" type="double" column="seatle_amount"/>
+	<property name="taxAmount" type="double" column="tax_amount"/>
+	<property name="exchangeRate" column="exchange_rate"/>
+	<property name="paymentStatus" column="payment_status"/>
+	<property name="pendingReason" column="pending_reason"/>
+	<property name="reasonCode" column="reason_code"/>
+	
+	
+	
+  </class>
+</hibernate-mapping>

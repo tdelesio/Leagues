@@ -1,0 +1,21 @@
+<html xmlns:wicket>
+<head></head>
+<body>
+<wicket:extend>
+<span wicket:id="feedbackpanel"></span>
+<form wicket:id="contactusForm">
+<div class="titletext">Contact Us</div>
+Email:<br/>
+<input wicket:id="fromAddress"/><br/>
+Subject:<br/>
+<select wicket:id="category"></select>
+<br/>
+<br/>
+Message<br/>
+<textarea rows="6" cols="50" wicket:id="message"></textarea>
+<br/>
+<input type="submit" wicket:id="submit" value="Send">
+</form>
+</wicket:extend>
+</body>
+</html>

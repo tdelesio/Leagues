@@ -1,0 +1,38 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<span wicket:id="feedbackpanel"></span>
+<form wicket:id="updatLeagueForm">
+  		<table>
+  			<tr>
+  				<th>League Name</th>
+  				<th>League Type</th>
+  				<th>Max Size</th>
+  				<th>Password</th>
+  			</tr>
+  			<tr>
+  				<td><input wicket:id="leagueName"></input></td>
+  				<td ><select wicket:id="season"></select></td>
+  				<td ><input type="text" wicket:id="maxSize" size="2" maxlength="3"/></td>
+  				<td><input type="text" wicket:id="password"/></td>
+  			</tr>
+  			<tr>
+  				<th>Admin</th>
+  				<th>Active</th>
+  				<th>Free</th>
+  				<th>Spreads?</th>
+  			</tr>
+  			<tr>
+  				<td><select wicket:id="admin"></select></td>
+  				<td><input wicket:id="active" type="checkbox"></input></td>
+  				<td><input wicket:id="free" type="checkbox"></input></td>
+  				<td><input wicket:id="spreads" type="checkbox"></input></td>
+  			</tr>
+  			
+  		</table>
+  		<input type="submit" wicket:id="submit"></input> <input type="submit" wicket:id="delete" value="Delete"></input>
+  </form>
+
+</wicket:extend>  
+</body>
+</html>

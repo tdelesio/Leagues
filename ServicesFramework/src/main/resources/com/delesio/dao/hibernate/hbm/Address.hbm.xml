@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.delesio.model">
+  <class name="Address" table="addresses">
+  <id column="addressId" name="id" type="long" unsaved-value="0">
+   <generator class="increment"/>
+  </id>
+  <property name="stateCode" length="2" not-null="true"/>
+  <property name="address1" length="250" not-null="true"/>
+  <property name="city" length="50" not-null="true"/>
+  <property name="address2" length="250"/>
+  <property name="zip" length="5" not-null="true" />
+  <property name="country" length="2" not-null="true"></property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+	
+<hibernate-mapping package="info.makeyourpicks.model">
+
+      <class name="LeagueType" table="league_types">
+      <cache usage="read-write"/>
+        <id name="id" column="leagueTypeId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+        <property name="typeOfLeague" column="league_type" type="java.lang.String" unique="true" not-null="true"/>
+        <property name="parentTypeOfLeague" column="parent_league_type" type="java.lang.String"/>
+		<property name="end" column="end" type="java.sql.Date" not-null="true"/>
+		<property name="start" column="start" type="java.sql.Date" not-null="true"/>
+		<property name="leagueTypeDisplay" column="league_type_display" type="java.lang.String" length="255"  not-null="true"/>
+<!--		
+        <set name="leagues" inverse="true" lazy="false">
+            <key column="league_type_id"/>
+            <one-to-many class="League"/>
+        </set>
+        
+        <set name="teams" inverse="true" lazy="false" fetch="select" table="teams">
+            <key column="league_type_id"/>
+            <one-to-many class="Team"/>
+        </set>
+-->        
+<!--
+        <map name="weeks" inverse="true" lazy="false" fetch="select" table="weeks">
+            <key column="league_type_id"/>
+            <index column="weekNumber" type="int"></index>
+            <one-to-many class="Week"/>
+        </map>
+-->
+    </class>
+
+    <class name="League" table="leagues">
+    <cache usage="read-write"/>
+        <id name="id" column="leagueId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+		
+		<property name="leagueName" column="league_name" length="50" type="java.lang.String" not-null="true" unique="true"/>
+		<property name="active" column="active" length="1" type="boolean" />
+		<property name="free" column="free" length="1" type="boolean" />
+		<property name="password" column="password" length="12" type="java.lang.String"/>
+		<property name="maxSize" column="max_size" type="int" not-null="true" length="6"/>
+		<property name="paidFor" column="num_paid_4_players" type="java.lang.Integer" />
+		<property name="spreads" column="use_spreads" type="boolean" not-null="true"/>
+		<property name="money" column="money" type="boolean" not-null="true"/>
+		
+		<property name="doubleEnabled" type="boolean" not-null="true">
+			<column name="doubleEnabled" default="true"></column>
+		</property>
+		<property name="banker" type="boolean" not-null="true">
+			<column name="banker" default="true"></column>
+		</property>
+		<property name="entryFee" type="double" not-null="true" length="6">
+			<column name="entryFee" default="35"></column>
+		</property>
+		<property name="weeklyFee" type="double" not-null="true" length="3">
+			<column name="weeklyFee" default="5"></column>
+		</property>
+		<property name="firstPlacePercent" type="int" not-null="true" length="3">
+			<column name="firstPlacePercent" default="40"></column>
+		</property>
+		<property name="secondPlacePercent" type="int" not-null="true" length="2">
+			<column name="secondPlacePercent" default="25"></column>
+		</property>
+		<property name="thirdPlacePercent" type="int" not-null="true" length="2">
+			<column name="thirdPlacePercent" default="15"></column>
+		</property>
+		<property name="fourthPlacePercent" type="int" not-null="true" length="2">
+			<column name="fourthPlacePercent" default="10"></column>
+		</property>
+		<property name="fifthPlacePercent" type="int" not-null="true" length="2">
+			<column name="fifthPlacePercent" default="5"></column>
+		</property>
+		<property name="doubleType" type="int" not-null="true" length="2">
+			<column name="doubleType" default="1"></column>
+		</property>
+		
+		
+		<many-to-one name="admin" lazy="false" fetch="join" cascade="none" class="Player" not-null="true" column="admin"/>
+        <many-to-one name="season" column="season_id" lazy="false" fetch="join" cascade="none"/>
+        
+        
+        
+  <!--      
+  		<many-to-one name="leagueType" column="league_type_id" lazy="false" fetch="join" cascade="none"/>
+        <set name="players" table="player_leagues" cascade="all" lazy="true" fetch="select">
+        	<key column="leagueId"/>
+        	<many-to-many column="playerId" lazy="false" fetch="select" class="Player"/> 
+        </set>
+       
+		<set name="picks" inverse="true" lazy="false" fetch="select" table="picks">
+            <key column="league_type_id"/>
+            <one-to-many class="Picks"/>
+        </set>
+       
+       <set name="payments" inverse="true" lazy="true">
+            <key column="league_id"/>
+            <one-to-many class="Payment"/>
+        </set>
+-->         
+    </class>
+    
+    <class name="Season" table="seasons">
+    <cache usage="read-write"/>
+        <id name="id" column="seasonId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+		<property name="startYear" type="integer" length="4"></property>
+		<property name="endYear" type="integer" length="4"></property>
+		<many-to-one name="leagueType" column="league_type_id" lazy="false" fetch="join" cascade="none" not-null="true"/>
+	</class>	
+</hibernate-mapping>

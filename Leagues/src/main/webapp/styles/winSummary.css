@@ -1,0 +1,30 @@
+th, td
+{
+	font-size: 10px;
+}
+
+#middleColumn {
+	width: 820px;	
+}
+
+.winner
+{
+	background-color: #0a1f62;
+	/*fbcd4a*/
+	color: white;
+	border: 1px solid black;
+}
+
+.double
+{
+	background-color: #cc0000;
+}
+
+td
+{
+	text-align: center;
+}
+
+.even { background-color: #E6E6E6; }
+
+.odd { background-color: #fff; }

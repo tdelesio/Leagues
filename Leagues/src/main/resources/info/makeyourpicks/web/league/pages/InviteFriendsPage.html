@@ -1,0 +1,24 @@
+<html xmlns:wicket>
+<head></head>
+<body>
+<wicket:extend>
+<div class="titletext">Invite Players to this league.</div>
+<span wicket:id="feedbackpanel"></span>
+
+<form wicket:id="inviteForm" class="inputForm">
+Enter the email address of the people you would like to invite to the pool.  The email addresses should be comma (,) separated.
+	<table>
+		<tr>
+			<td>
+				<textarea rows="10" cols="50" wicket:id="playersToAddToLeague"></textarea> 
+			</td>
+		</tr>
+		
+		<tr>
+			<td><input type="submit" wicket:id="submit" value="Continue"/></td>
+		</tr>
+	</table> 
+	</form>
+</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+                           
+<!-- <bean id="wicketApplication" class="info.makeyourpicks.WicketApplication">-->
+	<bean id="leagueApplication" class="info.makeyourpicks.web.AbstractLeagueApplication" abstract="true"> 
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="playerManager" ref="playerManager"/>
+	<!-- 	<property name="seasonManager" ref="seasonManager"/> -->
+		<property name="teamManager" ref="teamManager"/>
+		<property name="leagueManager" ref="leagueManager"/>
+		<property name="gameManager" ref="gameManager"/>
+		<property name="picksManager" ref="picksManager"/>
+		<property name="messageBoardManager" ref="messageBoardManager"/>
+		<property name="paypalSandbox" value="${paypal.sandbox}"/>
+		<property name="rememberMeServices" ref="rememberMeServices"></property>
+		<property name="mountableUrls" ref="leagueTypes"/>
+	</bean>
+
+	<!-- Simple Date Format -->
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+   
+   
+	<bean id="siteMapUrl" abstract="true" class="com.delesio.web.model.SiteMapUrl">
+               <property name="domain">
+                       <value>${siteMapUrl.domain}</value>
+               </property>
+               <property name="priority">
+                       <value>${siteMapUrl.priority}</value>
+               </property>
+               <property name="changeFreq">
+                       <value>${siteMapUrl.changeFreq}</value>
+               </property>
+               <property name="lastMod">
+                       <bean factory-bean="dateFormat" factory-method="parse">
+                               <constructor-arg>
+                                       <value>${siteMapUrl.lastMod}</value>
+                               </constructor-arg>
+                       </bean>
+               </property>
+       </bean>
+       
+	<util:map id="leagueTypes" map-class="java.util.HashMap">
+		<entry key="football">
+			<ref bean="pickEmPages"/>
+		</entry>
+		<entry key="suicide">
+			<ref bean="suicidePages"/>
+		</entry>
+		<entry key="memberPages">
+			<ref bean="memberPages"/>
+		</entry>
+		<entry key="nonMemberPages">
+			<ref bean="nonMemberPages"/>
+		</entry>
+		
+	</util:map>
+	
+	<util:map id="suicidePages" map-class="java.util.HashMap">
+		<entry key="home">
+			<ref bean="suicideMakePicks"/>
+		</entry>
+		<entry key="makePicks">
+			<ref bean="suicideMakePicks"/>
+		</entry>
+		<entry key="viewPicks">
+			<ref bean="suicideViewPicks"/>
+		</entry>
+		<entry key="winSummary">
+			<ref bean="suicideSummary"/>
+		</entry>
+		<entry key="messageBoard">
+			<ref bean="messageBoard"/>
+		</entry>
+		<entry key="leagueDetails">
+			<ref bean="leagueDetails"/>
+		</entry>
+	</util:map>
+	
+	<util:map id="memberPages" map-class="java.util.HashMap">
+		<entry key="myPools">
+			<ref bean="myPools"/>
+		</entry>
+		<entry key="createLeague">
+			<ref bean="createLeague"/>
+		</entry>
+		<entry key="joinLeague">
+			<ref bean="joinLeague"/>
+		</entry>
+		
+	</util:map>
+	
+	<util:map id="nonMemberPages" map-class="java.util.HashMap">
+		<entry key="home">
+			<ref bean="home"/>
+		</entry>
+		<entry key="faq">
+			<ref bean="faq"/>
+		</entry>		
+		<entry key="forgetPassword">
+			<ref bean="forgetPassword"/>
+		</entry>
+		<entry key="register">
+			<ref bean="register"/>
+		</entry>
+		<entry key="login">
+			<ref bean="login"/>
+		</entry>
+		<entry key="siteMap">
+			<ref bean="siteMap"/>
+		</entry>
+		
+	</util:map>
+	
+	<util:map id="pickEmPages" map-class="java.util.HashMap">
+		<entry key="home">
+			<ref bean="pickEmMakePicks"/>
+		</entry>
+		<entry key="makePicks">
+			<ref bean="pickEmMakePicks"/>
+		</entry>
+		<entry key="viewPicks">
+			<ref bean="pickEmViewPicks"/>
+		</entry>
+		<entry key="winSummary">
+			<ref bean="pickEmSummary"/>
+		</entry>
+		<entry key="messageBoard">
+			<ref bean="messageBoard"/>
+		</entry>
+		<entry key="leagueDetails">
+			<ref bean="leagueDetails"/>
+		</entry>
+	</util:map>
+	
+	<!-- non members -->
+	<bean id="home" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/home.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.HomePage" />
+	</bean>
+	<bean id="faq" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/faq.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.FAQPage" />
+	</bean>
+	
+	<!-- members -->
+	<bean id="myPools" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/myPools.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.MyPoolWebPage" />
+	</bean>
+	
+	
+	
+	<bean id="createLeague" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/createLeague.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.CreateLeaguePage" />
+	</bean>
+	
+	<bean id="joinLeague" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/joinLeague.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.JoinLeaguePage" />
+	</bean>
+	
+	<bean id="messageBoard" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/messageBoard.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.MessageBoardPage" />
+	</bean>
+	
+	<bean id="leagueDetails" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/leagueDetails.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.LeagueDetailsPage" />
+	</bean>
+	
+	<!-- pick'em -->
+	<bean id="pickEmMakePicks" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/football/makePicks.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.football.pages.MakePicksPage" />
+	</bean>
+	
+	<bean id="pickEmViewPicks" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/football/ViewPicks.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.football.pages.ViewPicksPage" />
+	</bean>
+	
+	<bean id="pickEmSummary" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/football/winSummary.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.football.pages.WinSummaryPage" />
+	</bean>
+	
+	<!-- suicide -->
+	<bean id="suicideMakePicks" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/suicide/makePicks.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.suicide.pages.MakePicksPage" />
+	</bean>
+	
+	<bean id="suicideViewPicks" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/suicide/viewPicks.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.suicide.pages.ViewPicksPage" />
+	</bean>
+	
+	<bean id="suicideSummary" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/suicide/winnSummary.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.suicide.pages.WinSummaryPage" />
+	</bean>
+	
+	<bean id="register" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/register.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.RegisterPage" />
+	</bean>
+	
+	<bean id="forgetPassword" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/forgotPassword.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.authentication.LostPasswordPage" />
+	</bean>
+	
+	<bean id="login" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/login.html" />
+        <property name="urlClass" value="info.makeyourpicks.web.authentication.LoginPage" />
+	</bean>
+	
+	<bean id="siteMap" parent="siteMapUrl">
+       	<property name="priority" value="1.0" />
+        <property name="changeFreq" value="ALWAYS" />
+        <property name="loc" value="/sitemap.xml" />
+        <property name="urlClass" value="info.makeyourpicks.web.league.pages.SiteMapPage" />
+	</bean>
+</beans>

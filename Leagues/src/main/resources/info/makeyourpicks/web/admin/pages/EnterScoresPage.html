@@ -1,0 +1,60 @@
+<html xmlns:wicket>
+<body>
+<wicket:extend>
+<div wicket:id="feedbackpanel"></div>
+<form wicket:id="updateGameForm">
+<div class="titletext">Week <span wicket:id="week.weekNumber"></span><br/></div>
+	<table >
+		<tr align="left">
+			<th>Favorite</th>
+			<th>Spread</th>
+			<th>Dog</th>
+			<th>Favorite Home?</th>
+		</tr>
+		<tr align="left">
+			<td><span wicket:id="fav.fullTeamName"></span></td>
+			<td><input wicket:id="spread" size="5" maxlength="5"></input></td>
+			<td><span wicket:id="dog.fullTeamName"></span></td>
+			<td><input type="checkbox" wicket:id="favHome"/></td>
+		</tr>
+		<tr align="left">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr align="left">
+			<th>Favorite Score</th>
+			<th>&nbsp;</th>
+			<th>Dog Score</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr align="left">
+			<td><input wicket:id="favScore" maxlength="3" size="3"/></td>
+			<td>&nbsp;</td>
+			<td><input wicket:id="dogScore" maxlength="3" size="3"/></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr align="left">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr align="center">
+			<th colspan="4">Game Start</th>
+		</tr>
+		<tr>
+			<td colspan="4"><span wicket:id="gameStart"></span></td>
+		</tr>
+		<tr align="left">
+			<td colspan="4">
+				<input type="submit" wicket:id="submit" value="Update"/>
+			</td>
+		</tr>
+	</table>
+	<object type="application/x-shockwave-flash" data="http://widgets.clearspring.com/o/470d52935955f735/48c50bd7178b53fb/470d52935955f735/2ced5542" id="W470d52935955f73548c50bd7178b53fb" height="387" width="300"><param value="http://widgets.clearspring.com/o/470d52935955f735/48c50bd7178b53fb/470d52935955f735/2ced5542" name="movie"/><param value="transparent" name="wmode"/><param value="all" name="allowNetworking"/><param value="always" name="allowScriptAccess"/></object>
+</form>	
+</wicket:extend>
+</body>
+</html>

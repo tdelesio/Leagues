@@ -1,0 +1,48 @@
+<html xmlns:wicket>
+<head></head>
+<body>
+<wicket:extend>
+
+<div wicket:id="accordion">
+   <h3><a href="#div1">Have an account on makeyourpicks.info?</a></h3>
+  	<div id="div1">
+        
+        We need to link your makeyourpicks.info account with your facebook ID.  You only have to do this once!
+        <form wicket:id="facebookSyncForm">	
+           <table style="margin-left:30px;">
+    		<tr valign="top">
+    			<td class="username">
+    				<div class="logintext" id="username">Username:</div>
+    			</td>
+    			<td class="username" align="right">
+    				<input wicket:id="username" type="text" value="username" />
+    			</td>
+			</tr>
+			<tr valign="top" class="password">
+				<td class="password" >
+					<div class="logintext" id="password">Password:</div>
+				</td>
+				<td class="password" align="right">
+					<input wicket:id="password" type="password" value="password" />	
+				</td>
+			</tr>	
+			<tr>
+				<td colspan="2" align="right" valign="top" class="loginbutton">
+					<input type="image" wicket:id="ajaxButton" src="styles/login-button.jpg"/>
+				</td>
+			</tr>
+			</table>
+			</form>
+       
+  </div>
+  <h3><a href="#div2">New Player</a></h3>
+  <div id="div2">
+       
+          <div wicket:id="registerPanel"></div> 
+       
+  </div>
+</div>
+
+</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,102 @@
+@IMPORT url("master.css");
+
+#content
+{
+
+}
+
+#login_logo
+{
+	background-image:url(login_header_358x147.jpg);
+	width:358px; height:147px;
+}
+
+#loginPanel
+{
+	width:358px;
+	background-image: url(login_background_358x1.jpg);
+	background-repeat: repeat-y;
+	padding-top: 40px;
+/*	padding-left: 30px;*/
+
+	
+}
+
+#loginbottom_container
+{
+	height: 10px;
+	width:358px;
+	background-color: #3b3b3b;
+}
+
+td.bottom_middle
+{
+/*	border-bottom-color: #ffffff;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	height: 15px;
+	width: 328;
+*/
+}
+
+td.username
+{
+	padding-bottom: 15px;
+}
+
+td.password
+{
+	padding-bottom: 25px;
+}
+
+td.rememberme
+{
+	padding-bottom: 35px;
+}
+td.loginbutton
+{
+	padding-bottom: 35px;
+}
+td.donthaveacconut
+{
+	padding-bottom: 5px;
+}
+input.checkbox
+{
+	border-style: double;
+	border-color: #ffffff;
+
+}
+
+#createAccount
+{
+	background-color: black;
+}
+
+/*
+#nav
+{
+	clear: both;
+}
+*/
+body
+{
+/*	background-color: #fcd15d;*/	
+}
+
+.logintext
+{
+	color: #ffffff;
+	font-family: arial;
+	font-size: 10pt;
+	
+}	
+
+input.logintext
+{
+	padding-left: 10px;
+	height: 12.5pt;
+	float: right;
+}
+
+#loginPanel form {margin: 0px;}

@@ -1,0 +1,29 @@
+<html xmlns:wicket>
+<wicket:panel>
+<select wicket:id="name"></select>
+<div wicket:id="weightContainer">
+<table cellspacing="0" class="dataview">
+	<tr>
+		<th>Weight</th>
+		<th>Favorite</th>
+		<th>Fav Score</th>
+		<th>Spread</th>
+		<th>Underdog</th>
+		<th>Dog Score</th>
+		<th>Game Time</th>
+	</tr>
+	<tr wicket:id="simple">
+		<td><span wicket:id="weight"></span></td>			
+        <td align="center"><div wicket:id="favContainer"><img wicket:id="fav_check"/><a href="#" wicket:id="fav"><span wicket:id="favLabel"></span></a></div></td>
+        <td><div wicket:id="favScore"></div></td>
+		<td><span wicket:id="spread"></span></td>
+		<td align="center"><div wicket:id="dogContainer"><img wicket:id="dog_check"/><a href="#" wicket:id="dog"><span wicket:id="dogLabel"></span></a></div></td>
+		<td><div wicket:id="dogScore"></div></td>
+		<td><span wicket:id="gameStart"></span></td>
+    </tr>    
+</table>
+</div>	
+<span wicket:id="feedbackpanel"></span>
+</wicket:panel>
+</html>
+  

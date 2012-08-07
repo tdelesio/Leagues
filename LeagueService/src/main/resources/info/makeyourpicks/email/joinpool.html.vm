@@ -1,0 +1,65 @@
+<html xmlns:wicket>
+<head>
+      <!--<link rel="stylesheet" type="text/css" href="" />-->
+<STYLE TYPE="text/css" MEDIA="screen, projection">
+<!--
+  @import url(http://www.makeyourpicks.info/leagues/styles/master.css);
+-->
+</STYLE>
+</head>
+
+<body>
+	<table id="container" cellpadding="0" cellspacing="0" border="0">
+		<tr valign="top">
+			<td width="100%" align="left">
+				<div id="content_container">
+					<div wicket:id="header" id="header">
+						<img src="http://www.makeyourpicks.info/leagues/styles/makeyourpics.jpg"/>
+					</div>		
+					<div id="content">
+
+						Hey, ${to_email},
+						<br/>
+						<br/>
+						You have been invited to a ${leagueType} fantasy pool on MakeYourPicks.  
+						<br/>
+						<br/>
+						In order to join the league click <a href="http://makeyourpicks.info/leagues/joinLeague.html?leagueName=${leagueName}&leaguePassword=${leaguePassword}">here</a>.  You can also go to the <a href="http://www.makeyourpicks.info">makeyourpicks homepage</a>, login (or register) and click on <a href="http://www.makeyourpicks.info/leagues/joinLeague.html">Join League</a>.  Then enter the following league information:
+						<br/>
+						<br/>
+						<b>League Name: ${leagueName}<br/>
+						password: ${leaguePassword}</b>
+						<br/>
+						<br/>
+						We will send you a confirmation with further details once you have completed the registration process.
+						<br/>
+						<br/>
+						League Admin,
+						${fromUsername} (${fromEmail})
+						
+				
+					</div>
+
+				</div>		
+			</td>
+		</tr>
+	</table>		
+		
+		
+	
+		
+		<div wicket:id="footer" id="footer">
+<div id="footer" class="smallgraytext">
+				<a href="?wicket:interface=:2:footer:home:2:ILinkListener::" wicket:id="home">Home</a> | <a href="?wicket:interface=:2:footer:faqPage:2:ILinkListener::" wicket:id="faqPage">FAQ</a> |  |  | <a href="?wicket:interface=:2:footer:contactUs:2:ILinkListener::" wicket:id="contactUs">Contact Us</a>
+
+				| MakeYourPicks 
+				&copy; 2007 
+			</div>
+		</div>
+			
+		
+		
+		
+</body>
+
+</html>

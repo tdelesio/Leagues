@@ -1,0 +1,56 @@
+<html xmlns:wicket>
+<head>
+ <!--
+  @import url(http://www.makeyourpicks.info/leagues/styles/master.css);
+-->
+</STYLE>
+</head>
+
+<body>
+	<table id="container" cellpadding="0" cellspacing="0" border="0">
+		<tr valign="top">
+			<td width="100%" align="left">
+				<div id="content_container">
+					<div wicket:id="header" id="header">
+						<img src="http://www.makeyourpicks.info/leagues/styles/makeyourpics.jpg"/>
+					</div>		
+					<div id="content">
+
+						Thank you for your order on <a href="http://www.makeyourpicks.info">MakeYourPicks</a>.  We are excited to recieve your league activation.  Your League is now active.  Please find the details of your transaction below.  
+<br/>
+<br/>
+<b>Your Transaction number is: Transaction ID: ${transactionId}
+<br/>
+Your Order number is: ${orderNumber}<br/>
+</b>
+<br/>
+<br/>
+It's easy to make your picks at makeyourpicks.info.  <a href="#" wicket:id="leagueHome">here</a> to get to your league homepage.  Thank you for playing with us!<br/>
+
+						
+				
+					</div>
+
+				</div>		
+			</td>
+		</tr>
+	</table>		
+		
+		
+	
+		
+		<div wicket:id="footer" id="footer">
+<div id="footer" class="smallgraytext">
+				<a href="?wicket:interface=:2:footer:home:2:ILinkListener::" wicket:id="home">Home</a> | <a href="?wicket:interface=:2:footer:faqPage:2:ILinkListener::" wicket:id="faqPage">FAQ</a> |  |  | <a href="?wicket:interface=:2:footer:contactUs:2:ILinkListener::" wicket:id="contactUs">Contact Us</a>
+
+				| MakeYourPicks 
+				&copy; 2007 
+			</div>
+		</div>
+			
+		
+		
+		
+</body>
+
+</html>

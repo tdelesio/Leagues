@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.delesio</groupId>
+	<artifactId>wicket-web-framework</artifactId>
+	<packaging>jar</packaging>
+	<name>Wicket Web Framework</name>
+	<version>0.5-SNAPSHOT</version>
+	<parent>
+		<artifactId>web-build</artifactId>
+		<groupId>com.delesio</groupId>
+		<version>0.5-SNAPSHOT</version>
+	</parent>
+	<repositories>
+		<repository>
+ 			<id>delesio-framework</id>
+ 			<name>Delesio Framework</name>
+ 			<url>http://delesio.com/nexus/content/repositories/releases</url>
+ 		</repository>
+ 	</repositories>	
+	<build>
+	<!-- 
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<classpathContainers>
+						<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+						<classpathContainer>org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v5.5</classpathContainer>
+						<classpathContainer>org.eclipse.jst.j2ee.internal.web.container/artifact</classpathContainer>
+					</classpathContainers>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>					
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+			</plugin>
+		</plugins>
+		 -->
+	</build>
+	<dependencies>
+	<dependency>
+  	<groupId>com.delesio</groupId>
+  	<artifactId>services-framework</artifactId>
+  	<version>0.5-SNAPSHOT</version>
+  </dependency>
+ 
+  </dependencies>
+</project>

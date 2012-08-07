@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.delesio.model.Email" table="emails">
+    
+    <!-- Id -->
+     <id name="id" column="id" type="long" unsaved-value="0">
+   <generator class="identity"/>
+  </id>
+  
+  
+  <!-- Properties -->
+  <property name="bcc" column="bcc_field"
+  length="255" type="java.lang.String" not-null="false" />
+  
+  <property name="cc" column="cc_field" 
+  length="255" type="java.lang.String" not-null="false" />
+  
+  <property name="from" column="from_field"
+  length="255" type="java.lang.String" not-null="true" />
+  
+  <property name="replyTo" column="reply_to_field"
+  length="255" type="java.lang.String" not-null="true" />
+  
+  <property name="subject" column="subject_field"
+  length="255" type="java.lang.String" not-null="true" />
+  
+  <property name="text" column="text_field"
+  length="10000" type="java.lang.String" not-null="true" />
+  
+  <property name="to" column="to_field" 
+  length="255" type="java.lang.String" not-null="true" />
+  
+  <property name="html" column="html" 
+  type="boolean" not-null="true" />
+  
+  <property name="failureMessage" column="failure_message"
+  length="1000" type="java.lang.String" not-null="true" />
+  
+  <property name="attemptsToSend" column="attempts_to_send"
+  type="int" not-null="true" />
+  
+  <property name="priority" column="priority"
+  type="int" not-null="true" />
+  
+  <property name="code" column="code"
+  type="int" not-null="true" />
+  
+  <property name="timeCreated" column="time_created" 
+  type="long" not-null="true" />
+  
+  <property name="timeModified" column="time_modified" 
+  type="long" not-null="true" />
+
+    </class>
+</hibernate-mapping>

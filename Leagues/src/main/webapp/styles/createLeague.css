@@ -1,0 +1,63 @@
+h2
+{
+	font-size: 14px;
+}
+
+.createRow
+{
+	float: left;
+	position: relative;
+	display: block;
+	padding-bottom: 20px;
+	padding-left: 5px;
+}
+
+.label
+{
+	width: 170px;
+	float: left;
+	display: inline;
+	padding-right: 20px;
+
+}
+
+.inputdata
+{
+	width: 200px;	
+	float: left;
+	display: inline;
+/*	border: 1px solid black;*/
+}
+
+.description
+{
+	float: left;
+	display: inline;
+	width: 240px;
+	/*border: 1px solid black;*/
+}	
+
+.createRow select 
+{
+	display: inline;
+}
+
+.feepercent
+{
+	float: left;
+	display: inline;
+	padding-right: 40px;
+}
+
+.createLeagueSubmit
+{
+	position: relative;
+}
+
+.weeklyfee
+{
+	float: right;
+	display: inline;
+	padding-right: 48px;
+	padding-top: 3px;
+}	

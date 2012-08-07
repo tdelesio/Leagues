@@ -1,0 +1,100 @@
+@CHARSET "ISO-8859-1";
+
+h4
+{
+	margin-left: 20px;
+}	
+
+th
+{
+	font-size: 14px;
+	background-color: #153041;
+	color: white;
+}
+
+td
+{
+	font-size: 14px;
+}	
+.teamColumn
+{
+	width: 45%;
+	text-align: center;
+}
+
+.vsColumn
+{
+	width: 5%;
+	text-align: center;	
+}
+
+.spreadColumn
+{
+	width: 5%;	
+	text-align: center;
+}
+
+.home
+{
+	font-weight: 900;
+	color: black;
+}
+
+.away
+{
+	color: black;
+}
+
+.suicideloser
+{
+	background-color: red;
+	border: 1px solid black;
+}
+
+tr.singlesuicidelose
+{
+	background-color: #fbcd4a;
+}
+
+tr.doublesuicidelose
+{
+	background-color: red;
+}
+
+.pickedteam
+{
+	font-size: 14pt;
+	color: #f7cb4a;
+	font-weight: bold;
+	float: right;	
+	text-shadow: black;
+	background: black;
+	padding: 2px;
+}
+
+div.weekpick
+{
+	/*border: 1px solid black;*/
+	padding: 1px;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.prevpicked
+{
+	text-decoration: line-through;	
+	color: red;
+}
+
+div.loser
+{
+	opacity: .30;
+	filter:Alpha(Opacity=30);
+}
+
+
+		
+/*
+#menu{background-image:url(bg_menu.gif); background-repeat:repeat-x;}
+*/

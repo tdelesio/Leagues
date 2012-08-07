@@ -1,0 +1,42 @@
+<html xmlns:wicket>
+<wicket:panel>
+<form wicket:id="enterTeamForm" class="inputForm">
+<div class="smalltitletext"><span wicket:id="leagueType.leagueTypeDisplay"></span></div>
+<table>
+		<tr>
+			<td>City</td>
+			<td><input type="text" wicket:id="city"></input></td>
+		</tr>
+		<tr>
+			<td>Team Name</td>
+			<td><input type="text" wicket:id="teamName"></input></td>
+		</tr>
+		<tr>
+			<td>Short Name</td>
+			<td><input type="text" wicket:id="shortName"></input></td>
+		</tr>
+		<tr>
+			<td>Theme</td>
+			<td><input type="text" wicket:id="theme"></input></td>
+		</tr>
+		<tr><td colspan="2"><input type="submit" wicket:id="add" value="Add Team"></input></td></tr>
+	</table>
+</form>	
+<table class="dataview">
+			<tr>
+				<th>City</th>
+				<th>Team Name</th>
+				<th>Short Name</th>
+				<th>Theme</th>
+			</tr>
+			<tr wicket:id="repeating">
+				<td><span wicket:id="city"></span></td>
+				<td><span wicket:id="teamName"></span></td>
+				<td><span wicket:id="shortName"></span></td>
+				<td><span wicket:id="theme"></span></td>
+			</tr>
+		</table>
+
+	</wicket:panel>
+</html>
+  

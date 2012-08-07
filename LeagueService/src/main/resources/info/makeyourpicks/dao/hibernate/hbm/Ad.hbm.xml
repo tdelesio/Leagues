@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="info.makeyourpicks.model">
+  <class name="Ad" table="advertise">
+  <id name="id" column="gameId" type="long" unsaved-value="0">
+			<generator class="increment"/>
+	</id>
+	
+	<property name="imageURL" column="image_url" not-null="true"/>
+	<property name="linkURL" column="link_url" not-null="true"/>
+	
+  </class>
+</hibernate-mapping>

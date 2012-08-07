@@ -1,0 +1,78 @@
+<html xmlns:wicket>
+<wicket:panel>
+	
+	<div wicket:id="feedbackpanel"></div>
+	<form wicket:id="leagueUpdateForm">
+	<table cellspacing="0">
+		<tr>
+			<th>League Name</th>
+			<td><input wicket:id="leagueName"/></td>
+		</tr>
+		<tr>
+			<th>League Password</th>
+			<td><input wicket:id="password"/></td>
+		</tr>
+		<tr>
+			<th>Entry Fee</th>
+			<td><input wicket:id="entryFee" size="2" maxlength="5"/></td>
+		</tr>
+		<tr>
+			<th>Weekly Fee</th>
+			<td><input wicket:id="weeklyFee" size="2" maxlength="4"/></td>
+		</tr>
+		<tr>
+			<th>Max Size</th>
+			<td><input wicket:id="maxSize" size="2" maxlength="4"/></td>
+		</tr>
+		<tr>
+			<th>League Type</th>
+			<td><div wicket:id="season.displaySeason"/></td>
+		</tr>
+		<tr>
+			<th>League Size</th>
+			<td><div  wicket:id="numberPeople"/></td>
+		</tr>
+		<tr>
+			<th>Admin</th>
+			<td><div wicket:id="admin.username"/></td>
+		</tr>
+		<tr>
+			<th>Spreads</th>
+			<td><div wicket:id="spreads"/></td>
+		</tr>
+		<tr>
+			<th>Active</th>
+			<td><div wicket:id="leagueActive"/></td>
+		</tr>
+		<tr>
+			<th>Placement Percents</th>
+			<td>
+				<table>
+					<tr>
+						<td>1st</td>
+						<td>2nd</td>
+						<td>3rd</td>
+						<td>4th</td>
+						<td>5th</td>
+					</tr>
+					<tr>
+						<td><input wicket:id="firstPlacePercent" size="2" maxlength="3"/></td>
+						<td><input wicket:id="secondPlacePercent" size="2" maxlength="2"/></td>
+						<td><input wicket:id="thirdPlacePercent" size="2" maxlength="2"/></td>
+						<td><input wicket:id="fourthPlacePercent" size="2" maxlength="2"/></td>
+						<td><input wicket:id="fifthPlacePercent" size="2" maxlength="2"/></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+	
+	</table>
+	<input type="submit" wicket:id="submit" class="createLeagueSubmit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="Update League" style="font-size: 12px;"></input> 
+	</form>			
+	<div class="playersHeader">Players in my league:</div>
+	<div class="leaguedetailscontainer">
+		<div wicket:id="leaguePlayersPanel"></div>
+	</div>				
+</wicket:panel>
+</html>
