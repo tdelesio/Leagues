@@ -1,14 +1,16 @@
 package info.makeyourpicks.dao.hibernate;
 
-import java.util.List;
-
 import info.makeyourpicks.dao.IPaymentDao;
 import info.makeyourpicks.model.League;
 import info.makeyourpicks.model.Payment;
 
-import com.delesio.dao.hibernate.AbstractDao;
+import java.util.List;
 
-public class PaymentDao extends AbstractDao implements IPaymentDao
+import org.hibernate.Query;
+
+import com.delesio.dao.hibernate.HibernateDao;
+
+public class PaymentDao extends HibernateDao implements IPaymentDao
 {
 
 	private String getQuery(String prefix, String suffix)
@@ -20,7 +22,12 @@ public class PaymentDao extends AbstractDao implements IPaymentDao
 	}
 	public List<Payment> findPaymentsByLeague(League league)
 	{
-		return getHibernateTemplate().find(getQuery("", "where p.league.id=?"),league.getId());
+//		return getHibernateTemplate().find(getQuery("", "where p.league.id=?"),league.getId());
+		
+		Query query = getQuery("where p.league.id=?");
+		query.setParameter(0, league.getId());
+		
+		return query.list();
 	}
 
 }

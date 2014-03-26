@@ -1,5 +1,6 @@
 package info.makeyourpicks.service.impl;
 
+import info.makeyourpicks.ValidationErrorEnum;
 import info.makeyourpicks.dao.IPaymentDao;
 import info.makeyourpicks.dao.LeagueDao;
 import info.makeyourpicks.model.League;
@@ -14,8 +15,6 @@ import info.makeyourpicks.service.ILeaguesEmailService;
 import info.makeyourpicks.service.LeagueManager;
 import info.makeyourpicks.service.PlayerManager;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,14 +23,16 @@ import java.util.Set;
 
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.delesio.cache.action.ICacheCreateAction;
-import com.delesio.service.impl.AbstractService;
+import com.delesio.cache.ICacheCreateAction;
+import com.delesio.exception.ValidationException;
+import com.delesio.service.AbstractService;
 import com.sun.corba.se.pept.transport.ContactInfo;
 
-public class LeagueManagerHibernate extends AbstractService implements
+public class LeagueManagerHibernate extends AbstractLeagueService implements
 		LeagueManager {
 
 	protected LeagueDao leagueDao;
@@ -45,9 +46,6 @@ public class LeagueManagerHibernate extends AbstractService implements
 	private String receiptSubject;
 	private String receiptTemplate;
 	
-	protected void init()
-	{
-	}
 	
 	public void createPayment(Payment payment) {
 		dao.save(payment);
@@ -210,14 +208,16 @@ public class LeagueManagerHibernate extends AbstractService implements
 		return leagueDao.findLeaguesBySeason(season);
 	}
 	
-	public List<League> getLeaguesForPlayer(final Player player)
+	@Transactional
+	public List<League> getLeaguesForPlayerTX(final Player player)
 	{
 //		return (List<League>)cacheProvider.getOrPut(LEAGUE_FOR_PLAYER, player, new ICacheCreateAction()
 //		{
 //
 //			public Object createCacheObject()
 //			{
-				return leagueDao.findLeaguesByPlayer(player);
+				List<League> leaues = leagueDao.findLeaguesByPlayer(player);
+				return leaues;
 //			}
 //			
 //		});
@@ -432,5 +432,12 @@ public class LeagueManagerHibernate extends AbstractService implements
 		this.gameManager = gameManager;
 	}
 	
+	
+	public void verifyPlayerExistsInLeague(long leagueId, long playerId) throws ValidationException
+	{
+		PlayerLeague playerLeague = leagueDao.findPlayerLeagueByLeagueAndPlayer(leagueId, playerId);
+		if (playerLeague == null)
+			throw new ValidationException(ValidationErrorEnum.PLAYER_NOT_IN_LEAGUE);
+	}
 	
 }

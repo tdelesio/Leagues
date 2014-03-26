@@ -1,7 +1,6 @@
 package info.makeyourpicks.model;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 public class PlayerMessages extends AbstractPersistantObject {
 
@@ -18,11 +17,6 @@ public class PlayerMessages extends AbstractPersistantObject {
 	{
 		this.player = player;
 		this.message = messageBoard;
-	}
-	
-	@Override
-	public IPersistable createTestObject() {
-		return new PlayerMessages();
 	}
 
 	public boolean isRead() {

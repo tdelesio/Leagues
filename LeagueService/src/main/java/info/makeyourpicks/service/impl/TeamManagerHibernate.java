@@ -8,20 +8,12 @@ import info.makeyourpicks.model.Team;
 import info.makeyourpicks.model.Week;
 import info.makeyourpicks.service.TeamManager;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-import com.delesio.service.impl.AbstractService;
-
-public class TeamManagerHibernate extends AbstractService implements
+public class TeamManagerHibernate extends AbstractLeagueService implements
 		TeamManager {
 
 	protected TeamDao teamDao;
-	@Override
-	protected void init() {
-		
-	}
 
 	public void deleteTeam(Team team){
 		dao.deleteObject(team);

@@ -3,25 +3,17 @@ package info.makeyourpicks.dao.hibernate;
 import info.makeyourpicks.model.Player;
 import info.makeyourpicks.test.AbstractTestCase;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class PlayerDaoTest extends AbstractTestCase {
 
 	protected static Player player = new Player();
 	
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		player = (Player)player.createTestObject();
-		dao.save(player);
-	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-		dao.deleteObject(player);		
-	}
-	
-	public void test_getPlayer()
+	@Test
+	public void getPlayers()
 	{
-		assertEquals(player, playerDao.findPlayerByName(player.getUsername()));
+	
 	}
 }

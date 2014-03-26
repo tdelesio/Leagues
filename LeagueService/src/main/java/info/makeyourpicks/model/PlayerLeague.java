@@ -1,7 +1,6 @@
 package info.makeyourpicks.model;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 
 public class PlayerLeague extends AbstractPersistantObject {
@@ -10,12 +9,7 @@ public class PlayerLeague extends AbstractPersistantObject {
 	private Player player;
 	private int sortOrder=0;
 	private boolean displayInNav=true;
-	
-	@Override
-	public IPersistable createTestObject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public League getLeague() {
 		return league;

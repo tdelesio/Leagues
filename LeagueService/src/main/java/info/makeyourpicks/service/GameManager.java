@@ -19,7 +19,8 @@ public interface GameManager extends ICacheConstants {
 	public Week loadWeek(long weekId);
 	public Game loadGame(long gameId);
 	public int getCurrentWeek(Season season);
-	public Week getWeek(int weekNumber, Season season);
+//	public Week getWeek(int weekNumber, Season season);
+	public List<Week> getWeeksBySeasonTX(Season season);
 	public List<Week> getWeeksBySeason(Season season);
 	public List<Game> getGamesByWeek(Week week);
 	public Game getGameByTeamWeekLeague(Team team, Week week);

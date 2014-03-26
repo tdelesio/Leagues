@@ -4,8 +4,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Set;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 public class MessageBoard extends AbstractPersistantObject {
 
@@ -58,19 +57,6 @@ public class MessageBoard extends AbstractPersistantObject {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
-	}
-
-	@Override
-	public IPersistable createTestObject() {
-		MessageBoard messageBoard = new MessageBoard();
-		messageBoard.setFromPlayer((Player)new Player().createTestObject());
-		messageBoard.setIcon("icon");
-		messageBoard.setMessage("message");
-		messageBoard.setPosted(new Timestamp(System.currentTimeMillis()));
-		messageBoard.setStyle("style");
-		return messageBoard;
-		
-	
 	}
 
 

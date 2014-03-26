@@ -1,48 +1,49 @@
 package info.makeyourpicks.service;
 
 import info.makeyourpicks.model.League;
-import info.makeyourpicks.model.LeagueType;
 import info.makeyourpicks.model.Payment;
-import info.makeyourpicks.model.Season;
+import info.makeyourpicks.test.AbstractTestCase;
 
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
-public class LeagueManagerTest extends AbstractServiceTestCase{
+public class LeagueManagerTest extends AbstractTestCase{
 
 	@Test
 	public void testGetLeagueTypes() {
-		assertEquals(true, leagueManager.getLeagueTypes().size()>0);
+		Assert.assertEquals(true, leagueManager.getLeagueTypes().size()>0);
 	}
 
 	@Test
 	public void testValidateLeague() {
-		assertEquals(true, leagueManager.validateLeague(league1));
+		Assert.assertEquals(true, leagueManager.validateLeague(football09League));
 	}
 
 	@Test
 	public void testGetNumberOfPlayersInLeague() {
-		assertEquals(1, leagueManager.getNumberOfPlayersInLeague(league1));
+		Assert.assertEquals(1, leagueManager.getNumberOfPlayersInLeague(football09League));
 	}
 
 	@Test
 	public void testGetFreeLeagues() {
-		assertEquals(true, leagueManager.getFreeLeagues().contains(league2));
+		Assert.assertFalse(leagueManager.getFreeLeagues().contains(football09League));
 	}
 
 	@Test
 	public void testGetLeagues() {
-		assertEquals(true, leagueManager.getLeagues().size()>0);
+		Assert.assertEquals(true, leagueManager.getLeagues().size()>0);
 	}
 
 	@Test
 	public void testUpdateLeague() 
 	{
-		league1.setPaidFor(10);
-		leagueManager.createOrUpdateLeague(league1);
-		League leagueFromDB = leagueManager.getLeague(league1.getLeagueName());
-		assertEquals(10, leagueFromDB.getPaidFor());
+		football09League.setPaidFor(10);
+		leagueManager.createOrUpdateLeague(football09League);
+		League leagueFromDB = leagueManager.getLeague(football09League.getLeagueName());
+		Assert.assertEquals(10, leagueFromDB.getPaidFor());
 	}
 
 //	@Test
@@ -51,14 +52,14 @@ public class LeagueManagerTest extends AbstractServiceTestCase{
 //		leagueManager.updateLeagueType(leagueType);
 //		
 //		LeagueType lt = leagueManager.getLeagueType(leagueType.getTypeOfLeague());
-//		assertEquals("new display", lt.getLeagueTypeDisplay());
+//		Assert.assertEquals("new display", lt.getLeagueTypeDisplay());
 //	}
 
 	@Test
 	public void testCreatePayment() {
 		Payment payment = new Payment();
-		payment = (Payment)payment.createTestObject();
-		payment.setLeague(league1);
+		payment = (Payment)payment();
+		payment.setLeague(football09League);
 		leagueManager.createPayment(payment);
 		
 		dao.deleteObject(payment);
@@ -66,15 +67,15 @@ public class LeagueManagerTest extends AbstractServiceTestCase{
 
 	@Test
 	public void testFindMasterLeagueTypes() {
-		assertEquals(true, leagueManager.findMasterLeagueTypes().size()>0);
+		Assert.assertEquals(true, leagueManager.findMasterLeagueTypes().size()>0);
 	}
 	
 	@Test
 	public void testGetLeaguesForPlayer()
 	{
-		List<League> leagues = leagueManager.getLeaguesForPlayer(player);
-		assertEquals(true, leagues.contains(league1));
-		assertEquals(true, leagues.contains(league2));
+		List<League> leagues = leagueManager.getLeaguesForPlayerTX(tim);
+		Assert.assertEquals(true, leagues.contains(football09League));
+		Assert.assertEquals(true, leagues.contains(football08League));
 	}
 
 	

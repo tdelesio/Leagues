@@ -1,9 +1,15 @@
 package info.makeyourpicks.model;
 
-import com.delesio.model.AbstractUser;
-import com.delesio.model.IPersistable;
+import java.util.Collection;
+import java.util.HashSet;
 
-public class Player extends AbstractUser {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.delesio.model.AbstractSequenceModel;
+
+
+public class Player extends AbstractPersistantObject implements UserDetails {
 
 	/**
 	 * 
@@ -15,6 +21,8 @@ public class Player extends AbstractUser {
 	public static final int USER = 3;
 	
 	private String username;
+	private String firstName;
+	private String lastName;
 	private String address1;
 	private String city;
 	private String state;
@@ -24,14 +32,32 @@ public class Player extends AbstractUser {
 	private boolean unreadMail=false;
 	private boolean rememberMe;
 	private long facebookId;
+
 	
 	private String emailAddresses;
 	private String emailText;
 	
 	private int wins;
+	
+	private String email;
+	
+	protected String password;
+	protected String repassword;
+	protected boolean enabled=true;
+	protected boolean locked=false;
+	protected boolean expired=false;
+	private int memberLevel = USER;
+	private boolean authenticated;
+	
+	
 	public Player()
 	{
 	
+	}
+
+	public Player(long id)
+	{
+		super.id = id;
 	}
 	
 	public Player(String name)
@@ -107,20 +133,7 @@ public class Player extends AbstractUser {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	@Override
-	public IPersistable createTestObject() {
-		Player playerInfo = new Player("jtest");
-//		playerInfo.setEmail("test@delesio.com");
-		playerInfo.setAddress1("address1");
-		playerInfo.setCity("denville");
-		playerInfo.setState("NJ");
-		playerInfo.setZip("12345");
-//		playerInfo.setPlayingSuicide(false);
-//		playerInfo.setPassword("password");
-//		playerInfo.setFirstName("jtest");
-//		playerInfo.setLastName("jtest");
-		return playerInfo;
-	}
+	
 
 	public boolean isUnreadMail() {
 		return unreadMail;
@@ -140,7 +153,6 @@ public class Player extends AbstractUser {
 		this.rememberMe = rememberMe;
 	}
 
-	@Override
 	public String getFullName()
 	{
 		if (firstName==null || lastName == null)
@@ -149,7 +161,7 @@ public class Player extends AbstractUser {
 		}
 		else
 		{
-			return super.getFullName();
+			return firstName+" "+lastName;
 		}
 	}
 	
@@ -204,4 +216,150 @@ public class Player extends AbstractUser {
 		else
 			return false;
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public int getMemberLevel() {
+		return memberLevel;
+	}
+
+	public void setMemberLevel(int memberLevel) {
+		this.memberLevel = memberLevel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	protected String getRoleName() 
+	{
+		if (memberLevel == ADMIN)
+		{
+			return "admin";
+		}
+		else
+		{
+			return "user";
+		}
+	}
+		
+
+	public Collection<GrantedAuthority> getAuthorities() {
+//		GrantedAuthority[] authority = new GrantedAuthority[1];
+		GrantedAuthority authority;
+		final String roleName = getRoleName();
+
+		
+//		authority[0] = new GrantedAuthority() 
+		authority = new GrantedAuthority() 
+		{
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 4567840750031844122L;
+
+			public String getAuthority() 
+			{
+				return roleName;
+			}
+
+			public int compareTo(Object o)
+			{
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			
+		};
+			
+//		return authority;
+		
+		HashSet<GrantedAuthority> authorities =  new HashSet<GrantedAuthority>();
+		authorities.add(authority);
+		return authorities;
+		
+	}
+
+	public Object getCredentials() {
+		return getPassword();			
+	}
+	
+	public Object getDetails() {
+		return null;	
+	}
+	
+
+
+	public boolean isAccountNonExpired()
+	{
+		return !expired;
+	}
+
+	public boolean isAccountNonLocked()
+	{
+		return !locked;
+	}
+
+	public String getName() {
+		return getClass().getSimpleName();	
+	}
+	
+	public boolean isCredentialsNonExpired()
+	{
+		return true;
+	}
+
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	public String getRepassword()
+	{
+		return repassword;
+	}
+
+	public void setRepassword(String repassword)
+	{
+		this.repassword = repassword;
+	}
+
+
+
+
+	public boolean isAuthenticated() {
+		return authenticated;
+	}
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
+	}
+	
+	
+	
 }

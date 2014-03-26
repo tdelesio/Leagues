@@ -10,6 +10,8 @@ import info.makeyourpicks.model.Week;
 
 import java.util.List;
 
+import com.delesio.exception.ValidationException;
+
 
 public interface LeagueManager extends ICacheConstants{
 
@@ -60,7 +62,7 @@ public interface LeagueManager extends ICacheConstants{
 	public void sendInviteEmail(List<String> emails, League league);
 	public void createPayment(Payment payment);
 	public List findMasterLeagueTypes();
-	public List<League> getLeaguesForPlayer(Player player);
+	public List<League> getLeaguesForPlayerTX(Player player);
 	public List<League> getLeaguesForNavigation(final Player player);
 	public int getNumberOfPlayersInLeague(League league);
 
@@ -82,4 +84,7 @@ public interface LeagueManager extends ICacheConstants{
 	public void createLeague(final League league);
 	public boolean sendWeekSetupEmailToAllPlayers(Week week);
 	public List<LeagueType> getChildLeagueTypesFromParent(String parentLeagueType);
+	
+	
+	public void verifyPlayerExistsInLeague(long leagueId, long playerId) throws ValidationException;
 }

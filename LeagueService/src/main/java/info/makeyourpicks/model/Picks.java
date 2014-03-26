@@ -1,7 +1,6 @@
 package info.makeyourpicks.model;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 
 public class Picks extends AbstractPersistantObject{
@@ -29,6 +28,21 @@ public class Picks extends AbstractPersistantObject{
 	public Picks()
 	{
 		
+	}
+	
+	public Picks(long id,long playerId)
+	{
+		this.name = new Player(playerId);
+		super.id = id;
+	}
+	
+	public Picks(long playerId, PickUI pickUI)
+	{
+		this.name = new Player(playerId);
+		this.team = new Team(pickUI.getTeam());
+		this.league = new League(pickUI.getLeague());
+		this.week = new Week(pickUI.getWeek());
+		this.game = new Game(pickUI.getGame());
 	}
 	
 	public Picks(Player _player, League _league, Week _week, Game game, boolean noPick)
@@ -137,14 +151,6 @@ public class Picks extends AbstractPersistantObject{
 			return "";
 		}
 	}
-
-
-	@Override
-	public IPersistable createTestObject() {
-		Picks picks = new Picks();
-		return picks;
-	}
-
 	public League getLeague() {
 		return league;
 	}

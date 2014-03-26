@@ -1,24 +1,26 @@
 package info.makeyourpicks.service;
 
 import info.makeyourpicks.model.Game;
-import info.makeyourpicks.model.Week;
+import info.makeyourpicks.test.AbstractTestCase;
 
 import java.sql.Date;
 import java.util.Iterator;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
-public class GameManagerTest extends AbstractServiceTestCase{
+public class GameManagerTest extends AbstractTestCase{
 
 	@Test
 	public void testUpdateGame() {
-		game1.setFavScore(30);
-		game1.setDogScore(20);
-		gameManager.updateGame(game1);
+		game1Week1.setFavScore(30);
+		game1Week1.setDogScore(20);
+		gameManager.updateGame(game1Week1);
 		
-		Game game = gameManager.loadGame(game1.getId());
-		assertEquals(30, game.getFavScore());
-		assertEquals(20, game.getDogScore());
+		Game game = gameManager.loadGame(game1Week1.getId());
+		Assert.assertEquals(30, game.getFavScore());
+		Assert.assertEquals(20, game.getDogScore());
 		
 		
 	}
@@ -26,11 +28,11 @@ public class GameManagerTest extends AbstractServiceTestCase{
 	@Test
 	public void testUpdateWeek() {
 		Date weekStart = new Date(System.currentTimeMillis());
-		week.setWeekStart(weekStart);
+		week1.setWeekStart(weekStart);
 		
-		gameManager.updateWeek(week);
+		gameManager.updateWeek(week1);
 //		Week updatedWeek  = gameManager.loadWeek(week.getId());
-		assertEquals(true, true);
+		Assert.assertEquals(true, true);
 	}
 
 //	@Test
@@ -52,8 +54,8 @@ public class GameManagerTest extends AbstractServiceTestCase{
 
 	@Test
 	public void testGetGamesByWeek() {
-		Iterator<Game> games = gameManager.getGamesByWeek(week).iterator();
-		assertEquals(game1, games.next());
+		Iterator<Game> games = gameManager.getGamesByWeek(week1).iterator();
+		Assert.assertEquals(game1Week1, games.next());
 	}
 
 }

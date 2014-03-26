@@ -1,10 +1,12 @@
 package info.makeyourpicks.service;
 
 import info.makeyourpicks.model.Team;
+import info.makeyourpicks.test.AbstractTestCase;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-public class TeamManagerTest extends AbstractServiceTestCase{
+public class TeamManagerTest extends AbstractTestCase{
 	
 	
 
@@ -13,23 +15,23 @@ public class TeamManagerTest extends AbstractServiceTestCase{
 	public void testLoadTeam() {
 		
 		
-		Team testTeam = teamManager.loadTeam(team1.getId());
-		assertEquals(team1, testTeam);
+		Team testTeam = teamManager.loadTeam(giants.getId());
+		Assert.assertEquals(giants, testTeam);
 		
-		Team testTeam2 = teamManager.loadTeam(team2.getId());
-		assertEquals(team2, testTeam2);
+		Team testTeam2 = teamManager.loadTeam(cowboys.getId());
+		Assert.assertEquals(cowboys, testTeam2);
 		
 	}
 	
 	@Test
 	public void testLoadAllTeams() {
-		assertEquals(true, teamManager.loadAllTeams().size()>=2);
+		Assert.assertEquals(true, teamManager.loadAllTeams().size()>=2);
 	}
 	
 	@Test
 	public void testGetTeamsByLeagueType()
 	{
-		assertEquals(2, teamManager.getTeamsByLeagueType(leagueType).size());
+		Assert.assertEquals(8, teamManager.getTeamsByLeagueType(footballLeagueType).size());
 	}
 
 }

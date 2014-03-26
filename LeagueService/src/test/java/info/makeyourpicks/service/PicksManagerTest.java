@@ -1,15 +1,14 @@
 package info.makeyourpicks.service;
 
-import java.util.List;
-
-import info.makeyourpicks.model.Game;
 import info.makeyourpicks.model.League;
-import info.makeyourpicks.model.Picks;
 import info.makeyourpicks.model.WinSummary;
+import info.makeyourpicks.test.AbstractTestCase;
+
+import java.util.List;
 
 import org.junit.Test;
 
-public class PicksManagerTest extends AbstractServiceTestCase {
+public class PicksManagerTest extends AbstractTestCase {
 
 //	@Test
 //	public void testUpdatePlayerPick() {
@@ -89,8 +88,8 @@ public class PicksManagerTest extends AbstractServiceTestCase {
 	@Test
 	public void testCalculateMoney()
 	{
-		League league = leagueManager.getLeague("testtest");
-		List<WinSummary> winsummaries = picksManager.getWinSummary(league);
+//		League league = leagueManager.getLeague("testtest");
+		List<WinSummary> winsummaries = picksManager.getWinSummaryTX(football09League);
 		for (WinSummary winSummary : winsummaries)
 		{
 			System.out.println(winSummary.getPlayer().getUsername()+" "+winSummary.getMoneyWon());

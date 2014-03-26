@@ -26,4 +26,6 @@ public interface LeagueDao {
 	public List<PlayerLeague> findPlayerLeaguesByPlayer(Player player);
 	public List<Season> getCurrentSeasons();
 	public List<LeagueType> getLeagueTypesByParent(String parentLeagueType);
+	
+	public PlayerLeague findPlayerLeagueByLeagueAndPlayer(long leagueId, long playerId);
 }

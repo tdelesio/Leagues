@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> -->
+	<!-- <property name="driverClassName" value="${ut.database.driver}" /> -->
+	<!-- <property name="url" value="${ut.database.url}" /> -->
+	<!-- <property name="username" value="${ut.database.username}" /> -->
+	<!-- <property name="password" value="${ut.database.password}" /> -->
+	<!-- </bean> -->
+
+	<import resource="classpath:context/property-context.xml"/>
+	<import resource="classpath:context/core-context.xml" />
+	<import resource="classpath:context/myp-context.xml" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url"
+			value="jdbc:hsqldb:mem:mydb;sql.enforce_strict_size=false;ifxeists=true" />
+
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+<!-- 		<property name="configLocations"> -->
+<!--             <list> -->
+<!--                 <value>classpath*:hibernate/myp.cfg.xml</value> -->
+<!--             </list> -->
+<!--         </property> -->
+		<property name="mappingResources">
+             <list>
+               <value>hibernate/League.hbm.xml</value>
+         	   <value>hibernate/Player.hbm.xml</value>
+         	   <value>hibernate/Team.hbm.xml</value>
+         	   <value>hibernate/MessageBoard.hbm.xml</value>
+         	   <value>hibernate/Picks.hbm.xml</value>
+         	   <value>hibernate/Game.hbm.xml</value>
+         	   <value>hibernate/Payment.hbm.xml</value>
+         	   <value>hibernate/Email.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>		
+        		<prop key="hibernate.show_sql">false</prop>
+				<!-- Botlist default for format_sql should be 'false' -->
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<!-- ============================================= -->
+
+				<!-- Caching Properties -->
+				<prop key="hibernate.cache">false</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+			</props>
+		</property>
+	</bean>
+
+
+</beans>

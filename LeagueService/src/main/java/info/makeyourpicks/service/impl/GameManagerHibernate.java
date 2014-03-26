@@ -39,14 +39,16 @@ import org.quartz.SchedulerException;
 import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.impl.StdScheduler;
+import org.springframework.transaction.annotation.Transactional;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import com.delesio.cache.action.ICacheCreateAction;
-import com.delesio.cache.impl.EhCacheProvider;
+import com.delesio.cache.ICacheCreateAction;
+import com.delesio.cache.ICacheProvider;
+import com.delesio.cache.ehcache.EhCacheProvider;
 import com.delesio.rss.FeedFetcher;
 import com.delesio.rss.FetcherEvent;
 import com.delesio.rss.FetcherException;
@@ -54,11 +56,11 @@ import com.delesio.rss.FetcherListener;
 import com.delesio.rss.impl.FeedFetcherCache;
 import com.delesio.rss.impl.HashMapFeedInfoCache;
 import com.delesio.rss.impl.HttpURLFeedFetcher;
-import com.delesio.service.impl.AbstractService;
+import com.delesio.service.AbstractService;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 
-public class GameManagerHibernate extends AbstractService implements
+public class GameManagerHibernate extends AbstractLeagueService implements
 		GameManager {
 
 	private GameDao gameDao;
@@ -74,13 +76,7 @@ public class GameManagerHibernate extends AbstractService implements
     private int scoreUpdateRepeatTimes;
     private String scoreHandler;
     private String feedType;
-	
-	@Override
-	protected void init() {
-
-	}
-
-	
+    
 	
 	public void setTeamDao(TeamDao teamDao) {
 		this.teamDao = teamDao;
@@ -141,30 +137,30 @@ public class GameManagerHibernate extends AbstractService implements
 		return (Game)dao.loadObject(Game.class, gameId);
 	}
 
-	private Map<Integer, Week> loadWeekCacheBySeason(final Season season)
-	{
-		return (Map<Integer, Week>) cacheProvider.getOrPut(WEEK_BY_WEEK_NUMBER_AND_SEASON, season, new ICacheCreateAction()
-		{
-
-			public Object createCacheObject()
-			{
-				Map<Integer, Week> map = new LinkedHashMap<Integer, Week>(19);
-				List<Week> weeks = gameDao.findWeekBySeason(season);
-				for (Week week : weeks)
-				{
-					int weekNumber = week.getWeekNumber();
-					map.put(weekNumber, week);
-				}
-				return map;
-			}
-			
-		});
-	}
-	public Week getWeek(int weekNumber, Season season) {
-		
-//		return gameDao.findWeek(weekNumber, season);
-		return loadWeekCacheBySeason(season).get(weekNumber);
-	}
+//	private Map<Integer, Week> loadWeekCacheBySeason(final Season season)
+//	{
+//		return (Map<Integer, Week>) cacheProvider.getOrPut(WEEK_BY_WEEK_NUMBER_AND_SEASON, season, new ICacheCreateAction()
+//		{
+//
+//			public Object createCacheObject()
+//			{
+//				Map<Integer, Week> map = new LinkedHashMap<Integer, Week>(19);
+//				List<Week> weeks = gameDao.findWeekBySeason(season);
+//				for (Week week : weeks)
+//				{
+//					int weekNumber = week.getWeekNumber();
+//					map.put(weekNumber, week);
+//				}
+//				return map;
+//			}
+//			
+//		});
+//	}
+//	public Week getWeek(int weekNumber, Season season) {
+//		
+////		return gameDao.findWeek(weekNumber, season);
+//		return loadWeekCacheBySeason(season).get(weekNumber);
+//	}
 
 	public int getCurrentWeek(Season season) {
 		return gameDao.getCurrentWeek(season);
@@ -178,10 +174,18 @@ public class GameManagerHibernate extends AbstractService implements
 		this.gameDao = gameDao;
 	}
 	
+	@Transactional
+	public List<Week> getWeeksBySeasonTX(Season season)
+	{
+		return getWeeksBySeason(season);
+	}
+	
 	public List<Week> getWeeksBySeason(Season season)
 	{
-//		return gameDao.findWeekBySeason(season);
-		return new ArrayList<Week>(loadWeekCacheBySeason(season).values());
+//		return new ArrayList<Week>(loadWeekCacheBySeason(season).values());
+		
+		List<Week> weeks = gameDao.findWeekBySeason(season);
+		return weeks;
 	}
 
 	public List<Game> getGamesByWeek(Week week) {

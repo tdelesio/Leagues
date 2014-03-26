@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+  -
+  - Property context definition for the application.
+  -
+  -->
+  
+<beans>
+
+	<!--
+	 Add a PropertyPlaceholderConfigurer which loads properties from a properties file. 
+	 These properties will be used in the Spring XML definitions: occurences of  ${...} 
+	 will be replaced with their value in the properties file.  If the property can not 
+	 be found, an error is thrown. Since this bean implements BeanFactoryPostProcessor, 
+	 it will be automatically picked up by Spring and executed. 
+	-->
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="ignoreUnresolvablePlaceholders" value="false"/>
+	  <property name="locations">
+	    <list>
+	      <value>classpath:properties/quartz.properties</value>
+	      <value>classpath:properties/web.properties</value>	
+	      <value>classpath:properties/service.properties</value>
+	      <value>classpath:properties/database.properties</value>
+	      <value>classpath:properties/velocity.mail.properties</value>
+	    </list>
+	  </property>
+	</bean>
+	
+<!-- 	<bean id="propertyPlaceholderConfigurer" class="com.homefellas.util.AbsolutePathPropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="basePropertiesHome" value="${properties_home}"/> -->
+<!-- 		<property name="locations"> -->
+<!-- 			<list> -->
+<!-- 				<value>core.properties</value> -->
+<!-- 				<value>location.properties</value> -->
+<!-- 				<value>metrics.properties</value> -->
+<!-- 				<value>rm.properties</value> -->
+<!-- 				<value>login.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="properties"> -->
+<!-- 			<value> -->
+<!-- 			task.landing.root=${task.landing.root} -->
+<!-- 			oauth.security.check=${oauth.security.check} -->
+<!-- 			facebook.key=${facebook.key} -->
+<!-- 			facebook.secret=${facebook.secret} -->
+<!-- 			cas.oauth.profile.url=${cas.oauth.profile.url} -->
+<!-- 			login.url=${login.url} -->
+<!-- 			allusers.luecene.index.home=${allusers.luecene.index.home} -->
+<!-- 			captureWebMetrics=${captureWebMetrics} -->
+<!-- 			</value> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+</beans>

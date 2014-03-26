@@ -1,36 +1,34 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>info.makeyourpicks</groupId>
-  <artifactId>league-service</artifactId>
-  <version>0.5-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <parent>
- 		<groupId>com.delesio</groupId>
- 		<artifactId>framework-build</artifactId>
- 		<version>0.5-SNAPSHOT</version>
- 	</parent>
-  <description/>
-  <repositories>
-		<repository>
-			<id>delesio-repo</id>
-			<name>Delesio Repo</name>
-			<url>http://delesio.com/archiva/repository/internal/</url>
-		</repository>
-	</repositories>
-  <dependencies>
-  <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.4</version>
-			<scope>test</scope>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>info.makeyourpicks</groupId>
+	<artifactId>league-service</artifactId>
+	<packaging>jar</packaging>
+	
+	<parent>
+		<groupId>com.delesio</groupId>
+		<artifactId>build-service</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<properties>
+		<filter.location>../properties/filters</filter.location>
+	</properties>
+
+	<build>
+		<filters>
+			<filter>${filter.location}/${rm.environment}.properties</filter>
+		</filters>
+	</build>
+	
+	<dependencies> 
+		<dependency>
+			<groupId>com.delesio</groupId>
+			<artifactId>service-core</artifactId>
+			<version>1.0.0</version>
 		</dependency>
-  <dependency>
-  	<groupId>com.delesio</groupId>
-  	<artifactId>services-framework</artifactId>
-  	<version>0.5-SNAPSHOT</version>
-  </dependency>
-			
-  
-  </dependencies>
- 
+
+
+	</dependencies>
+
 </project>

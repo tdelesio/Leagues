@@ -1,7 +1,7 @@
 package info.makeyourpicks.model;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
+
 
 public class Season extends AbstractPersistantObject
 {
@@ -10,11 +10,15 @@ public class Season extends AbstractPersistantObject
 	private int endYear;
 	private LeagueType leagueType;
 	
-	@Override
-	public IPersistable createTestObject()
+	
+	public Season()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		
+	}
+	
+	public Season(long seasonId)
+	{
+		super.id = seasonId;
 	}
 
 	public int getStartYear()

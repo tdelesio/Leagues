@@ -8,13 +8,11 @@ import info.makeyourpicks.service.PlayerManager;
 
 import java.util.List;
 
-import org.springframework.security.providers.encoding.PasswordEncoder;
-import org.springframework.security.userdetails.UserDetails;
-import org.springframework.security.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.delesio.service.impl.AbstractService;
-
-public class PlayerManagerHibernate extends AbstractService implements PlayerManager {
+public class PlayerManagerHibernate extends AbstractLeagueService implements PlayerManager {
 
 	protected PlayerDao playerDao;
 	protected ILeaguesEmailService emailService;
@@ -24,10 +22,6 @@ public class PlayerManagerHibernate extends AbstractService implements PlayerMan
 	private String usernameRetrievalSubject;
 	private String usernameRetrievalTemplate;
 	
-	public void init()
-	{
-		
-	}
 	
 	public void deleteUser(String name) {
 		

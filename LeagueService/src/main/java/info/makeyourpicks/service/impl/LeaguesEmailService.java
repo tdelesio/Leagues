@@ -6,16 +6,13 @@ import info.makeyourpicks.model.Week;
 import info.makeyourpicks.service.ILeaguesEmailService;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.velocity.app.VelocityEngine;
 
+import com.delesio.email.EmailServiceJavaMail;
 import com.delesio.model.Email;
-import com.delesio.service.impl.EmailServiceJavaMail;
 
 public class LeaguesEmailService extends EmailServiceJavaMail implements ILeaguesEmailService
 {

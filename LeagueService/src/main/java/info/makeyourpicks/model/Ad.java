@@ -1,22 +1,25 @@
 package info.makeyourpicks.model;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Proxy;
+
+import com.delesio.model.AbstractSequenceModel;
+
+@Entity
+@Table(name="ads")
+@Proxy(lazy=false)
+@XmlRootElement
 public class Ad extends AbstractPersistantObject {
-
+ 
 	private String imageURL;
 	private String linkURL;
 	private int numberClicks;
 	private int paidClicks;
 	private String email;
 	
-	@Override
-	public IPersistable createTestObject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public String getImageURL() {
 		return imageURL;
 	}

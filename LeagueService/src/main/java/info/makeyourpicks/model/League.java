@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 
 
@@ -68,6 +67,10 @@ public class League extends AbstractPersistantObject implements Comparable<Leagu
 	    this.playersToAddToLeague = league.playersToAddToLeague;
 	}
 
+	public League(long leagueId)
+	{
+		super.id = leagueId;
+	}
 	
 	public PickemTieBreakerEnum getDoubleTypeEnum() {
 		return doubleTypeEnum;
@@ -322,18 +325,6 @@ public class League extends AbstractPersistantObject implements Comparable<Leagu
 
 	public void setAdmin(Player admin) {
 		this.admin = admin;
-	}
-
-	
-	@Override
-	public IPersistable createTestObject() {
-		League league = new League();
-		league.setLeagueName("jleague");
-		//league.setLeagueType((LeagueType)(new LeagueType()).createTestObject());
-		league.setActive(true);
-		league.setFree(true);
-		
-		return league;
 	}
 
 

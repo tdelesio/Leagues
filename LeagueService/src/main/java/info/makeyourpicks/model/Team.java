@@ -2,8 +2,7 @@ package info.makeyourpicks.model;
 
 import java.io.Serializable;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 public class Team extends AbstractPersistantObject implements Serializable{
 	/**
@@ -20,6 +19,11 @@ public class Team extends AbstractPersistantObject implements Serializable{
 	public Team()
 	{
 		
+	}
+	
+	public Team(long teamId)
+	{
+		super.id = teamId;
 	}
 	
 	public Team(Team teamInfo)
@@ -82,15 +86,4 @@ public class Team extends AbstractPersistantObject implements Serializable{
 		this.leagueType = leagueType;
 	}
 
-	@Override
-	public IPersistable createTestObject() {
-		Team team = new Team();
-		team.setCity("testCity");
-//		team.setLeagueType("test");
-		team.setShortName("tst");
-		team.setTeamName("testteam");
-		team.setTheme("theme");
-		return team;
-	}
-	
 }

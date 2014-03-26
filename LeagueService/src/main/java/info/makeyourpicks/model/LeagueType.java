@@ -3,15 +3,34 @@ package info.makeyourpicks.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Proxy;
+
+import com.delesio.model.AbstractSequenceModel;
+
+@Entity
+@Table(name="leaguetypes")
+@Proxy(lazy=false)
+@XmlRootElement
 public class LeagueType extends AbstractPersistantObject {
+	@Column(nullable=false)
 	private String typeOfLeague="";
+	
+	@Column(nullable=false)
 	private String leagueTypeDisplay;
+	
 	private String parentTypeOfLeague;
-	private Date start;
-	private Date end;
+	
+	@Transient
+	private Date start = new Date();
+	
+	@Transient
+	private Date end = new Date();
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, MM/dd/yyyy @ HH:mm z");
 //	private Set teams=new HashSet();
 //	private Set leagues=new HashSet();
@@ -40,6 +59,10 @@ public class LeagueType extends AbstractPersistantObject {
 		
 	}
 	
+	public LeagueType(long leagueId)
+	{
+		super.id = leagueId;
+	}
 	
 	
 	public LeagueType(String leagueType)
@@ -83,17 +106,6 @@ public class LeagueType extends AbstractPersistantObject {
 	}
 	public void setEnd(Date end) {
 		this.end = end;
-	}
-
-
-
-	@Override
-	public IPersistable createTestObject() {
-		LeagueType leagueType = new LeagueType("leaguetypetest");
-		leagueType.setEnd(new Date(System.currentTimeMillis()));
-		leagueType.setStart(new Date(System.currentTimeMillis()));
-		leagueType.setLeagueTypeDisplay("junit Test league");
-		return leagueType;
 	}
 
 	public String getTypeOfLeague() {

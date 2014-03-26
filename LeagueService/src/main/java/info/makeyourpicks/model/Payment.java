@@ -2,8 +2,7 @@ package info.makeyourpicks.model;
 
 import java.text.SimpleDateFormat;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 public class Payment extends AbstractPersistantObject {
 
@@ -23,15 +22,6 @@ public class Payment extends AbstractPersistantObject {
 	private String paymentStatus;
 	private String pendingReason;
 	private String reasonCode;
-	@Override
-	public IPersistable createTestObject() {
-		Payment payment = new Payment();
-		payment.setTransactionId("123456789");
-		//payment.setTransactionDate(new Timestamp(System.currentTimeMillis()));
-		payment.setAmountDue(100);
-		payment.setAmountPaid(50);
-		return payment;
-	}
 
 	public String getTransactionId() {
 		return transactionId;

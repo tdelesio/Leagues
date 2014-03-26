@@ -2,8 +2,7 @@ package info.makeyourpicks.model;
 
 import java.io.Serializable;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 @Deprecated
 public class Suicide extends AbstractPersistantObject implements Serializable{
@@ -54,16 +53,6 @@ public class Suicide extends AbstractPersistantObject implements Serializable{
 		this.leagueName = leagueName;
 	}
 
-	@Override
-	public IPersistable createTestObject() {
-		Suicide suicide = new Suicide();
-		suicide.setLeagueName("testleaue");
-		suicide.setName("test");
-		suicide.setTeam((Team)new Team().createTestObject());
-		suicide.setWeek(1);
-		suicide.setWin(false);
-		return suicide;
-	}
 
 
 	public boolean isWin() {

@@ -1,6 +1,8 @@
 package info.makeyourpicks.service.impl;
 
+import info.makeyourpicks.ValidationErrorEnum;
 import info.makeyourpicks.dao.PickDao;
+import info.makeyourpicks.model.AbstractPersistantObject;
 import info.makeyourpicks.model.Game;
 import info.makeyourpicks.model.League;
 import info.makeyourpicks.model.PickemTieBreakerEnum;
@@ -13,6 +15,7 @@ import info.makeyourpicks.model.Week;
 import info.makeyourpicks.model.WeekWinner;
 import info.makeyourpicks.model.WinSummary;
 import info.makeyourpicks.service.GameManager;
+import info.makeyourpicks.service.LeagueManager;
 import info.makeyourpicks.service.PicksManager;
 import info.makeyourpicks.service.PlayerManager;
 
@@ -23,24 +26,26 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.delesio.cache.action.ICacheCreateAction;
-import com.delesio.cache.impl.EhCacheProvider;
-import com.delesio.service.impl.AbstractService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
-public class PicksManagerHibernate extends AbstractService implements
+import com.delesio.cache.ICacheCreateAction;
+import com.delesio.cache.ehcache.EhCacheProvider;
+import com.delesio.exception.IValidationCode;
+import com.delesio.exception.ValidationException;
+
+public class PicksManagerHibernate extends AbstractLeagueService implements
 		PicksManager {
 
 	private PickDao pickDao;
 	private PlayerManager playerManager;
 	private GameManager gameManager;
 	
-	@Override
-	protected void init() {
+	@Autowired
+	private LeagueManager leagueManager;
 
-	}
 
 	
 	public void setPlayerManager(PlayerManager playerManager)
@@ -246,15 +251,121 @@ public class PicksManagerHibernate extends AbstractService implements
 		return searchCache(league);
 	}
 	
-		public void insertPlayerPick(Picks pick) {
+	public static boolean isValidObject(AbstractPersistantObject object)
+	{
+		if (object == null || object.getId()==0)
+			return true;
+		else
+			return false;
+	}	
+	
+	public static boolean isNullOrBlank(String string)
+	{
+		if (string == null || "".equals(string))
+			return true;
+		else
+			return false;
+	}	
+	
+	public static boolean isNullOrBlank(long string)
+	{
+		if (string == 0)
+			return true;
+		else
+			return false;
+	}	
+	
+	private void validatePick(Picks pick) throws ValidationException 
+	{
+		List<IValidationCode> codes = new ArrayList<IValidationCode>();
+		
+		
+		if (pick == null)
+		{
+			codes.add(ValidationErrorEnum.PICK_IS_NULL);
+			throw new ValidationException(codes);
+		}
+		
+		if (isValidObject(pick.getGame()))
+			codes.add(ValidationErrorEnum.GAME_IS_NULL);
+		
+		if (isValidObject(pick.getTeam()))
+			codes.add(ValidationErrorEnum.TEAM_IS_NULL);
+		
+		if (isValidObject(pick.getWeek()))
+			codes.add(ValidationErrorEnum.WEEK_IS_NULL);
+		
+		if (isValidObject(pick.getLeague()))
+			codes.add(ValidationErrorEnum.LEAGUE_IS_NULL);
+		
+		if (isValidObject(pick.getName()))
+			codes.add(ValidationErrorEnum.PLAYER_IS_NUll);
+		
+		
+		Game game = dao.loadByPrimaryKey(Game.class, pick.getGame().getId());
+		if (game == null)
+			codes.add(ValidationErrorEnum.GAME_IS_NULL);
+		
+		//load the game to make sure that the team passed is actually playing in the game
+		if (game.getFav().getId()!=pick.getTeam().getId() && game.getDog().getId()!=pick.getTeam().getId())
+			codes.add(ValidationErrorEnum.TEAM_NOT_PLAYING_IN_GAME);
+				
+		//check to make sure that the game hasn't started
+		if (game.hasGameStarted())
+			codes.add(ValidationErrorEnum.GAME_HAS_ALREADY_STARTED);
+		
+		//need to make sure that the user is in that league
+		leagueManager.verifyPlayerExistsInLeague(pick.getLeague().getId(), pick.getName().getId());
+		
+		//make sure the week matches the game
+		if (game.getWeek().getId()!=pick.getWeek().getId())
+			codes.add(ValidationErrorEnum.WEEK_IS_NOT_VALID);
+				
+		if (!codes.isEmpty())
+			throw new ValidationException(codes);
+	}
+	
+	@Transactional
+	public void insertPlayerPickTX(Picks pick) throws ValidationException 
+	{
+		//make sure all the parms are set
+		validatePick(pick);
+		
+		//check to see if the pick is already there
+		List<Picks> picksFromDB = pickDao.findPickByPlayerLeagueWeekAndGame(pick.getName(), pick.getLeague(), pick.getWeek(), pick.getGame());
+		if (!picksFromDB.isEmpty())
+			throw new ValidationException(ValidationErrorEnum.PICK_ALREADY_MADE);
+		
 		dao.save(pick);
 		
-//		List<Picks> picks = searchCache(pick);
-//		picks.add(pick);
 		updateCache(pick);
-
+		
 	}
-
+	
+	@Transactional
+	public void updatePlayerPickTX(Picks pick, long loggedInPlayerId) throws ValidationException {
+		
+		validatePick(pick);
+		
+		if (pick.getId() == 0)
+			throw new ValidationException(ValidationErrorEnum.PICK_IS_NULL);
+		
+		Picks pickFromDB = dao.loadObject(Picks.class, pick.getId());
+		if (pickFromDB == null)
+			throw new ValidationException(ValidationErrorEnum.PICK_IS_NULL);
+		
+		if (pickFromDB.getName().getId() != loggedInPlayerId)
+			throw new ValidationException(ValidationErrorEnum.UNAUTHORIZED_USER);
+		
+		pickFromDB.setTeam(pick.getTeam());
+		pickFromDB.setWeight(1);
+		
+		dao.merge(pickFromDB);
+		
+		updateCache(pickFromDB);
+	}
+	
+	@Deprecated
 	public void updatePlayerPick(Picks pick, boolean forceUpdate) {
 		if (pick.getGame().hasGameStarted())
 			return;
@@ -292,7 +403,8 @@ public class PicksManagerHibernate extends AbstractService implements
 		this.pickDao = pickDao;
 	}
 
-	public List<Picks> getPicksByLeagueAndWeek(League league, Week week) {
+	@Transactional
+	public List<Picks> getPicksByLeagueAndWeekTX(League league, Week week) {
 //		return pickDao.findPicksByLeagueAndWeek(league, week);
 		return searchCache(league, week);
 	}
@@ -312,9 +424,13 @@ public class PicksManagerHibernate extends AbstractService implements
 //		return searchCache(week, player);
 //	}
 
-	public List<Picks> getPicksByPlayerLeagueAndWeek(Player player,
+	@Transactional
+	public List<Picks> getPicksByPlayerLeagueAndWeekTX(Player player,
 			League league, Week week) {
-//		return pickDao.findPicksByPlayerLeagueAndWeek(player, league, week);
+		return getPicksByPlayerLeagueAndWeek(player, league, week);
+	}
+	
+	public List<Picks> getPicksByPlayerLeagueAndWeek(Player player, League league, Week week) {
 		return searchCache(league, week, player);
 	}
 	
@@ -611,8 +727,18 @@ public class PicksManagerHibernate extends AbstractService implements
 		
 		return null;
 	}
+	
+	@Transactional
+	public List<WinSummary> getWinSummaryTX(League league)
+	{
+		return getWinSummary(league);
+	}
+	
 	public List<WinSummary> getWinSummary(League league)
 	{
+		
+		league = dao.loadByPrimaryKey(League.class, league.getId());
+		
 		Map<Week, Integer> weekSplits = new HashMap<Week, Integer>(17);
 		Map<Week, WeekWinner> weekTotal=null;
 		WinSummary winSummary;

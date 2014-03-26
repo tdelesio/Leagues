@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
-public class Game extends AbstractPersistantObject implements Serializable {
+public class Game extends AbstractPersistantObject {
 
 	
 	/**
@@ -25,6 +24,11 @@ public class Game extends AbstractPersistantObject implements Serializable {
 	
 	public Game()
 	{
+	}
+	
+	public Game(long gameId)
+	{
+		super.id = gameId;
 	}
 		
 	public Team getWinner(boolean useSpeads)
@@ -105,12 +109,6 @@ public class Game extends AbstractPersistantObject implements Serializable {
 	public String getGameDisplay()
 	{
 		return fav.getFullTeamName()+" - "+dog.getFullTeamName();
-	}
-
-	@Override
-	public IPersistable createTestObject() {
-		Game game = new Game();
-		return game;
 	}
 
 	public boolean isFavHome() {

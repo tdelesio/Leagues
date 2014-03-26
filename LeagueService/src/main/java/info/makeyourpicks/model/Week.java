@@ -6,8 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.delesio.model.AbstractPersistantObject;
-import com.delesio.model.IPersistable;
+import com.delesio.model.AbstractSequenceModel;
 
 public class Week extends AbstractPersistantObject implements Serializable, Comparable<Week>{
 
@@ -36,12 +35,9 @@ public class Week extends AbstractPersistantObject implements Serializable, Comp
 	{
 	}
 	
-	@Override
-	public IPersistable createTestObject() {
-		Week weekStart = new Week();
-		weekStart.setWeekNumber(1);
-		weekStart.setWeekStart(new Timestamp(System.currentTimeMillis()));
-		return weekStart;
+	public Week(long weekId)
+	{
+		super.id = weekId;
 	}
 	
 	public String getCurrentTime()
