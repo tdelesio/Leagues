@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ws</artifactId>
+	<groupId>info.makeyourpicks</groupId>
+	<packaging>war</packaging>
+	<name>ws-myp</name>
+
+	<parent>
+		<groupId>com.delesio</groupId>
+		<artifactId>build-ws</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<properties>
+		<web-context>ws</web-context>
+		<eclipse.dependency>true</eclipse.dependency>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.delesio</groupId>
+			<artifactId>ws-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.delesio</groupId>
+			<artifactId>ws-core</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+			<classifier>tests</classifier>
+		</dependency>
+		<dependency>
+			<groupId>info.makeyourpicks</groupId>
+			<artifactId>league-service</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>info.makeyourpicks</groupId>
+			<artifactId>league-service</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+			<classifier>tests</classifier>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<container>
+						<containerId>tomcat6x</containerId>
+						<home>${tomcat.home}</home>
+					</container>
+					<configuration>
+						<home>${tomcat.webapps.home}</home>
+						<type>standalone</type>
+						<deployables>
+							<deployable>
+								<groupId>${project.groupId}</groupId>
+								<artifactId>${project.artifactId}</artifactId>
+								<type>war</type>
+								<properties>
+									<context>${web-context}</context>
+								</properties>
+							</deployable>
+						</deployables>
+						<properties>
+							<cargo.tomcat.webappsDirectory>${tomcat.webappsDirectory}</cargo.tomcat.webappsDirectory>
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>org.codehaus.enunciate</groupId> -->
+			<!-- <artifactId>maven-enunciate-plugin</artifactId> -->
+			<!-- check for the latest version -->
+			<!-- <version>1.25</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <goals> -->
+			<!-- <goal>docs</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- the directory where to put the docs -->
+			<!-- <docsDir>${project.build.directory}/docs</docsDir> -->
+			<!-- <configFile>enunciate.xml</configFile> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+		</plugins>
+		<!-- <pluginManagement> -->
+		<!-- <plugins> -->
+
+		<!-- <plugin> -->
+		<!-- <groupId>org.eclipse.m2e</groupId> -->
+		<!-- <artifactId>lifecycle-mapping</artifactId> -->
+		<!-- <version>1.0.0</version> -->
+		<!-- <configuration> -->
+		<!-- <lifecycleMappingMetadata> -->
+		<!-- <pluginExecutions> -->
+		<!-- <pluginExecution> -->
+		<!-- <pluginExecutionFilter> -->
+		<!-- <groupId> -->
+		<!-- org.codehaus.enunciate -->
+		<!-- </groupId> -->
+		<!-- <artifactId> -->
+		<!-- maven-enunciate-plugin -->
+		<!-- </artifactId> -->
+		<!-- <versionRange> -->
+		<!-- [1.17,) -->
+		<!-- </versionRange> -->
+		<!-- <goals> -->
+		<!-- <goal>docs</goal> -->
+		<!-- </goals> -->
+		<!-- </pluginExecutionFilter> -->
+		<!-- <action> -->
+		<!-- <ignore></ignore> -->
+		<!-- </action> -->
+		<!-- </pluginExecution> -->
+		<!-- </pluginExecutions> -->
+		<!-- </lifecycleMappingMetadata> -->
+		<!-- </configuration> -->
+		<!-- </plugin> -->
+		<!-- </plugins> -->
+		<!-- </pluginManagement> -->
+	</build>
+</project>

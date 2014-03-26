@@ -1,0 +1,205 @@
+/** ============= ============= 
+
+HTML5 Boilerplate Reset Styles
+
+============= ============= **/
+*{ -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+html, button, input, select, textarea { font-family: sans-serif; color: #222; }
+body { margin: 0; font-size: 1em; line-height: 1.4; }
+abbr[title] { border-bottom: 1px dotted; }
+b, strong { font-weight: bold; }
+blockquote { margin: 1em 40px; }
+dfn { font-style: italic; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+ins { background: #ff9; color: #000; text-decoration: none; }
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+pre, code, kbd, samp { font-family: monospace, serif; _font-family: 'courier new', monospace; font-size: 1em; }
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+q { quotes: none; }
+q:before, q:after { content: ""; content: none; }
+small { font-size: 85%; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+dd { margin: 0 0 0 40px; }
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+svg:not(:root) { overflow: hidden; }
+figure { margin: 0; }
+form { margin: 0; }
+fieldset { border: 0; margin: 0; padding: 0; }
+label { cursor: pointer; }
+legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
+button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
+button, input { line-height: normal; }
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+button[disabled], input[disabled] { cursor: default; }
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
+input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+textarea { overflow: auto; vertical-align: top; resize: vertical; }
+input:invalid, textarea:invalid { background-color: #f0dddd; }
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+.chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
+
+::-moz-selection { background: #F16428; color: #fff; text-shadow: none; }
+::selection { background: #F16428; color: #fff; text-shadow: none; }
+
+
+/** ============= ============= ============= ============= ============= 
+
+Main Styles 
+
+============= ============= ============= ============= ============= **/
+
+html, body { height: 100%; }
+body { background:#fff; font-size: 14px; width:310px; overflow-x:hidden;}
+
+p{ font-family:Arial, Helvetica, sans-serif; font-size:12px; font-style: normal; font-weight: 300; color:#333; }
+
+.bg {background-image:url(../img/bg.jpg); background-repeat:no-repeat; position:fixed; width:320px; height:460px; z-index:-100;}
+
+/** Start Links **/
+
+a { color: #221F1F; text-decoration:none; -webkit-transition: all .1s ease-in; -moz-transition: all .1s ease-in; -o-transition: all .1s ease-in; transition: all .1s ease-in; }
+a:hover { color: #F16428; }
+a:focus { outline: thin dotted; }
+a:hover, a:active { outline: 0; }
+
+p a {color:#000; text-decoration:none; }
+p a:hover { color: #F16428; }
+
+.shadow { moz-box-shadow: 0px 3px 6px #000;-webkit-box-shadow: 0px 3px 6px #000;box-shadow: 0px 3px 6px #000;}
+/** End Links **/
+
+
+
+.screen {width:320px; margin:0 auto; padding:0; text-align:center;min-height:460px; z-index:50;}
+
+.screen select {margin-right:10px;}
+
+.nav {background-color:#000; padding:5px 0; width:320px; height:40px; background-image:url(../img/steel.jpg); border-bottom:1px solid #999; text-align:center; margin-bottom:15px; position:fixed}
+
+.mainnav{float:left; width:140px; margin-top:5px;}
+.subnav{float:right; width:180px; margin-top:5px;}
+	
+	.loader{width:16px; height:16px; background-image:url(../img/loader.gif); margin:0; visibility:hidden; float:left;}
+	
+	
+	/* MAKE PICKS */
+	.page-select{margin:0 0 0 10px; float:left;}
+	.week-select{margin-left:10px; float:right;}
+	
+	.page-select select,
+	.week-select select {background-color:#000000; color:#FFFFFF; font-size:10px;}
+
+	.points {font-family:Arial, Helvetica, sans-serif; color:#FFFFFF; font-size:14px; font-weight:bold; float:right;}
+
+	/* STANDINGS */
+	
+	.standingToggle {float:right; margin-right:5px;}
+		.standingButton{ background-color:#000000; width:50px; text-align:center; border:#CCCCCC 1px solid; padding:2px 7px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#FFF; float:left; margin-right:5px; cursor:pointer;}
+		.standingButton.selected{background-color:#00ccff; border-color:#FFFFFF; color:#000;}
+
+
+#results { padding-top:60px;}
+	
+	
+	/* MAKE PICKS */
+	
+	.gamebox {width:320px; margin-bottom:20px;}
+	.gametime {float:right; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:10px; margin-top:-12px; padding-right:5px; color:#ccc;}
+	
+	.scoreboard {background-color:#000000; border-top:solid 2px #CCCCCC; border-bottom:solid 2px #CCCCCC;}
+	
+	.pickbox {width:50px; height:50px; float:left; padding:5px;}
+	.win .pickbox { background-image:url(../img/team-glow.png);}
+	.loss .pickbox {opacity:.4}
+	.pick {width:40px; height:40px; background-repeat:no-repeat;}
+	
+	.scorerow {width:270px; padding:0; border-left:1px solid #333; border-bottom:1px solid #333; color:#FFFFFF; clear:right; float:right;}
+	
+		.teamname {	float:left; padding:5px 0 0 5px;
+					font-family:Arial, Helvetica, sans-serif; font-size:12px; }
+					
+		.spread {	margin-left:20px; padding:5px 0 0 0; font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#00ccff; font-weight:bold; }
+		
+		.score {	float:right; padding:5px 0 0 0; border-left:solid 1px #333; border-right:solid 1px #333 ;
+					font-family:Arial, Helvetica, sans-serif; width:40px;font-size:12px; height:25px; text-align:center; font-weight:bold; }
+					
+					
+					
+	/* SEASON STANDINGS  */		
+					
+	.standingsRow {width:320px; background-color:#1e1e1e; margin:0 0 8px 0; clear:both;}
+	
+		.standingsName { font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-align:left;
+						 background-color:#000000; padding:5px 10px 5px 5px; float:left; width:100px;}
+						 
+		.standingsScore {font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#00ccff; text-align:center;
+						 background-color:#000000; padding:5px 10px 5px 5px; float:left; width:35px;}
+					
+		.standingWeeks {float:left;}
+		
+		.standingGroup {float:left;}
+		
+		.weekScore{ width:30px; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:14px; padding:3px 0; color:#FFFFFF; float:left; margin:0;}
+			.weekScore.winner { background-color:#00ccff; color:#000;}
+
+.win {border-color:#00CC00;}
+.loss {border-color:#FF0000;}
+
+.loser {color:#999;}
+.double {background-color:#0c253f; border-width:5px;}
+
+
+/* REUSABLE CLASSES */
+
+.clearfix {clear:both;}
+.hide {display:none}
+.show {display:block}
+
+
+
+/* NFL TEAMS */
+
+.ARZ { background-image:url(../img/logos/ARZ.gif);}
+.ATL { background-image:url(../img/logos/ATL.gif);}
+.BAL { background-image:url(../img/logos/BAL.gif);}
+.BUF { background-image:url(../img/logos/BUF.gif);}
+.CAR { background-image:url(../img/logos/CAR.gif);}
+.CHI { background-image:url(../img/logos/CHI.gif);}
+.CIN { background-image:url(../img/logos/CIN.gif);}
+.CLE { background-image:url(../img/logos/CLE.gif);}
+.DAL { background-image:url(../img/logos/DAL.gif);}
+.DEN { background-image:url(../img/logos/DEN.gif);}
+.DET { background-image:url(../img/logos/DET.gif);}
+.GB { background-image:url(../img/logos/GB.gif);}
+.HOU { background-image:url(../img/logos/HOU.gif);}
+.IND { background-image:url(../img/logos/IND.gif);}
+.JAC { background-image:url(../img/logos/JAC.gif);}
+.KC { background-image:url(../img/logos/KC.gif);}
+.MIA { background-image:url(../img/logos/MIA.gif);}
+.MIN { background-image:url(../img/logos/MIN.gif);}
+.NE { background-image:url(../img/logos/NE.gif);}
+.NO { background-image:url(../img/logos/NO.gif);}
+.NYG { background-image:url(../img/logos/NYG.gif);}
+.NYJ { background-image:url(../img/logos/NYJ.gif);}
+.OAK { background-image:url(../img/logos/OAK.gif);}
+.PHI { background-image:url(../img/logos/PHI.gif);}
+.PIT { background-image:url(../img/logos/PIT.gif);}
+.SD { background-image:url(../img/logos/SD.gif);}
+.SEA { background-image:url(../img/logos/SEA.gif);}
+.SF { background-image:url(../img/logos/SF.gif);}
+.STL { background-image:url(../img/logos/STL.gif);}
+.TB { background-image:url(../img/logos/TB.gif);}
+.TEN { background-image:url(../img/logos/TEN.gif);}
+.WA { background-image:url(../img/logos/WA.gif);}
