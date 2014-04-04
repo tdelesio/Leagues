@@ -44,6 +44,23 @@ public class PickWebService extends AbstractMYPWebService {
 	@Autowired 
 	private GameManager gameManager;
 	
+	
+	@GET
+	@Path("/games/weeked/{weekid}")
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	public Response getGamesByWeek(@PathParam("weekid")long weekid)
+	{
+		try
+		{
+			Player player = new Player(getPlayerIdFromSecurityContext());
+			return buildSuccessResponse(gameManager.getGamesByWeekTX(new Week(weekid)));
+		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
+	
 	@GET
 	@Path("/leagues")
 //	@PreAuthorize("hasRole('ROLE_HF_USER')")
@@ -60,7 +77,42 @@ public class PickWebService extends AbstractMYPWebService {
 		}
 	}
 	
+	@POST
+	@Path("/league")
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	public Response createLeague(League league)
+	{
+		try
+		{
+			Player player = new Player(getPlayerIdFromSecurityContext());
+			leagueManager.createLeagueTX(league, player);
+			return buildSuccessResponse(league);
+		}
+		catch (ValidationException validationException)
+		{
+			return handleValidationException(validationException);
+		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
+	
 
+	@GET
+	@Path("/seasons/current")
+	public Response getCurrentSeasons()
+	{
+		try
+		{
+			return buildSuccessResponse(leagueManager.getCurrentSeasonsTX());
+		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
+	
 	@GET
 	@Path("/weeks/seasonid/{seasonid}")
 //	@PreAuthorize("hasRole('ROLE_HF_USER')")
@@ -105,7 +157,33 @@ public class PickWebService extends AbstractMYPWebService {
 	}
 	
 	@GET
-	@Path("/standing/leagueid/{leagueid}")
+	@Path("/picks/leagueid/{leagueid}/weekid/{weekid}/player/{playerid}")
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	public Response getPicksByLeagueAndWeek(@PathParam("leagueid")long leagueid, @PathParam("weekid")long weekid, @PathParam("playerid")long playerid)
+	{
+		long profileId = getPlayerIdFromSecurityContext();
+		try
+		{
+			League league = new League();
+			league.setId(leagueid);
+			Week week = new Week();
+			week.setId(weekid);
+			Player player = new Player(playerid); 
+			
+			return buildSuccessResponse(picksManager.getPicksByPlayerLeagueAndWeekTX(player, league, week));
+		}
+//		catch (ValidationException validationException)
+//		{
+//			return handleValidationException(validationException);
+//		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
+	
+	@GET
+	@Path("/winsummary/leagueid/{leagueid}")
 //	@PreAuthorize("hasRole('ROLE_HF_USER')")
 	public Response getWinSummary(@PathParam("leagueid")long leagueid)
 	{
@@ -130,6 +208,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@POST
 	@Path("/pick")
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
 	public Response makePick(PickUI pickUI)
 	{
 		try
@@ -137,13 +216,13 @@ public class PickWebService extends AbstractMYPWebService {
 			long profileId = getPlayerIdFromSecurityContext();
 			Picks picks = new Picks(profileId, pickUI);
 			
-//			picksManager.insertPlayerPickTX(picks, profileId);
-			return buildSuccessResponse(true);
+			
+			return buildSuccessResponse(picksManager.insertPlayerPickTX(picks, profileId));
 		}
-//		catch (ValidationException validationException)
-//		{
-//			return handleValidationException(validationException);
-//		}
+		catch (ValidationException validationException)
+		{
+			return handleValidationException(validationException);
+		}
 		catch (Exception exception)
 		{
 			return handleException(exception);
@@ -152,6 +231,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@PUT
 	@Path("/pick")
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
 	public Response updatePick(PickUI pickUI)
 	{
 		try
@@ -159,13 +239,12 @@ public class PickWebService extends AbstractMYPWebService {
 			long profileId = getPlayerIdFromSecurityContext();
 			Picks picks = new Picks(profileId, pickUI);
 			
-			picksManager.updatePlayerPickTX(picks, profileId);
-			return buildSuccessResponse(true);
+			return buildSuccessResponse(picksManager.updatePlayerPickTX(picks, profileId));
 		}
-//		catch (ValidationException validationException)
-//		{
-//			return handleValidationException(validationException);
-//		}
+		catch (ValidationException validationException)
+		{
+			return handleValidationException(validationException);
+		}
 		catch (Exception exception)
 		{
 			return handleException(exception);
@@ -175,7 +254,8 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@PUT
 	@Path("/double/{pickid}")
-	public Response makePick(long pickId)
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	public Response makeDoublePick(@PathParam("leagueid")long pickId)
 	{
 		try
 		{
@@ -195,4 +275,27 @@ public class PickWebService extends AbstractMYPWebService {
 		}
 	}
 	
+	
+	@GET
+	@Path("/player/leagueid/{leagueid}/weekid/{weekid}")
+//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	public Response getPlayersByLeague(@PathParam("leagueid")long leagueid, @PathParam("weekid")long weekid)
+	{
+		try
+		{
+			
+			long profileId = getPlayerIdFromSecurityContext();
+			
+			
+			return buildSuccessResponse(playerManager.getPlayersPlusWinsInLeagueTX(leagueid, weekid));
+		}
+//		catch (ValidationException validationException)
+//		{
+//			return handleValidationException(validationException);
+//		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
 }

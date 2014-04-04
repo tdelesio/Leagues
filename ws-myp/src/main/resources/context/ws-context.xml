@@ -9,5 +9,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <!-- 	<bean id="userWebService" class="com.homefellas.rm.user.UserWebService" parent="springBean"/> -->
 	
 	<bean id="pickWebService" class="com.makeurpicks.web.ws.PickWebService"/>
+	
+	<bean id="adminWebService" class="com.makeurpicks.web.ws.AdminWebService"/>
 </beans>
 

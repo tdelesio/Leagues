@@ -4,91 +4,58 @@ var week = new Number();
 var playerID = new Number();
 var weekmap = {};
 
-function getPage(){
+function getNav(){
 	
 	// CLEAR AND LOAD
 	document.getElementById("loader-page").style.visibility = "visible";
 		
-	$("#results").text("");	
+//	$("#results").text("");	
 	$("#sn-view").text("");
 	
 	var myHTML = "";
-	var page = $("#page").val();
+	var seasonHTML = "";
 	
-	switch(page){
+	// POINTS
+	myHTML += '<div class="points"><div id="point-total"></div></div>';
+	//create the variables
+	
+	//call to get the leagues that the player is in
+	url = server + '/leagues';
+	$.getJSON(url,function(json){
+		seasonHTML += '<div class="season-select"><select name="Season" id="season" onchange="changeSeason();">';
 		
-		//this is the make pics page
-		case 'make':
+		//build the option list for the seasons
+		$.each(json, function(i,data){
+			weekmap[data.season.id] = data.id;
 			
-			//create the variables
-			var seasonHTML = "";
-			
-	
-			// POINTS
-			myHTML += '<div class="points"><div id="point-total"></div></div>';
-			
-			//call to get the leagues that the player is in
-			url = server + '/leagues';
-			$.getJSON(url,function(json){
-				seasonHTML += '<div class="season-select"><select name="Season" id="season" onchange="changeSeason();">';
-				
-				//build the option list for the seasons
-				$.each(json, function(i,data){
-					weekmap[data.season.id] = data.id;
-					
-					seasonHTML += '<option value="';
-					seasonHTML += data.season.id;
-					seasonHTML += '"';
-					if (i==0) {
-						seasonHTML += 'selected="selected"';
-					}
-					seasonHTML += '>';
-					seasonHTML += data.leagueName;
-					seasonHTML += '</option>';
-				});
-				
-				seasonHTML += '</select></div>';
-				
-				//append the html to the source
-				$("#sn-view").append(seasonHTML);
-				
-				changeSeason();
-				
-				
-				
-			});
-						
-	
-			$("#sn-view").append(myHTML);
-			
-			
-			
-			break;
-			
-			
-		case 'view':
-			viewPicks();
-			break;
-		case 'standings':
+			seasonHTML += '<option value="';
+			seasonHTML += data.season.id;
+			seasonHTML += '"';
+			if (i==0) {
+				seasonHTML += 'selected="selected"';
+			}
+			seasonHTML += '>';
+			seasonHTML += data.leagueName;
+			seasonHTML += '</option>';
+		});
 		
-			
-			// CRETE NEW SUBNAV 
-			myHTML += '<div class="standingToggle"><div class="standingButton selected" id="button_0" onmousedown="showSpan(0);">1 - 6</div><div class="standingButton" id="button_1" onmousedown="showSpan(1);">7 - 12</div><div class="standingButton" id="button_2" onmousedown="showSpan(2);">13 - 17</div></div>';
-			$("#sn-view").append(myHTML);
+		seasonHTML += '</select></div>';
 		
-			viewStandings();
-			break;
-	}
-	
+		//append the html to the source
+		$("#sn-view").append(seasonHTML);
+		$("#sn-view").append(myHTML);
+		
+		changeSeason();
+				
+	});
 	
 }
 
-
-
 function changeSeason(){
-	
+
 	//get the selected season number
 	season = $("#sn-view").find("#season").val();
+	$("#player-container").remove();
 	
 	//clear the old div
 	$("#week-container").remove();
@@ -98,7 +65,7 @@ function changeSeason(){
 	
 	var weekHTML = "";
 	$.getJSON(url,function(json){
-		weekHTML += '<div id="week-container"><select name="Week" id="week" onchange="makePicks();">';
+		weekHTML += '<div id="week-container"><select name="Week" id="week" onchange="getPage();">';
 		
 		//loop over the weeks
 		$.each(json, function(i,data){
@@ -120,134 +87,265 @@ function changeSeason(){
 		//add the week select to the sub nav
 		$("#sn-view").append(weekHTML);
 		
-		//set the week variable based on the selection
-		week = $("#sn-view").find("#week").val();
+		getPage();
+//		if (callback)
+//		{
+//			callback();
+//		}
+		
+	});
+	
+	
+}
+
+
+function getPage() {
+	$("#results").text("");
+	$("#player-container").remove();
+	var page = $("#page").val();
+	console.log(page);
+	season = $("#sn-view").find("#season").val();
+//	var week = $("#sn-view").find("#week").val();
+	
+	switch(page){
+	
+	//this is the make pics page
+	case 'make':
+		
 		
 		//build the make picks
 		makePicks();
-	});
+		break;
+		
+		
+	case 'view':
+		viewPicks();
+		break;
+	case 'standings':
+	
+		
+		// CRETE NEW SUBNAV 
+		var myHTML = '<div class="standingToggle"><div class="standingButton selected" id="button_0" onmousedown="showSpan(0);">1 - 6</div><div class="standingButton" id="button_1" onmousedown="showSpan(1);">7 - 12</div><div class="standingButton" id="button_2" onmousedown="showSpan(2);">13 - 17</div></div>';
+		$("#sn-view").append(myHTML);
+	
+		viewStandings();
+		break;
+}
+
+
 }
 
 function makePicks(){
-		
+	
 	var week = $("#week").val();
+	var season = $("#season").val();
 	league = weekmap[season];
 	url = server + '/picks/leagueid/'+league+'/weekid/'+week;
 	$("#results").text("");
 	$("#point-total").text('searching...');
 	
 	var myHTML = "";
-	var points = 0;
+	
 
+	var gamemap = {};
 	// get the json file
-	$.getJSON(url,function(json){
-		if ( json.length == 0 ) {
-			//no picks for the week
-		}
-		else
-		{
-		$.each(json, function(i,data){
+	$.getJSON(url,function(picks){
+		var gamesurl = server + '/games/weeked/'+week;
+		$.getJSON(gamesurl,function(games){
 			
+			var template = _.template($('#container').html());
 			
-			 myHTML += '<div class="gamebox"><div class="gametime">'+data.game.gameStartDisplay+'</div>'	;
-			 
-				 
-			 // DETERMINE IF WIN OR NOT
-			 if(data.winnerStatus == 1){
-				  
-				  points += data.winValue;
-				  
-				  if(data.weight == 2){
-				 	myHTML += '<div class="scoreboard shadow win double">';
-			 	  } else {
-					myHTML += '<div class="scoreboard shadow win">';  
-				  }
-				  
-			 } else {
-				 
-				if(data.weight == 2){
-					myHTML += '<div class="scoreboard shadow loss double">';
-				} else {
-					myHTML += '<div class="scoreboard shadow loss">';
-				}
-				
-			 }
-			 
-			 // CURRENT PICK
-			 
-			 if(data.fav){
-				myHTML += '<div class="pickbox"><div class="pick '+data.game.fav.shortName+'"></div></div>'; 
-			 } else {
-				myHTML += '<div class="pickbox"><div class="pick '+data.game.dog.shortName+'"></div></div>'; 
-			 }
-			 
-			 var winner = "";
-			 
-			 if(data.fav && (data.winnerStatus == 1) ){
-				 winner = "f";
-			 } else if (data.dog && (data.winnerStatus == 2) ) {
-				winner = "f";
-			 } else {
-				 winner = "d"; 
-			 }
-			 
-			 var favRow = "";
-			 var dogRow = "";
-			 
-			 // FAVORITE
-			 if(winner == "f"){
-				 favRow += '<div class="scorerow">';
-			 } else {
-				 favRow += '<div class="scorerow loser">';
-			 }
-			 
-			 favRow += '<div class="teamname">' + data.game.fav.fullTeamName + '<span class="spread">(+' + data.game.spread + ')</span></div><div class="score">' + data.game.favScore + '</div></div>';
-			 
-			 // UNDERDOG
-			 if(winner == "d"){
-				 dogRow += '<div class="scorerow">';
-			 } else {
-				 dogRow += '<div class="scorerow loser">';
-			 }
-			 
-			 dogRow += '<div class="teamname">' + data.game.dog.fullTeamName + '</div><div class="score">' + data.game.dogScore + '</div></div>';
-			 
-			 if(data.game.favHome){
-				 myHTML += dogRow;
-				 myHTML += favRow;
-			 } else { 
-				 myHTML += favRow;
-  			 	 myHTML += dogRow;
-			 }
-			 
-			 
-			 
-			 // CLOSE BOARD AND BOX
-			 myHTML += '<div style="clear:both;"></div></div></div>';
-		});
-		}
+			$("#results").append(template({
+				games : games, picks : picks, update : true
+			}));
 		
-		$("#results").append(myHTML);
-		$("#point-total").text('+'+points+' points');
 		document.getElementById("loader-page").style.visibility = "hidden";
+	});
 	});
 	
 }
 
-
-
 function viewPicks(){
-	
-	
-	
 	
 	// hide loader
 	document.getElementById("loader-page").style.visibility = "hidden";
+	
+	//clear the old div
+//	$("#player-container").text("");
+	
+	var week = $("#week").val();
+	var season = $("#season").val();
+	league = weekmap[season];
+	
+	//build the server url for retrieving the weeks based on the season
+	url = server + '/player/leagueid/'+league+'/weekid/'+week;			
+	
+	var html = "";
+	$.getJSON(url,function(json){
+		
+		
+		
+		html += '<div id="player-container"><select name="Player" id="player" onchange="changePlayer();">';
+		
+		//loop over the weeks
+		$.each(json, function(i,data){
+			html += '<option value="';
+			html += data.id;
+			html += '"';
+			if (i == 0)	
+			{
+				html += 'selected="selected"';
+			}
+			html += '>';
+			html += data.username;
+			html += '(';
+			html += data.wins;
+			html += ')';
+			html += '</option>';
+							
+		});
+		
+		html += '</select></div>';
+		
+		//add the week select to the sub nav
+		$("#sn-view").append(html);
+		
+
+		changePlayer();
+					
+	});
 }
 
-function viewStandings(){
+function changePlayer()
+{
+	$("#results").text('');
 	
-	url = server + '/standing/leagueid/'+league;
+	var player = $("#player").val();
+	var week = $("#week").val();
+	league = weekmap[season];
+	url = server + '/picks/leagueid/'+league+'/weekid/'+week+'/player/'+player;
+	
+	$.getJSON(url,function(picks){
+		var gamesurl = server + '/games/weeked/'+week;
+		$.getJSON(gamesurl,function(games){
+			
+			var template = _.template($('#container').html());
+			
+			$("#results").append(template({
+				games : games, picks : picks, update : false
+			}));
+		
+			document.getElementById("loader-page").style.visibility = "hidden";
+		});
+	});
+}
+
+
+function updatePick(pickid, gameid, teamid, otherteamid, s_shortname, uns_shortname, fav_dog, index)
+{
+	var url = server + "/pick";
+	
+	var season = $("#season").val();
+	league = weekmap[season];
+	
+	var submitData={};
+	submitData['team'] = teamid;
+	submitData['league'] = league;
+	submitData['week'] = $('#week').val();
+	submitData['game'] = gameid;
+	submitData['id'] = pickid;
+	
+//	console.log(JSON.stringify(submitData));
+	$.ajax({
+		type : "PUT",
+		url : url,
+		contentType : "application/json",
+		dataType : "json",
+		data : JSON.stringify(submitData),
+		success : function(res) {
+			var pickbox = $( ".pick."+index );
+			pickbox.removeClass(uns_shortname);
+			pickbox.addClass(s_shortname);	
+			
+			var favscorerow = $(".scorerow.fav."+index);
+			
+			favscorerow.attr('onclick','');
+			var dogscorerow = $(".scorerow.dog."+index);
+			
+			dogscorerow.attr("onclick", '');
+			
+			if (fav_dog == 'fav')
+			{	
+				dogscorerow.attr("onclick", "updatePick("+res.id+", "+gameid+", "+otherteamid+", "+teamid+", '"+uns_shortname+"', '"+s_shortname+"', 'dog',"+index+")");
+			}
+			else 
+			{
+				favscorerow.attr("onclick", "updatePick("+res.id+", "+gameid+", "+otherteamid+", "+teamid+", '"+uns_shortname+"', '"+s_shortname+"', 'fav',"+index+")");
+			}
+			
+		},
+		error : function(res) {
+			$('#result').text(JSON.stringify(res));
+		}
+	});
+}
+
+function makePick(gameid, teamid, otherteamid, s_shortname, uns_shortname, fav_dog, index)
+{
+	//console.log(gameid+' - '+teamid+' - '+shortname);
+	var url = server + "/pick";
+	var season = $("#season").val();
+	league = weekmap[season];
+	
+	var submitData={};
+	submitData['team'] = teamid;
+	submitData['league'] = league;
+	submitData['week'] = $('#week').val();
+	submitData['game'] = gameid;
+	
+//	console.log(JSON.stringify(submitData));
+	$.ajax({
+		type : "POST",
+		url : url,
+		contentType : "application/json",
+		dataType : "json",
+		data : JSON.stringify(submitData),
+		success : function(res) {
+			var pickbox = $( ".pick."+index );
+//			pickbox.removeClass(uns_shortname);
+			pickbox.addClass(s_shortname);	
+			
+			var favscorerow = $(".scorerow.fav."+index);
+			favscorerow.attr('onclick','');
+			var dogscorerow = $(".scorerow.dog."+index);
+			dogscorerow.attr("onclick", '');
+			
+			if (fav_dog == 'fav')
+			{	
+				dogscorerow.attr("onclick", "updatePick("+res.id+", "+gameid+", "+otherteamid+", "+teamid+", '"+uns_shortname+"', '"+s_shortname+"', 'dog',"+index+")");
+			}
+			else 
+			{
+				favscorerow.attr("onclick", "updatePick("+res.id+", "+gameid+", "+otherteamid+", "+teamid+", '"+uns_shortname+"', '"+s_shortname+"', 'fav',"+index+")");
+			}
+		},
+		error : function(res) {
+			$('#result').text(JSON.stringify(res));
+		}
+	});
+	
+	
+	
+	
+}
+
+
+
+
+
+function viewStandings(){
+	league = weekmap[season];
+	url = server + '/winsummary/leagueid/'+league;
 	var myHTML = "";
 	
 	// get the json file
@@ -259,8 +357,10 @@ function viewStandings(){
 			myHTML += '<div class="standingsName">' + data.player.username + '</div>';
 			myHTML += '<div class="standingsScore">' + data.numberOfWins + '</div>';
 			
-				myHTML += '<div class="standingWeeks"><div class="standingGroup sg0">'
-				for(g=1; g<7; g++){
+				myHTML += '<div class="standingWeeks"><div class="standingGroup sg0">';
+				for(var g=1; g<7; g++){
+				
+					var weekTotal = data.weekTotal[g];
 					points = data.weekTotal[g].wins;
 					if(data.weekTotal[g].winner){
 						myHTML+= '<div class="weekScore winner">'+points+'</div>';
@@ -326,5 +426,6 @@ function showSpan(ID){
 // START THE APP
 
 $(document).ready(function(){
-	getPage();
+	getNav();
+	
 });
