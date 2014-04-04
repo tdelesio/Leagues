@@ -74,6 +74,18 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 		}
 	}
 	
+	@Transactional
+	public Picks insertPlayerPickTX(Picks pick, long playerId) throws ValidationException
+	{
+		validatePick(pick);
+		
+		dao.save(pick);
+		
+		updateCache(pick);
+		
+		return pick;
+	}
+	
 	private PicksCacheMap<Week, PicksCacheMap<Game,PicksCacheMap<Player, List<Picks>>>> getCachedPicks(final League league)
 	{
 		return (PicksCacheMap<Week, PicksCacheMap<Game, PicksCacheMap<Player, List<Picks>>>>)cacheProvider.getOrPut(PICKS_BY_LEAGUE, league, new ICacheCreateAction(){
@@ -298,6 +310,9 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 		if (isValidObject(pick.getLeague()))
 			codes.add(ValidationErrorEnum.LEAGUE_IS_NULL);
 		
+		if (pick.getLeague()==null)
+			codes.add(ValidationErrorEnum.LEAGUE_IS_NULL);
+		
 		if (isValidObject(pick.getName()))
 			codes.add(ValidationErrorEnum.PLAYER_IS_NUll);
 		
@@ -343,7 +358,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 	}
 	
 	@Transactional
-	public void updatePlayerPickTX(Picks pick, long loggedInPlayerId) throws ValidationException {
+	public Picks updatePlayerPickTX(Picks pick, long loggedInPlayerId) throws ValidationException {
 		
 		validatePick(pick);
 		
@@ -363,6 +378,8 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 		dao.merge(pickFromDB);
 		
 		updateCache(pickFromDB);
+		
+		return pickFromDB;
 	}
 	
 	@Deprecated
@@ -584,6 +601,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 	{
 		SeasonStats seasonStats = new SeasonStats();
 		seasonStats.setUsername(player.getUsername());
+		seasonStats.setId(player.getId());
 		Iterator<Picks> picks = getPicksByPlayerLeagueAndWeek(player, league, week).iterator();
 		Picks pick;
 		while (picks.hasNext())
@@ -739,8 +757,8 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 		
 		league = dao.loadByPrimaryKey(League.class, league.getId());
 		
-		Map<Week, Integer> weekSplits = new HashMap<Week, Integer>(17);
-		Map<Week, WeekWinner> weekTotal=null;
+		Map<Integer, Integer> weekSplits = new HashMap<Integer, Integer>(17);
+		Map<Integer, WeekWinner> weekTotal=null;
 		WinSummary winSummary;
 		int totalWins;
 		
@@ -751,7 +769,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 		List<Player> playersInLeague = playerManager.getPlayersInLeague(league);
 		
 		//create a map that 
-		Map<Week, Integer> weekWinners = new HashMap<Week, Integer>(weeks.size());
+		Map<Integer, Integer> weekWinners = new HashMap<Integer, Integer>(weeks.size());
 		//a winsummary for every player
 		List<WinSummary> winSummaries = new ArrayList<WinSummary>(playersInLeague.size());
 		
@@ -762,7 +780,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 			
 			//create a win summary for the player
 			winSummary = new WinSummary(player);
-			weekTotal = new HashMap<Week, WeekWinner>(weeks.size());
+			weekTotal = new HashMap<Integer, WeekWinner>(weeks.size());
 			for (Week week:weeks)
 			{
 				//get the number of wins the player had for the week
@@ -770,7 +788,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 				int winsForWeek = seasonStats.getWins();
 				
 				//put the numbers of wins the player had in a map with the key of week
-				weekTotal.put(week, new WeekWinner(winsForWeek));
+				weekTotal.put(week.getWeekNumber(), new WeekWinner(winsForWeek));
 				
 				//increment the total wins
 				totalWins+=winsForWeek;
@@ -779,7 +797,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 				//trying to build the map of the winning weeks
 				if (winningWeekTotal == null || winningWeekTotal<winsForWeek)
 				{
-					weekWinners.put(week, winsForWeek);
+					weekWinners.put(week.getWeekNumber(), winsForWeek);
 				}
 			}
 			
@@ -823,8 +841,8 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 			else if (place == 5)
 				tieHolder[4]++;
 
-			Map<Week, WeekWinner> weeks2 = placeWin.getWeekTotal();
-			for (Week key :weeks2.keySet())
+			Map<Integer, WeekWinner> weeks2 = placeWin.getWeekTotal();
+			for (Integer key :weeks2.keySet())
 			{
 				int winningNumber = weekWinners.get(key);
 				WeekWinner weekWinner = weeks2.get(key);
@@ -863,7 +881,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 	
 	
 	
-	protected void calculateWinnings(League league, List<WinSummary> winSummaries, int numberOfPlayersInLeague, Map<Week, Integer> weekSplits)
+	protected void calculateWinnings(League league, List<WinSummary> winSummaries, int numberOfPlayersInLeague, Map<Integer, Integer> weekSplits)
 	{
 		double entryFeeTotalWin = numberOfPlayersInLeague*league.getEntryFee();
 		double weeklyWin = numberOfPlayersInLeague*league.getWeeklyFee();
@@ -967,12 +985,12 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 //			}
 			winSummary.setEntryPrizeWon(placementPoolWin);
 			
-			Map<Week, WeekWinner> weekWins = winSummary.getWeekTotal();
-			List<Week> weeks = new ArrayList<Week>(weekWins.keySet());
+			Map<Integer, WeekWinner> weekWins = winSummary.getWeekTotal();
+			List<Integer> weeks = new ArrayList<Integer>(weekWins.keySet());
 			Collections.sort(weeks);
 			int numberOfPushWeeks=0;
 			double kitty=0;
-			for (Week week: weeks)
+			for (Integer week: weeks)
 			{
 				WeekWinner weekWinner = weekWins.get(week);
 				int splitsForWeek = weekSplits.get(week);
@@ -991,7 +1009,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 						
 						if (splitsForWeek>1)
 						{
-							if (week.getWeekNumber()==17)
+							if (week==17)
 							{
 								double moneyWon = kitty+(weeklyWin/splitsForWeek);
 								winSummary.addWeekMoney(moneyWon);
@@ -1023,7 +1041,7 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 							numberOfPushWeeks=0;
 //							kitty=0;
 						}
-						else if (week.getWeekNumber()==17&&numberOfPushWeeks>1)
+						else if (week==17&&numberOfPushWeeks>1)
 						{
 							double moneyWon = ((weeklyWin*numberOfPushWeeks))/splitsForWeek;
 							winSummary.addWeekMoney(moneyWon);

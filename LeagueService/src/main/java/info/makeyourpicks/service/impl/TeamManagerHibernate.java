@@ -10,6 +10,8 @@ import info.makeyourpicks.service.TeamManager;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 public class TeamManagerHibernate extends AbstractLeagueService implements
 		TeamManager {
 
@@ -38,6 +40,12 @@ public class TeamManagerHibernate extends AbstractLeagueService implements
 
 	public List<Team> loadAllTeams() {
 		return teamDao.loadAllTeamsOrderByCity();
+	}
+	
+	@Transactional
+	public List<Team> getTeamsByLeagueTypeTX(LeagueType leagueType)
+	{
+		return getTeamsByLeagueType(leagueType);
 	}
 	
 	public List<Team> getTeamsByLeagueType(LeagueType leagueType)

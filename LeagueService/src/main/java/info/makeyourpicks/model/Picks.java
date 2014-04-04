@@ -42,7 +42,8 @@ public class Picks extends AbstractPersistantObject{
 		this.team = new Team(pickUI.getTeam());
 		this.league = new League(pickUI.getLeague());
 		this.week = new Week(pickUI.getWeek());
-		this.game = new Game(pickUI.getGame());
+		this.game = new Game(pickUI.getGame()); 
+		this.id = pickUI.getId();
 	}
 	
 	public Picks(Player _player, League _league, Week _week, Game game, boolean noPick)
@@ -89,7 +90,7 @@ public class Picks extends AbstractPersistantObject{
 	
 	public int getWinnerStatus() {
 		
-		if ((noPick&&week.hasCurrentWeekStarted()))
+		if ((noPick&&game.hasGameStarted()))
 		{
 			return LOSER;
 		}

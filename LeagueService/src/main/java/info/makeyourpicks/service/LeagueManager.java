@@ -32,15 +32,6 @@ public interface LeagueManager extends ICacheConstants{
 	public List<LeagueType> getLeagueTypes();
 
 	/**
-	 * This method verifies that a selected league is valid.  It is used when a user tries to join a league.
-	 * In order for them to join they need to have selected a valid one.  The league name and the league type must
-	 * both be valid
-	 * @param leagueInfo
-	 * @return boolean
-	 */
-	public boolean validateLeague(League leagueInfo);
-	
-	/**
 	 * This deletes the league
 	 * @param leagueInfo
 	 * @throws SystemException
@@ -48,7 +39,7 @@ public interface LeagueManager extends ICacheConstants{
 	public void deleteLeague(League leagueInfo);
 //	public void sendMimeEmail(ContactInfo contactInfo);
 	public List<League> getFreeLeagues();
-	public List<League> getLeagues();
+	public List<League> getLeaguesTX();
 //	public void updateLeague(League leagueInfo);
 	public void createOrUpdateLeague(League league);
 	public void createOrUpdateLeagueType(LeagueType leagueType);
@@ -80,11 +71,13 @@ public interface LeagueManager extends ICacheConstants{
 	public List<PlayerLeague> getPlayerLeaguesByPlayer(Player player);
 	public void updatePlayerLeague(PlayerLeague playerLeague);
 	public PlayerLeague loadPlayerLeague(long id);
-	public List<Season> getCurrentSeasons();
+	public List<Season> getCurrentSeasonsTX();
 	public void createLeague(final League league);
 	public boolean sendWeekSetupEmailToAllPlayers(Week week);
 	public List<LeagueType> getChildLeagueTypesFromParent(String parentLeagueType);
 	
 	
 	public void verifyPlayerExistsInLeague(long leagueId, long playerId) throws ValidationException;
+	public void createLeagueTX(final League league, Player admin) throws ValidationException;
+//	public League getLeagueBySeason(long seasonID);
 }

@@ -2,11 +2,14 @@ package info.makeyourpicks.service;
 
 import info.makeyourpicks.model.League;
 import info.makeyourpicks.model.Player;
+import info.makeyourpicks.model.SeasonStats;
 
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.delesio.exception.ValidationException;
 
 public interface PlayerManager extends UserDetailsService {
 
@@ -57,6 +60,9 @@ public interface PlayerManager extends UserDetailsService {
 	public boolean retrievePassword(Player player);
 	public void createUpdatePlayer(Player player);
 	public List<Player> getPlayersByFacebookId(long facebookID);
+	public List<Player> getPlayersInLeagueTX(long seasonId) throws ValidationException;
+	public List<Player> getPlayersInLeague(long seasonId) throws ValidationException;
+	public List<SeasonStats> getPlayersPlusWinsInLeagueTX(long leagueId, long weekid) throws ValidationException;
 //	public String encypt(String unencryptedValue);
 //	public String decypt(String encryptedValue);
 }

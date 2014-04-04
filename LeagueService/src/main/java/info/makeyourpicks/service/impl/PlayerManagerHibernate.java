@@ -1,16 +1,30 @@
 package info.makeyourpicks.service.impl;
 
+import info.makeyourpicks.ValidationErrorEnum;
 import info.makeyourpicks.dao.PlayerDao;
 import info.makeyourpicks.model.League;
 import info.makeyourpicks.model.Player;
+import info.makeyourpicks.model.SeasonStats;
+import info.makeyourpicks.model.Week;
 import info.makeyourpicks.service.ILeaguesEmailService;
+import info.makeyourpicks.service.LeagueManager;
+import info.makeyourpicks.service.PicksManager;
 import info.makeyourpicks.service.PlayerManager;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.delesio.exception.ValidationException;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 public class PlayerManagerHibernate extends AbstractLeagueService implements PlayerManager {
 
@@ -22,6 +36,11 @@ public class PlayerManagerHibernate extends AbstractLeagueService implements Pla
 	private String usernameRetrievalSubject;
 	private String usernameRetrievalTemplate;
 	
+	@Autowired
+	private LeagueManager leagueManager;
+	
+	@Autowired
+	private PicksManager picksManager;
 	
 	public void deleteUser(String name) {
 		
@@ -30,7 +49,40 @@ public class PlayerManagerHibernate extends AbstractLeagueService implements Pla
 
 	}
 
+	@Transactional
+	public List<SeasonStats> getPlayersPlusWinsInLeagueTX(long leagueId, long weekid) throws ValidationException
+	{
+		List<Player> players = getPlayersInLeague(leagueId);
+		List<SeasonStats> seasonStats = new ArrayList<SeasonStats>(players.size());
+		for (Player player : players)
+		{
+			seasonStats.add(picksManager.getPlayersStatsForWeek(player, new League(leagueId), new Week(weekid)));
+		}
+		Collections.sort(seasonStats, new Comparator<SeasonStats>() {
+
+			@Override
+			public int compare(SeasonStats o1, SeasonStats o2) {
+				if (o1.getWins() > o2.getWins())
+					return -1;
+				else if (o1.getWins() < o2.getWins())
+					return 1;
+				else return 0;
+			}
+			
+		});
+		return seasonStats;
+	}
 	
+	@Transactional
+	public List<Player> getPlayersInLeagueTX(long seasonId) throws ValidationException
+	{
+		return getPlayersInLeague(seasonId);
+	}
+	
+	public List<Player> getPlayersInLeague(long leagueid) throws ValidationException
+	{
+		return getPlayersInLeague(new League(leagueid));
+	}
 	
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder)
 	{

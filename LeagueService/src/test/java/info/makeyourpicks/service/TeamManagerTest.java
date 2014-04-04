@@ -27,11 +27,11 @@ public class TeamManagerTest extends AbstractTestCase{
 	public void testLoadAllTeams() {
 		Assert.assertEquals(true, teamManager.loadAllTeams().size()>=2);
 	}
-	
-	@Test
-	public void testGetTeamsByLeagueType()
-	{
-		Assert.assertEquals(8, teamManager.getTeamsByLeagueType(footballLeagueType).size());
-	}
+//	
+//	@Test
+//	public void testGetTeamsByLeagueType()
+//	{
+//		Assert.assertEquals(8, teamManager.getTeamsByLeagueType(footballLeagueType).size());
+//	}
 
 }

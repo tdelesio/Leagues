@@ -9,7 +9,7 @@ public class WinSummary implements Comparable<WinSummary>, Serializable
 {
 
 	private Player player;
-	private Map<Week, WeekWinner> weekTotal;
+	private Map<Integer, WeekWinner> weekTotal;
 	private int numberOfWins;
 	private int place;
 //	private double moneyWon=0;
@@ -68,11 +68,11 @@ public class WinSummary implements Comparable<WinSummary>, Serializable
 	{
 		this.player = player;
 	}
-	public Map<Week, WeekWinner> getWeekTotal()
+	public Map<Integer, WeekWinner> getWeekTotal()
 	{
 		return weekTotal;
 	}
-	public void setWeekTotal(Map<Week, WeekWinner> weekTotal)
+	public void setWeekTotal(Map<Integer, WeekWinner> weekTotal)
 	{
 		this.weekTotal = weekTotal;
 	}

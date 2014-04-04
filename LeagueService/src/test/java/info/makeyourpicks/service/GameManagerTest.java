@@ -52,10 +52,10 @@ public class GameManagerTest extends AbstractTestCase{
 //		assertEquals(week, weeks.next());
 //	}
 
-	@Test
-	public void testGetGamesByWeek() {
-		Iterator<Game> games = gameManager.getGamesByWeek(week1).iterator();
-		Assert.assertEquals(game1Week1, games.next());
-	}
+//	@Test
+//	public void testGetGamesByWeek() {
+//		Iterator<Game> games = gameManager.getGamesByWeek(week1).iterator();
+//		Assert.assertEquals(game1Week1, games.next());
+//	}
 
 }

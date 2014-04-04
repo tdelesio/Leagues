@@ -52,10 +52,17 @@ public class LeagueDaoImpl extends HibernateDao implements LeagueDao{
 		
 		return buffer.toString();
 	}
+//	public League getLeagueBySeason(long seasonID)
+//	{
+//		Query query = getQuery(getLeagueQuery("", "where league.season.id=?"));
+//		query.setParameter(0, seasonID);
+//		
+//		return (League)query.uniqueResult();
+//	}
 	
 	public PlayerLeague findPlayerLeagueByLeagueAndPlayer(long leagueId, long playerId)
 	{
-		Query query = getQuery(getPlayerLeagueQuery("", "where playerleague.player.id=? and playerLeague.league.id=? order by playerleague.sortOrder, playerleague.league.id desc"));
+		Query query = getQuery(getPlayerLeagueQuery("", "where playerleague.player.id=? and playerleague.league.id=? order by playerleague.sortOrder, playerleague.league.id desc"));
 		query.setParameter(0, playerId);
 		query.setParameter(1, leagueId);
 
@@ -199,6 +206,12 @@ public class LeagueDaoImpl extends HibernateDao implements LeagueDao{
 
 	}
 
+	public List<League> getLeagues()
+	{
+		Query query = getQuery(getLeagueQuery("", "order by league.id desc"));
+		return query.list();
+	}
+	
 	public int findNumberOfPlayersInLeague(final League league) {
 		
 		

@@ -22,6 +22,9 @@ public class Game extends AbstractPersistantObject {
 	private Team dog = new Team();
 	private Date gameStart=new Date();
 	
+	private String gameStartDate;
+	private String gameStartTime;
+	
 	public Game()
 	{
 	}
@@ -143,6 +146,14 @@ public class Game extends AbstractPersistantObject {
 		this.gameStart = gameStart;
 	}
 	
+	public boolean isGameStarted()
+	{
+		return hasGameStarted();
+	}
+	public void setGameStarted()
+	{
+		
+	}
 	public boolean hasGameStarted()
 	{
 		if (gameStart==null)
@@ -179,5 +190,23 @@ public class Game extends AbstractPersistantObject {
 	{
 		return getSpread()+"^";
 	}
+
+	public String getGameStartDate() {
+		return gameStartDate;
+	}
+
+	public void setGameStartDate(String gameStartDate) {
+		this.gameStartDate = gameStartDate;
+	}
+
+	public String getGameStartTime() {
+		return gameStartTime;
+	}
+
+	public void setGameStartTime(String gameStartTime) {
+		this.gameStartTime = gameStartTime;
+	}
+	
+	
 
 }

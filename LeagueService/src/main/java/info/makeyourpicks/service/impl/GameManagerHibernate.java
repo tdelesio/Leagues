@@ -1,5 +1,6 @@
 package info.makeyourpicks.service.impl;
 
+import info.makeyourpicks.ValidationErrorEnum;
 import info.makeyourpicks.dao.GameDao;
 import info.makeyourpicks.dao.TeamDao;
 import info.makeyourpicks.model.Game;
@@ -49,6 +50,7 @@ import org.xml.sax.XMLReader;
 import com.delesio.cache.ICacheCreateAction;
 import com.delesio.cache.ICacheProvider;
 import com.delesio.cache.ehcache.EhCacheProvider;
+import com.delesio.exception.ValidationException;
 import com.delesio.rss.FeedFetcher;
 import com.delesio.rss.FetcherEvent;
 import com.delesio.rss.FetcherException;
@@ -100,14 +102,38 @@ public class GameManagerHibernate extends AbstractLeagueService implements
 
 	}
 
-	public void insertGame(Game game) {
+	@Transactional
+	public void insertGameTX(Game game) throws ValidationException {
+		
+		validateGame(game);
+		
 		dao.save(game);
 		
 		((EhCacheProvider)cacheProvider).getCacheManager().getCache(PICKS_BY_LEAGUE).removeAll();
 
 	}
+	
+	private void validateGame(Game game) throws ValidationException
+	{
+		if (game==null)
+			throw new ValidationException(ValidationErrorEnum.GAME_IS_NULL);
+		if (game.getFav() == null || game.getFav().getId() == 0)
+			throw new ValidationException(ValidationErrorEnum.FAVORITE_IS_NULL);
+		if (game.getDog() == null || game.getDog().getId() == 0)
+			throw new ValidationException(ValidationErrorEnum.DOG_IS_NULL);
+		if (game.getWeek() == null || game.getWeek().getId() == 0)
+			throw new ValidationException(ValidationErrorEnum.WEEK_IS_NULL);
+		if (game.getGameStart() == null)
+			throw new ValidationException(ValidationErrorEnum.GAMESTART_IS_NULL);
+		
+		if (game.getFav().getId() == game.getDog().getId())
+			throw new ValidationException(ValidationErrorEnum.TEAM_CANNOT_PLAY_ITSELF);
+		
+		
+	}
 
-	public void insertWeek(Week week) {
+	@Transactional
+	public void insertWeekTX(Week week) {
 		dao.save(week);
 
 //		cacheProvider.remove(WEEK_BY_WEEK_NUMBER_AND_SEASON);
@@ -188,6 +214,11 @@ public class GameManagerHibernate extends AbstractLeagueService implements
 		return weeks;
 	}
 
+	@Transactional
+	public List<Game> getGamesByWeekTX(Week week) {
+		return getGamesByWeek(week);
+	}
+	
 	public List<Game> getGamesByWeek(Week week) {
 		if (week == null)
 		{

@@ -3,11 +3,21 @@ package info.makeyourpicks.model;
 public class SeasonStats {
 
 	private String username;
+	private long id;
 	private int wins;
 	private int loses;
 	private double spreadPoints;
 	
 	
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}

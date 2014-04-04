@@ -17,10 +17,10 @@ public class LeagueManagerTest extends AbstractTestCase{
 		Assert.assertEquals(true, leagueManager.getLeagueTypes().size()>0);
 	}
 
-	@Test
-	public void testValidateLeague() {
-		Assert.assertEquals(true, leagueManager.validateLeague(football09League));
-	}
+//	@Test
+//	public void testValidateLeague() {
+//		Assert.assertEquals(true, leagueManager.validateLeague(football09League));
+//	}
 
 	@Test
 	public void testGetNumberOfPlayersInLeague() {
@@ -32,10 +32,10 @@ public class LeagueManagerTest extends AbstractTestCase{
 		Assert.assertFalse(leagueManager.getFreeLeagues().contains(football09League));
 	}
 
-	@Test
-	public void testGetLeagues() {
-		Assert.assertEquals(true, leagueManager.getLeagues().size()>0);
-	}
+//	@Test
+//	public void testGetLeagues() {
+//		Assert.assertEquals(true, leagueManager.getLeagues().size()>0);
+//	}
 
 	@Test
 	public void testUpdateLeague() 

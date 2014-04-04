@@ -21,7 +21,7 @@ import com.delesio.exception.ValidationException;
 public interface PicksManager extends ICacheConstants {
 	
 	public void insertPlayerPickTX(Picks pick) throws ValidationException;
-	public void updatePlayerPickTX(Picks pick, long loggedInPlayerId) throws ValidationException;
+	public Picks updatePlayerPickTX(Picks pick, long loggedInPlayerId) throws ValidationException;
 	
 	
 	public void updatePlayerPick(Picks picks,boolean forceUpdate);
@@ -46,4 +46,6 @@ public interface PicksManager extends ICacheConstants {
 	public List<Player> getPlayersForLeagueSortedByWeekWins(League league, Week week);
 	public double percentChangeToWinForWeek(Player player, League league, Week week);
 	public WinSummary getWinSummaryForPlayer(League league, Player player);
+	
+	public Picks insertPlayerPickTX(Picks pick, long playerId) throws ValidationException;
 }

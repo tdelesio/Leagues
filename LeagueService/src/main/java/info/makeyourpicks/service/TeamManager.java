@@ -29,7 +29,7 @@ public interface TeamManager {
 	public Team loadTeam(long teamId);
 	
 	public List<Team> loadAllTeams();
-	public List<Team> getTeamsByLeagueType(LeagueType leagueType);
+	public List<Team> getTeamsByLeagueTypeTX(LeagueType leagueType);
 	public List<Team> getUnenteredTeamsForWeek(Week week);
 	public List<Team> getUnpickedTeams(Player player, Week week, League league);
 	public List<Team> getPickedTeamsForPlayerAndLeague(Player player, League league);

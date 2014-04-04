@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.codehaus.enunciate.json.JsonIgnore;
+
 import com.delesio.model.AbstractSequenceModel;
 
 public class Week extends AbstractPersistantObject implements Serializable, Comparable<Week>{
@@ -40,10 +42,13 @@ public class Week extends AbstractPersistantObject implements Serializable, Comp
 		super.id = weekId;
 	}
 	
+	@JsonIgnore
 	public String getCurrentTime()
 	{
 		return "Today is: "+simpleDateFormat.format(new Date(System.currentTimeMillis()));
 	}
+	
+	@JsonIgnore
 	public String getDisplay()
 	{
 		if (weekStart==null)
@@ -59,7 +64,7 @@ public class Week extends AbstractPersistantObject implements Serializable, Comp
 	}
 	
 
-
+	@JsonIgnore
 	public String getWeekLabel()
 	{
 		return "Week "+weekNumber;
@@ -106,11 +111,13 @@ public class Week extends AbstractPersistantObject implements Serializable, Comp
 		this.year = year;
 	}
 	
-	public String getWeekStartTimeDisplay()
-	{
-		return simpleDateFormat.format(new Date(weekStart.getTime()));
-	}
+//	@JsonIgnore
+//	public String getWeekStartTimeDisplay()
+//	{
+//		return simpleDateFormat.format(new Date(weekStart.getTime()));
+//	}
 	
+	@JsonIgnore
 	public void buildTimeStamp()
 	{
 		Calendar calendar = Calendar.getInstance();
@@ -124,7 +131,7 @@ public class Week extends AbstractPersistantObject implements Serializable, Comp
 		weekStart = new Timestamp(utilDate.getTime());
 	}
 
-	
+	@JsonIgnore
 	public boolean hasCurrentWeekStarted()
 	{
 		if (weekStart!=null)
