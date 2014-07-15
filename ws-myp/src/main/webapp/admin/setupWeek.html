@@ -1,0 +1,61 @@
+
+
+<div id="weeks"></div>
+
+<script type="text/template" id="addgame">
+<form>
+<br/>
+	Favorite:<br/>
+	<select name="fav.id">
+		<% _.each(teams,function(teams){ %>
+			<option value="<%=teams.id%>"><%=teams.city%>&nbsp;<%=teams.teamName%></option>
+		<% }); %>
+	</select>
+	<br/>
+<br/>
+	Spread:<br/>
+	<input type="text" name="spread" size="3" value="0.5"/>
+	<br/>
+<br/>
+Dog:<br/>
+	<select name="dog.id">
+		<% _.each(teams,function(teams){ %>
+			<option value="<%=teams.id%>"><%=teams.city%>&nbsp;<%=teams.teamName%></option>
+		<% }); %>
+	</select>
+	<br/>
+<br/>
+	Favorite Home:<br/>
+	<input type="checkbox" name="favHome" value="true" id="favhome"/>
+	<br/>
+<br/>
+Game Start:
+<br/>
+Time:<input type="text" name="gameStartTime" size="5" value="01:00"/> Date:<input type="text" name="gameStartDate" size="8" value="04/01/2014"/>
+	<input type="hidden" name="week.id"  id="weekid" value="1"/>
+
+<br/>
+<input type="button" value="add game" onClick="addNewGame()"/>
+</form>
+</script>
+
+<script type="text/template" id="games">
+Game in Week:<br/>
+<% _.each(games,function(games){ %>
+<div class="gamebox">
+	<div class="gametime"><%=games.gameStartDisplay%></div>
+	<div class="scoreboard shadow">
+		<div class="scorerow">
+			<div class="teamname"><%=games.fav.fullTeamName%><span class="spread">(<%=games.spread%>)</span></div>
+			<div class="score"><%=games.favScore%></div>
+		</div>
+		<div class="scorerow">
+			<div class="teamname"><%=games.dog.fullTeamName%></div>
+		<div class="score"><%=games.dogScore%></div>
+		</div>
+	
+		<div style="clear:both;"></div>
+	</div>
+</div>
+<% }); %>
+</script>
