@@ -1,4 +1,4 @@
-var server = "http://localhost:8080/ws/rest";
+//var server = "http://localhost:8080/ws/rest";
 var league = new String();
 var week = new Number();
 var playerID = new Number();
@@ -20,7 +20,8 @@ function getNav(){
 	//create the variables
 	
 	//call to get the leagues that the player is in
-	url = server + '/leagues';
+//	url = server + '/leagues';
+	url = getUrl('/leagues');
 	$.getJSON(url,function(json){
 		seasonHTML += '<div class="season-select"><select name="Season" id="season" onchange="changeSeason();">';
 		
@@ -61,7 +62,8 @@ function changeSeason(){
 	$("#week-container").remove();
 	
 	//build the server url for retrieving the weeks based on the season
-	url = server + '/weeks/seasonid/'+season;				
+//	url = server + '/weeks/seasonid/'+season;				
+	url = getUrl('/weeks/seasonid/'+season);
 	
 	var weekHTML = "";
 	$.getJSON(url,function(json){
@@ -140,7 +142,9 @@ function makePicks(){
 	var week = $("#week").val();
 	var season = $("#season").val();
 	league = weekmap[season];
-	url = server + '/picks/leagueid/'+league+'/weekid/'+week;
+//	url = server + '/picks/leagueid/'+league+'/weekid/'+week;
+	url = getUrl('/picks/leagueid/'+league+'/weekid/'+week);
+	
 	$("#results").text("");
 	$("#point-total").text('searching...');
 	
@@ -150,7 +154,8 @@ function makePicks(){
 	var gamemap = {};
 	// get the json file
 	$.getJSON(url,function(picks){
-		var gamesurl = server + '/games/weeked/'+week;
+//		var gamesurl = server + '/games/weeked/'+week;
+		var gamesurl = getUrl('/games/weeked/'+week);
 		$.getJSON(gamesurl,function(games){
 			
 			var template = _.template($('#container').html());
@@ -178,7 +183,8 @@ function viewPicks(){
 	league = weekmap[season];
 	
 	//build the server url for retrieving the weeks based on the season
-	url = server + '/player/leagueid/'+league+'/weekid/'+week;			
+//	url = server + '/player/leagueid/'+league+'/weekid/'+week;			
+	url = getUrl('/player/leagueid/'+league+'/weekid/'+week);
 	
 	var html = "";
 	$.getJSON(url,function(json){
@@ -223,10 +229,12 @@ function changePlayer()
 	var player = $("#player").val();
 	var week = $("#week").val();
 	league = weekmap[season];
-	url = server + '/picks/leagueid/'+league+'/weekid/'+week+'/player/'+player;
+//	url = server + '/picks/leagueid/'+league+'/weekid/'+week+'/player/'+player;
+	url = getUrl('/picks/leagueid/'+league+'/weekid/'+week+'/player/'+player);
 	
 	$.getJSON(url,function(picks){
-		var gamesurl = server + '/games/weeked/'+week;
+//		var gamesurl = server + '/games/weeked/'+week;
+		var gamesurl = getUrl('/games/weeked/'+week);
 		$.getJSON(gamesurl,function(games){
 			
 			var template = _.template($('#container').html());
@@ -243,7 +251,8 @@ function changePlayer()
 
 function updatePick(pickid, gameid, teamid, otherteamid, s_shortname, uns_shortname, fav_dog, index)
 {
-	var url = server + "/pick";
+//	var url = server + "/pick";
+	var url = getUrl("/pick");
 	
 	var season = $("#season").val();
 	league = weekmap[season];
@@ -293,7 +302,9 @@ function updatePick(pickid, gameid, teamid, otherteamid, s_shortname, uns_shortn
 function makePick(gameid, teamid, otherteamid, s_shortname, uns_shortname, fav_dog, index)
 {
 	//console.log(gameid+' - '+teamid+' - '+shortname);
-	var url = server + "/pick";
+//	var url = server + "/pick";
+	var url = getUrl("/pick");
+	
 	var season = $("#season").val();
 	league = weekmap[season];
 	
@@ -345,7 +356,9 @@ function makePick(gameid, teamid, otherteamid, s_shortname, uns_shortname, fav_d
 
 function viewStandings(){
 	league = weekmap[season];
-	url = server + '/winsummary/leagueid/'+league;
+//	url = server + '/winsummary/leagueid/'+league;
+	url = getUrl('/winsummary/leagueid/'+league);
+	
 	var myHTML = "";
 	
 	// get the json file
@@ -424,8 +437,19 @@ function showSpan(ID){
 
 
 // START THE APP
+function logout()
+{
+	localStorage['tgt']=null;
+	window.location.replace('login.html');
+}
 
 $(document).ready(function(){
+	if(window.localStorage['tgt'])
+	{
 	getNav();
-	
+	}
+	else
+	{
+		window.location.replace('login.html');
+	}
 });

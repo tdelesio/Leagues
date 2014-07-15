@@ -17,11 +17,17 @@ secured to the ROLE_HF_USER
 @PreAuthorize("hasRole('ROLE_HF_USER')")
 
  -->
+ 
+   <alias name="playerManager" alias="userService"/>
     
 	<security:http entry-point-ref="preAuthEntryPoint" use-expressions="true" create-session="stateless" pattern="/rest/**">
-    	<security:custom-filter position="PRE_AUTH_FILTER" ref="casAuthenticationFilter" />		
+    	<security:custom-filter position="PRE_AUTH_FILTER" ref="authenticationFilter" />		
 		<security:intercept-url pattern="/**" access="permitAll()"/>
     </security:http>
+    
+    <bean id="authenticationFilter" class="com.makeurpicks.web.filter.AuthenicationFilter">
+	  <property name="playerManager" ref="playerManager"/>
+    </bean>
     
     <security:http entry-point-ref="facebookEntryPoint">
         <security:custom-filter after="CAS_FILTER" ref="oAuthFilter" />

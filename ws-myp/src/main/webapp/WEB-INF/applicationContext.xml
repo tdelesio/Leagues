@@ -10,6 +10,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<import resource="classpath:context/core-context.xml" />
 	<import resource="classpath:context/myp-context.xml" />
 	<import resource="classpath:context/ws-context.xml" />
+	<import resource="classpath:context/security-context.xml" />
 	
 	
 <!-- 	<bean id="webRequestMetric" class="com.hicom.web.filter.WebRequestMetricFilter"> -->

@@ -22,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.delesio.exception.ValidationException;
 import com.wordnik.swagger.annotations.Api;
@@ -45,9 +46,42 @@ public class PickWebService extends AbstractMYPWebService {
 	private GameManager gameManager;
 	
 	
+	@POST
+	@Path("/ticket")
+	public Response login(Player player)
+	{
+		try
+		{
+			
+			return buildSuccessResponse(playerManager.loginTX(player.getUsername(), player.getPassword()));
+		}
+		catch (ValidationException validationException)
+		{
+			return handleValidationException(validationException);
+		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
+	
+	@PUT
+	@Path("/password")
+	public Response passwordReset(Player player)
+	{
+		try
+		{
+			return buildSuccessResponse(playerManager.retrievePassword(player));
+		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
+	
 	@GET
 	@Path("/games/weeked/{weekid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	@PreAuthorize("hasRole('user')")
 	public Response getGamesByWeek(@PathParam("weekid")long weekid)
 	{
 		try
@@ -63,7 +97,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@GET
 	@Path("/leagues")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	@PreAuthorize("hasRole('user')")
 	public Response getLeagues()
 	{
 		try
@@ -79,7 +113,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@POST
 	@Path("/league")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response createLeague(League league)
 	{
 		try
@@ -115,7 +149,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@GET
 	@Path("/weeks/seasonid/{seasonid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response getWeeksBySeason(@PathParam("seasonid")long seasonid)
 	{
 		try
@@ -132,7 +166,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@GET
 	@Path("/picks/leagueid/{leagueid}/weekid/{weekid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response getPicksByLeagueAndWeek(@PathParam("leagueid")long leagueid, @PathParam("weekid")long weekid)
 	{
 		long profileId = getPlayerIdFromSecurityContext();
@@ -158,7 +192,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@GET
 	@Path("/picks/leagueid/{leagueid}/weekid/{weekid}/player/{playerid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response getPicksByLeagueAndWeek(@PathParam("leagueid")long leagueid, @PathParam("weekid")long weekid, @PathParam("playerid")long playerid)
 	{
 		long profileId = getPlayerIdFromSecurityContext();
@@ -184,7 +218,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@GET
 	@Path("/winsummary/leagueid/{leagueid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response getWinSummary(@PathParam("leagueid")long leagueid)
 	{
 //		String profileId = getEmailFromSecurityContext();
@@ -208,7 +242,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@POST
 	@Path("/pick")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response makePick(PickUI pickUI)
 	{
 		try
@@ -231,7 +265,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@PUT
 	@Path("/pick")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response updatePick(PickUI pickUI)
 	{
 		try
@@ -254,7 +288,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@PUT
 	@Path("/double/{pickid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+@PreAuthorize("hasRole('user')")
 	public Response makeDoublePick(@PathParam("leagueid")long pickId)
 	{
 		try
@@ -278,7 +312,7 @@ public class PickWebService extends AbstractMYPWebService {
 	
 	@GET
 	@Path("/player/leagueid/{leagueid}/weekid/{weekid}")
-//	@PreAuthorize("hasRole('ROLE_HF_USER')")
+	@PreAuthorize("hasRole('user')")
 	public Response getPlayersByLeague(@PathParam("leagueid")long leagueid, @PathParam("weekid")long weekid)
 	{
 		try

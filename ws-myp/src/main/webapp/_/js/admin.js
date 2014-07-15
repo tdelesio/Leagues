@@ -1,4 +1,4 @@
-var server = "http://localhost:8080/ws/rest/admin";
+//var server = "http://localhost:8080/ws/rest/admin";
 var league = new String();
 var week = new Number();
 var playerID = new Number();
@@ -17,7 +17,8 @@ function getPage() {
 	var template = _.template($('#container').html());
 
 	// load the subnav
-	url = server + '/leagues';
+//	url = server + '/leagues';
+	url = getUrl('/admin/leagues');
 	$.getJSON(url, function(json) {
 		$("#subnav").append(template({
 			data : json
@@ -43,7 +44,8 @@ function changeSeason() {
 			var selectedSeason = $("#season").val();
 			$("#seasonid").val(selectedSeason);
 
-			url = server + '/weeks/seasonid/' + selectedSeason;
+//			url = server + '/weeks/seasonid/' + selectedSeason;
+			url = getUrl('/admin/weeks/seasonid/' + selectedSeason);
 
 			var weekHTML = "";
 			$.getJSON(url,function(json){
@@ -75,7 +77,8 @@ function changeSeason() {
 				//setup the game entry page
 				var addgametemplate = _.template($('#addgame').html());
 				// load the subnav
-				url = server + '/teams';
+//				url = server + '/teams';
+				url = getUrl('/admin/teams');
 				$.getJSON(url, function(json) {
 					$("#view").append(addgametemplate({
 						teams : json
@@ -89,7 +92,8 @@ function changeSeason() {
 				//get all the games
 				var gamestemplate = _.template($('#games').html());
 //				console.log($('#games').html());
-				var gameUrl = server + '/games/weekid/'+week;
+//				var gameUrl = server + '/games/weekid/'+week;
+				var gameUrl = getUrl('/admin/games/weekid/'+week);
 				$.getJSON(gameUrl,function(json){
 					$("#view").append(gamestemplate({
 						games : json
@@ -120,7 +124,8 @@ function changeSeason() {
 }
 
 function createWeek() {
-	var url = server + "/week";
+//	var url = server + "/week";
+	var url = getUrl('/admin/week');
 	$.ajax({
 		type : "POST",
 		url : url,
@@ -147,7 +152,8 @@ function addNewGame() {
         	$("#favhome").attr('value','false');
         }
 	
-	var url = server + "/game";
+//	var url = server + "/game";
+	var url = getUrl('/admin/game');
 	$.ajax({
 		type : "POST",
 		url : url,
