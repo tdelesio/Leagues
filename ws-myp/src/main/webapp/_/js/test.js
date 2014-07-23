@@ -1,3 +1,5 @@
+//Testing GITHUB
+
 //var server = "http://localhost:8080/ws/rest";
 var league = new String();
 var week = new Number();
