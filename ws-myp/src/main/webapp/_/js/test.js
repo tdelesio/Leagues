@@ -1,4 +1,4 @@
-//Testing GITHUB
+//Testing GITHUB again
 
 //var server = "http://localhost:8080/ws/rest";
 var league = new String();
@@ -30,7 +30,6 @@ function getNav(){
 		//build the option list for the seasons
 		$.each(json, function(i,data){
 			weekmap[data.season.id] = data.id;
-			
 			seasonHTML += '<option value="';
 			seasonHTML += data.season.id;
 			seasonHTML += '"';
@@ -45,8 +44,7 @@ function getNav(){
 		seasonHTML += '</select></div>';
 		
 		//append the html to the source
-		$("#sn-view").append(seasonHTML);
-		$("#sn-view").append(myHTML);
+		$("#season-view").html(seasonHTML);
 		
 		changeSeason();
 				
@@ -57,19 +55,20 @@ function getNav(){
 function changeSeason(){
 
 	//get the selected season number
-	season = $("#sn-view").find("#season").val();
+	season = $("#settings-panel").find("#season").val();
 	$("#player-container").remove();
 	
 	//clear the old div
 	$("#week-container").remove();
 	
 	//build the server url for retrieving the weeks based on the season
-//	url = server + '/weeks/seasonid/'+season;				
+	//	url = server + '/weeks/seasonid/'+season;			
 	url = getUrl('/weeks/seasonid/'+season);
+	
 	
 	var weekHTML = "";
 	$.getJSON(url,function(json){
-		weekHTML += '<div id="week-container"><select name="Week" id="week" onchange="getPage();">';
+		weekHTML += "<div id='week-container'><select name='Week' id='week' onchange='getCurrentPage();'>";
 		
 		//loop over the weeks
 		$.each(json, function(i,data){
@@ -89,9 +88,9 @@ function changeSeason(){
 		weekHTML += '</select></div>';
 		
 		//add the week select to the sub nav
-		$("#sn-view").append(weekHTML);
+		$("#mn-view").append(weekHTML);
 		
-		getPage();
+		getPage('make');
 //		if (callback)
 //		{
 //			callback();
@@ -103,13 +102,55 @@ function changeSeason(){
 }
 
 
-function getPage() {
+function getSettings(){
+	/* CLOSE PANEL */
+	if( $("#settings-panel").css("margin-top") == "0px"){
+		$("#settings-panel").css("margin-top", "-150px");
+		$(".nav").css("margin-top", "0px");
+		$("#results").css("padding-top", "90px");
+		$("li#nav-settings a").css("color", "#FFB415");
+	
+	/* OPEN PANEL */
+	} else {
+		$("#settings-panel").css("margin-top", "0px");
+		$(".nav").css("margin-top", "150px");
+		$("#results").css("padding-top", "240px");
+		$("li#nav-settings a").css("color", "#FFFFFF");
+	}
+
+}
+
+
+function getCurrentPage(){
+	
+	if($("#nav-make").hasClass("active")){
+		getPage("make");
+	}
+	if($("#nav-view").hasClass("active")){
+		getPage("view");
+	}
+	
+	if($("#nav-standings").hasClass("active")){
+		getPage("standings");
+	}
+	
+	
+}
+
+function getPage(page) {
+	
 	$("#results").text("");
+	$("#sn-view").html("");
 	$("#player-container").remove();
-	var page = $("#page").val();
 	console.log(page);
-	season = $("#sn-view").find("#season").val();
+	season = $("#settings-panel").find("#season").val();
 //	var week = $("#sn-view").find("#week").val();
+
+	$("#navrow li").each(function(){
+		$(this).removeClass('active');
+	});
+	p = "#nav-"+page;
+	$(p).addClass("active");
 	
 	switch(page){
 	
@@ -126,12 +167,6 @@ function getPage() {
 		viewPicks();
 		break;
 	case 'standings':
-	
-		
-		// CRETE NEW SUBNAV 
-		var myHTML = '<div class="standingToggle"><div class="standingButton selected" id="button_0" onmousedown="showSpan(0);">1 - 6</div><div class="standingButton" id="button_1" onmousedown="showSpan(1);">7 - 12</div><div class="standingButton" id="button_2" onmousedown="showSpan(2);">13 - 17</div></div>';
-		$("#sn-view").append(myHTML);
-	
 		viewStandings();
 		break;
 }
@@ -145,6 +180,7 @@ function makePicks(){
 	var season = $("#season").val();
 	league = weekmap[season];
 //	url = server + '/picks/leagueid/'+league+'/weekid/'+week;
+
 	url = getUrl('/picks/leagueid/'+league+'/weekid/'+week);
 	
 	$("#results").text("");
@@ -154,6 +190,7 @@ function makePicks(){
 	
 
 	var gamemap = {};
+	
 	// get the json file
 	$.getJSON(url,function(picks){
 //		var gamesurl = server + '/games/weeked/'+week;
@@ -166,16 +203,16 @@ function makePicks(){
 				games : games, picks : picks, update : true
 			}));
 		
-		document.getElementById("loader-page").style.visibility = "hidden";
+		$("#loader-page").css("visibility", "hidden");
 	});
 	});
 	
 }
 
 function viewPicks(){
-	
+
 	// hide loader
-	document.getElementById("loader-page").style.visibility = "hidden";
+	$("#loader-page").css("visibility", "hidden");
 	
 	//clear the old div
 //	$("#player-container").text("");
@@ -185,7 +222,7 @@ function viewPicks(){
 	league = weekmap[season];
 	
 	//build the server url for retrieving the weeks based on the season
-//	url = server + '/player/leagueid/'+league+'/weekid/'+week;			
+	//	url = server + '/player/leagueid/'+league+'/weekid/'+week;			
 	url = getUrl('/player/leagueid/'+league+'/weekid/'+week);
 	
 	var html = "";
@@ -216,7 +253,7 @@ function viewPicks(){
 		html += '</select></div>';
 		
 		//add the week select to the sub nav
-		$("#sn-view").append(html);
+		$("#settings-panel").append(html);
 		
 
 		changePlayer();
@@ -361,19 +398,19 @@ function viewStandings(){
 //	url = server + '/winsummary/leagueid/'+league;
 	url = getUrl('/winsummary/leagueid/'+league);
 	
-	var myHTML = "";
+	var myHTML = "<div id='standings'>";
 	
 	// get the json file
 	$.getJSON(url,function(json){
 		
 		$.each(json, function(i,data){
 			
-			myHTML += '<div class="standingsRow shadow">';
-			myHTML += '<div class="standingsName">' + data.player.username + '</div>';
-			myHTML += '<div class="standingsScore">' + data.numberOfWins + '</div>';
+			myHTML += '<div class="row">';
+			myHTML += '<div class="col-md-2 col-xs-6 username">' + data.player.username + '</div>';
+			myHTML += '<div class="col-md-1 col-xs-6 wins">' + data.numberOfWins + '</div>';
 			
-				myHTML += '<div class="standingWeeks"><div class="standingGroup sg0">';
-				for(var g=1; g<7; g++){
+				myHTML += '<div class="col-xs-12 col-md-6">';
+				for(var g=1; g<18; g++){
 				
 					var weekTotal = data.weekTotal[g];
 					points = data.weekTotal[g].wins;
@@ -385,28 +422,9 @@ function viewStandings(){
 					
 				}
 				
-				myHTML += '</div><div class="standingGroup sg1 hide">';
-				for(g=7; g<13; g++){
-					points = data.weekTotal[g].wins;
-					if(data.weekTotal[g].winner){
-						myHTML+= '<div class="weekScore winner">'+points+'</div>';
-					} else {
-						myHTML+= '<div class="weekScore">'+points+'</div>';
-					}
-				}
 				
-				myHTML += '</div><div class="standingGroup sg2 hide">';
 				
-				for(g=13; g<18; g++){
-					points = data.weekTotal[g].wins;
-					if(data.weekTotal[g].winner){
-						myHTML+= '<div class="weekScore winner">'+points+'</div>';
-					} else {
-						myHTML+= '<div class="weekScore">'+points+'</div>';
-					}
-				}
-				
-				myHTML += '</div></div><div style="clear:both;"></div>';
+				myHTML += '</div><div style="clear:both;"></div>';
 			
 			
 			myHTML += '</div>';
@@ -414,6 +432,8 @@ function viewStandings(){
 			
 			
 		});
+		
+		myHTML += "</div>";
 		$("#results").append(myHTML);
 	});
 	
