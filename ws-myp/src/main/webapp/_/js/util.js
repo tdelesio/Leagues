@@ -52,7 +52,7 @@ function parseName(r, name, value) {
 }
 
 
-var server = "http://localhost:8080/ws/rest";
+var server = "http://makeurpicks.com/ws/rest";
 
 function getUrl(context)
 {
