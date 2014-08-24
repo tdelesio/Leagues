@@ -51,8 +51,14 @@ function parseName(r, name, value) {
 	}
 }
 
+function getURLParameter(name) {
+	return decodeURI(
+	    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+	    );
+	}
 
-var server = "http://localhost:8080/ws/rest";
+//var server = "http://localhost:8080/ws/rest";
+var server = "http://makeurpicks.com/ws/rest";
 
 function getUrl(context)
 {
@@ -60,6 +66,10 @@ function getUrl(context)
 	if (localStorage['tgt'])
 	{
 		tgt = localStorage['tgt'];
+		if (tgt == null)
+		{
+			window.location.replace('login.html');
+		}
 		url = server + context +'?tgt='+tgt;
 	}
 	else

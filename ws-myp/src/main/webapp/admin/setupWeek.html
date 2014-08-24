@@ -1,5 +1,5 @@
 
-
+<div id="weekNav"></div>
 <div id="weeks"></div>
 
 <script type="text/template" id="addgame">
@@ -41,21 +41,28 @@ Time:<input type="text" name="gameStartTime" size="5" value="01:00"/> Date:<inpu
 
 <script type="text/template" id="games">
 Game in Week:<br/>
-<% _.each(games,function(games){ %>
+<% _.each(games,function(games, index){ %>
+
+<form name="game<%=index%>">
 <div class="gamebox">
 	<div class="gametime"><%=games.gameStartDisplay%></div>
 	<div class="scoreboard shadow">
 		<div class="scorerow">
 			<div class="teamname"><%=games.fav.fullTeamName%><span class="spread">(<%=games.spread%>)</span></div>
-			<div class="score"><%=games.favScore%></div>
+			<div class="score"><input size="2" name="favScore" value="<%=games.favScore%>"/></div>
 		</div>
 		<div class="scorerow">
 			<div class="teamname"><%=games.dog.fullTeamName%></div>
-		<div class="score"><%=games.dogScore%></div>
+		<div class="score"><input size="2" name="dogScore" value="<%=games.dogScore%>"/></div>
 		</div>
-	
+		<div class="edit">
+			<input type="text" name="gameStartTime" size="5" value="<%=games.gameStartTimeForUpdate%>"/> Date:<input type="text" name="gameStartDate" size="8" value="<%=games.gameStartDateForUpdate%>"/>
+			<input type="hidden" name="id" value="<%=games.id%>"/>
+			<input type="button" value="update" onClick="updateScore(this.form)"/>
+		</div>
 		<div style="clear:both;"></div>
 	</div>
 </div>
+</form>
 <% }); %>
 </script>

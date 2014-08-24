@@ -332,4 +332,27 @@ public class PickWebService extends AbstractMYPWebService {
 			return handleException(exception);
 		}
 	}
+	
+	@POST
+	@Path("/league/join")
+	@PreAuthorize("hasRole('user')")
+	public Response joinLeague(League league)
+	{
+		try
+		{
+			
+			long profileId = getPlayerIdFromSecurityContext();
+			
+			
+			return buildSuccessResponse(leagueManager.joinLeague(profileId, league.getLeagueName(), league.getPassword()));
+		}
+		catch (ValidationException validationException)
+		{
+			return handleValidationException(validationException);
+		}
+		catch (Exception exception)
+		{
+			return handleException(exception);
+		}
+	}
 }

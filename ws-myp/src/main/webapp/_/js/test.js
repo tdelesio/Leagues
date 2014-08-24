@@ -50,7 +50,7 @@ function getNav(){
 		
 		changeSeason();
 				
-	});
+	}).error(function() { logout(); });
 	
 }
 

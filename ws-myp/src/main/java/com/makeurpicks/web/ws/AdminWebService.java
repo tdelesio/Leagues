@@ -17,6 +17,7 @@ import java.util.StringTokenizer;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -47,6 +48,13 @@ public class AdminWebService extends AbstractMYPWebService {
 	@Autowired
 	private TeamManager teamManager;
 
+	@GET
+	@Path("/valid")
+	@PreAuthorize("hasRole('admin')")
+	public Response validateAdmin() {
+		return buildSuccessResponse(true);
+	}
+	
 	@GET
 	@Path("/leagues")
 	@PreAuthorize("hasRole('admin')")
@@ -126,6 +134,36 @@ public class AdminWebService extends AbstractMYPWebService {
 					Integer.parseInt(day));
 			game.setGameStart(dateTime.toDate());
 			gameManager.insertGameTX(game);
+			return buildSuccessResponse(game);
+		} catch (Exception exception) {
+			return handleException(exception);
+		}
+	}
+	
+	@PUT
+	@Path("/game")
+	@PreAuthorize("hasRole('admin')")
+	public Response updateGame(Game game) {
+		try {
+			DateTime dateTime = new DateTime();
+
+			StringTokenizer tokenizer = new StringTokenizer(
+					game.getGameStartTime(), ":");
+			String hour = (String) tokenizer.nextElement();
+			String min = (String) tokenizer.nextElement();
+
+			tokenizer = new StringTokenizer(game.getGameStartDate(), "/");
+			String month = (String) tokenizer.nextElement();
+			String day = (String) tokenizer.nextElement();
+			String year = (String) tokenizer.nextElement();
+
+			dateTime = dateTime.withTime(Integer.parseInt(hour),
+					Integer.parseInt(min), 0, 0).withDate(
+					Integer.parseInt(year), Integer.parseInt(month),
+					Integer.parseInt(day));
+			game.setGameStart(dateTime.toDate());
+			
+			gameManager.updateScore(game);
 			return buildSuccessResponse(game);
 		} catch (Exception exception) {
 			return handleException(exception);

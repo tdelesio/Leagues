@@ -51,8 +51,15 @@ public class AuthenicationFilter implements Filter {
 		 if (CommonUtils.isNotBlank(tgt)) 
 	     {
 			Authentication authentication = playerManager.getAuthenicationTX(tgt);
+			if (authentication == null)
+			{
+				 SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthentication());
+			}
+			else
+			{
 			authentication.setAuthenticated(true);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
 	     }
 		 else
 		 {
