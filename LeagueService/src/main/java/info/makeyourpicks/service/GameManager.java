@@ -34,4 +34,5 @@ public interface GameManager extends ICacheConstants {
 //	/public List<Team> findTeamsPlayingInWeek(Week week);
 	
 	public void insertGameTX(Game game) throws ValidationException;
+	public void updateScore(Game game) throws ValidationException;
 }

@@ -3,9 +3,11 @@ package info.makeyourpicks.service;
 import info.makeyourpicks.model.League;
 import info.makeyourpicks.model.Player;
 import info.makeyourpicks.model.SeasonStats;
+import info.makeyourpicks.model.Ticket;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -63,6 +65,9 @@ public interface PlayerManager extends UserDetailsService {
 	public List<Player> getPlayersInLeagueTX(long seasonId) throws ValidationException;
 	public List<Player> getPlayersInLeague(long seasonId) throws ValidationException;
 	public List<SeasonStats> getPlayersPlusWinsInLeagueTX(long leagueId, long weekid) throws ValidationException;
+	public Authentication getAuthenicationTX(String tgt);
+	public Ticket loginTX(String userName, String password) throws ValidationException;
+	public boolean retrievePasswordTX(Player emailOrUsername);
 //	public String encypt(String unencryptedValue);
 //	public String decypt(String encryptedValue);
 }

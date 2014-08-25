@@ -6,6 +6,8 @@ import info.makeyourpicks.model.Player;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+
 public interface PlayerDao {
 
 	public Player findPlayerByName(String username);
@@ -13,4 +15,5 @@ public interface PlayerDao {
 	public List<Player> findPlayersInLeague(League league);
 	public Player findPlayerByEmail(String email);
 	public List<Player> findPlayersByFacebookId(long facebookId);
+	public Authentication getAuthenication(String tgt);
 }

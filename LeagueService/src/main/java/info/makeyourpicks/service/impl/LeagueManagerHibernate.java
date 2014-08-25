@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.cassandra.cli.CliParser.password_return;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -150,6 +151,30 @@ public class LeagueManagerHibernate extends AbstractLeagueService implements
 
 	public League getLeague(long leagueId) {
 		return (League) dao.loadObject(League.class, leagueId);
+	}
+	
+	@Transactional
+	public League joinLeague(long profileId, String leagueName, String leaguePassword) throws ValidationException
+	{
+		Player player = dao.loadByPrimaryKey(Player.class, profileId);
+		if (player == null)
+			throw new ValidationException(ValidationErrorEnum.PLAYER_IS_NUll);
+		
+		League league = getLeague(leagueName);
+		if (league == null)
+			throw new ValidationException(ValidationErrorEnum.LEAGUE_IS_NULL);
+		
+		PlayerLeague playerLeague = leagueDao.findPlayerLeagueByLeagueAndPlayer(league.getId(), player.getId());
+		if (playerLeague != null)
+			throw new ValidationException(ValidationErrorEnum.PLAYER_IN_LEAGUE);
+		
+		if (league.getPassword().equals(leaguePassword))
+		{
+			addPlayerToLeague(league, player);
+			return league;
+		}
+		else
+			throw new ValidationException(ValidationErrorEnum.PASSWORD_DOES_NOT_MATCH);
 	}
 
 	public void addPlayerToLeague(League league, Player player) {

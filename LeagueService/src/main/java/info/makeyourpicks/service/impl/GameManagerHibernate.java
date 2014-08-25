@@ -140,6 +140,20 @@ public class GameManagerHibernate extends AbstractLeagueService implements
 		((EhCacheProvider)cacheProvider).getCacheManager().getCache(WEEK_BY_WEEK_NUMBER_AND_SEASON).removeAll();
 	}
 
+	@Transactional
+	public void updateScore(Game game) throws ValidationException
+	{
+		Game gameFromDataBase = dao.loadByPrimaryKey(Game.class, game.getId());
+		if (gameFromDataBase == null)
+			throw new ValidationException(ValidationErrorEnum.GAME_IS_NULL);
+		
+		gameFromDataBase.setDogScore(game.getDogScore());
+		gameFromDataBase.setFavScore(game.getFavScore());
+		gameFromDataBase.setGameStart(game.getGameStart());
+		
+		dao.merge(gameFromDataBase);
+	}
+	
 	public void updateGame(Game game) {
 		dao.updateObject(game);
 

@@ -79,5 +79,6 @@ public interface LeagueManager extends ICacheConstants{
 	
 	public void verifyPlayerExistsInLeague(long leagueId, long playerId) throws ValidationException;
 	public void createLeagueTX(final League league, Player admin) throws ValidationException;
+	public League joinLeague(long profileId, String leagueName, String leaguePassword) throws ValidationException;
 //	public League getLeagueBySeason(long seasonID);
 }

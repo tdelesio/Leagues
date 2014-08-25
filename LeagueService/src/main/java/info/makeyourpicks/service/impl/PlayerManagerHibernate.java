@@ -5,6 +5,7 @@ import info.makeyourpicks.dao.PlayerDao;
 import info.makeyourpicks.model.League;
 import info.makeyourpicks.model.Player;
 import info.makeyourpicks.model.SeasonStats;
+import info.makeyourpicks.model.Ticket;
 import info.makeyourpicks.model.Week;
 import info.makeyourpicks.service.ILeaguesEmailService;
 import info.makeyourpicks.service.LeagueManager;
@@ -15,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +50,35 @@ public class PlayerManagerHibernate extends AbstractLeagueService implements Pla
 		Player player = getPlayer(name);
 		dao.deleteObject(player);
 
+	}
+	
+	@Transactional
+	public Ticket loginTX(String userName, String password) throws ValidationException
+	{
+		Player player = playerDao.findPlayerByName(userName);
+		if (player == null)
+		{
+			throw new ValidationException(ValidationErrorEnum.PLAYER_NOT_FOUND);
+		}
+		
+		if (!password.equals(player.getPassword()))
+		{
+			throw new ValidationException(ValidationErrorEnum.PASSWORD_DOES_NOT_MATCH);
+		}
+		
+		Ticket ticket = new Ticket();
+		ticket.setPlayer(player);
+		UUID uuid = UUID.randomUUID();
+		ticket.setTgt(uuid.toString());
+		
+		dao.save(ticket);
+		return ticket;
+	}
+	
+	@Transactional
+	public Authentication getAuthenicationTX(String tgt)
+	{
+		return playerDao.getAuthenication(tgt);
 	}
 
 	@Transactional
@@ -178,6 +210,12 @@ public class PlayerManagerHibernate extends AbstractLeagueService implements Pla
 		
 	}
 
+	@Transactional
+	public boolean retrievePasswordTX(Player emailOrUsername)
+	{
+		return retrievePassword(emailOrUsername);
+	}
+	
 	public boolean retrievePassword(Player emailOrUsername)
 	{
 		Player player = getPlayer(emailOrUsername.getUsername());

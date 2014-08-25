@@ -17,6 +17,18 @@
 		<property name="displayInNav" column="displaynav" type="boolean"/>
 	</class>
 	
+	<class name="Ticket" table="tickets">
+		<cache usage="read-write"/>
+		<!-- Id -->
+    	<id name="id" column="id" type="long" unsaved-value="0">
+			<generator class="increment"/>
+		</id>
+		
+		<many-to-one name="player" column="playerId" lazy="false" fetch="join" cascade="none"/>
+		<property name="tgt" column="tgt"/>
+		<property name="createdDate" column="createdDate" type="long"/>
+	</class>
+		
 	<class name="Player" table="profile">
 		<cache usage="read-write"/>
 		<!-- Id -->

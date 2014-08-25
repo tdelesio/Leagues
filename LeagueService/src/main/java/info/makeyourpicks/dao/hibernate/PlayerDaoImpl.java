@@ -8,11 +8,20 @@ import info.makeyourpicks.model.Player;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.springframework.security.core.Authentication;
 
 import com.delesio.dao.hibernate.HibernateDao;
 
 public class PlayerDaoImpl extends HibernateDao implements PlayerDao{
 
+	public Authentication getAuthenication(String tgt)
+	{
+		Query query = getQuery("from Ticket t where t.tgt = ?");
+		query.setParameter(0, tgt);
+		
+		return (Authentication)query.uniqueResult();
+	}
+	
 	public Player findPlayerByName(String username) {
 		
 //		List players = hibernateTemplate.find("from Player where username=?", username);

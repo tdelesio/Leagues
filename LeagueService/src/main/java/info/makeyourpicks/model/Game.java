@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.codehaus.enunciate.json.JsonIgnore;
+
 import com.delesio.model.AbstractSequenceModel;
 
 public class Game extends AbstractPersistantObject {
@@ -207,6 +209,19 @@ public class Game extends AbstractPersistantObject {
 		this.gameStartTime = gameStartTime;
 	}
 	
+	@JsonIgnore
+	public String getGameStartTimeForUpdate()
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
+		return simpleDateFormat.format(gameStart);
+	}
+	
+	@JsonIgnore
+	public String getGameStartDateForUpdate()
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		return simpleDateFormat.format(gameStart);
+	}
 	
 
 }
