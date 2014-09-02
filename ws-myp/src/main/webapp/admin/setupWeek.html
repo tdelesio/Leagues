@@ -1,50 +1,50 @@
 
 <div id="weekNav"></div>
+<div style="clear:both; margin-bottom:20px;"></div>
 <div id="weeks"></div>
 
 <script type="text/template" id="addgame">
+<div class="row">
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 <form>
-<br/>
-	Favorite:<br/>
+<p>Favorite:<br/>
 	<select name="fav.id">
 		<% _.each(teams,function(teams){ %>
 			<option value="<%=teams.id%>"><%=teams.city%>&nbsp;<%=teams.teamName%></option>
 		<% }); %>
 	</select>
-	<br/>
-<br/>
-	Spread:<br/>
+</p>
+<p>Spread:<br/>
 	<input type="text" name="spread" size="3" value="0.5"/>
-	<br/>
-<br/>
-Dog:<br/>
+</p>
+<p>Dog:<br/>
 	<select name="dog.id">
 		<% _.each(teams,function(teams){ %>
 			<option value="<%=teams.id%>"><%=teams.city%>&nbsp;<%=teams.teamName%></option>
 		<% }); %>
 	</select>
-	<br/>
-<br/>
-	Favorite Home:<br/>
+</p>
+<p>Favorite Home:<br/>
 	<input type="checkbox" name="favHome" value="true" id="favhome"/>
-	<br/>
-<br/>
-Game Start:
-<br/>
+</p>
+
+<p>Game Start:<br/>
 Time:<input type="text" name="gameStartTime" size="5" value="01:00"/> Date:<input type="text" name="gameStartDate" size="8" value="04/01/2014"/>
 	<input type="hidden" name="week.id"  id="weekid" value="1"/>
-
-<br/>
+</p>
 <input type="button" value="add game" onClick="addNewGame()"/>
 </form>
+</div>
+</div>
 </script>
 
 <script type="text/template" id="games">
 Game in Week:<br/>
+<div class="row">
 <% _.each(games,function(games, index){ %>
 
 <form name="game<%=index%>">
-<div class="gamebox">
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 	<div class="gametime"><%=games.gameStartDisplay%></div>
 	<div class="scoreboard shadow">
 		<div class="scorerow">
@@ -65,4 +65,5 @@ Game in Week:<br/>
 </div>
 </form>
 <% }); %>
+</div>
 </script>

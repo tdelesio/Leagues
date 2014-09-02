@@ -56,20 +56,24 @@ function forgetpassword()
 }
 </script>
 <body>
-
-<div class="bg"></div>
-
-<div class="screen">
-
-	<div class="nav shadow">
+<div style="width:300px; margin:20px auto;">
+<img src="_/img/myp.svg" style="width:300px; height:auto; text-align:center;" />
+<div class="login shadow">
 		
 		<form >
-			Username <input type="text" name="username"/><br/>
-			Password <input type="password" name="password"/><br/>
+        <p style="text-align:center; color:#fff; font-weight:bold;">
+			Username: 
+		  <input type="text" name="username"/></p>
+        <p style="text-align:center; color:#fff; font-weight:bold;">Password: 
+			<input type="password" name="password"/>
+			<br />
+&nbsp;			<br />
 			<input type="button" onclick="login()" value="login"/>
-			<input type="button" onclick="forgetpassword()" value="Forget Password"/>
+		  &nbsp;
+		  <input type="button" onclick="forgetpassword()" value="Forget Password"/>
+        </p>
 		</form>
-		</div>
+</div>
 		
 		
 	</div>

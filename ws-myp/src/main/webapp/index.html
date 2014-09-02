@@ -92,7 +92,7 @@ _.each(games,function(game, i) {
 		
 		
 		<!-- FAV -->
-		<div class="row scorerow <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.fav.id%>, <%=game.dog.id%>, '<%=game.fav.shortName%>', '<%=game.dog.shortName%>', 'fav', <%=i%>)"<%}%> >
+		<div class="fav row scorerow <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.fav.id%>, <%=game.dog.id%>, '<%=game.fav.shortName%>', '<%=game.dog.shortName%>', 'fav', <%=i%>)"<%}%> >
 			<div class="col-xs-1 pick-selection">
 				<!-- CHECK OR X -->
 				<% 
@@ -137,7 +137,7 @@ _.each(games,function(game, i) {
 		
 		
 		<!-- DOG -->
-		<div class="row scorerow <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.dog.id%>, <%=game.fav.id%>, '<%=game.dog.shortName%>', '<%=game.fav.shortName%>', 'dog', <%=i%>)"<%}%> >
+		<div class="dog row scorerow <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.dog.id%>, <%=game.fav.id%>, '<%=game.dog.shortName%>', '<%=game.fav.shortName%>', 'dog', <%=i%>)"<%}%> >
 			
 			
 			
@@ -158,7 +158,12 @@ _.each(games,function(game, i) {
 							%><i class="fa fa-thumbs-down"></i><%
 						}
 					}
-				} 
+				} else {
+					if (!game.gameStarted && update == true) {
+						%><i class="fa fa-check-circle-o hide"></i><%
+					}	
+					
+				}
 				%>
 			</div>
 		

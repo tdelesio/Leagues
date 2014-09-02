@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $.fn.serializeObject = function() {
 
 	// convert the form to an array
@@ -56,7 +55,7 @@ function getURLParameter(name) {
 	return decodeURI(
 	    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
 	    );
-	}
+}
 
 //var server = "http://localhost:8080/ws/rest";
 var server = "http://makeurpicks.com/ws/rest";
@@ -78,7 +77,8 @@ function getUrl(context)
 		url = server + context;
 	}
 	return url;
-=======
+}
+
 $.fn.serializeObject = function() {
 
 	// convert the form to an array
@@ -148,5 +148,5 @@ function getUrl(context)
 		url = server + context;
 	}
 	return url;
->>>>>>> refs/remotes/origin/master
+
 }

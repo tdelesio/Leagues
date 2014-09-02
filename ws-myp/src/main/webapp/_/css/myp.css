@@ -202,6 +202,14 @@ p a:hover { color: #F16428; }
 }
 
 
+.pick-selection i {
+	padding-top:5px;	
+}
+
+
+.login {background-image:url(../img/colors/medium-dk.png); padding:25px 20px; margin:15px auto; border-radius:5px;}
+
+
 
 /* REUSABLE CLASSES */
 
@@ -272,3 +280,11 @@ box-shadow: 0 0 5px #000000;
 .TEN { background-image:url(../img/teams/TEN.svg);}
 .WAS { background-image:url(../img/teams/WAS.svg);}
 .NOP { background-image:url(../img/teams/NOP.svg);}
+
+
+/* ADMIN */
+
+.admin,
+.admin p {
+	color:#E8E8E8;	
+}
