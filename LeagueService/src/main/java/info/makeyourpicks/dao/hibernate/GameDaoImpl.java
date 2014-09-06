@@ -109,7 +109,7 @@ public class GameDaoImpl extends HibernateDao implements GameDao {
 	public List<Game> findGamesByWeek(Week week) {
 //		return hibernateTemplate.find(getGameQuery("", "where week.id=?"), week.getId());
 		
-		Query query = getQuery(getGameQuery("", "where week.id=?"));
+		Query query = getQuery(getGameQuery("", "where week.id=? order by game.gameStart"));
 		query.setParameter(0, week.getId());
 
 		

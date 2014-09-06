@@ -25,6 +25,7 @@ public class Game extends AbstractPersistantObject {
 	private Date gameStart=new Date();
 	
 	private String gameStartDate;
+	private String gsTime;
 	private String gameStartTime;
 	
 	public Game()
@@ -35,7 +36,17 @@ public class Game extends AbstractPersistantObject {
 	{
 		super.id = gameId;
 	}
+	
+	
 		
+	public String getGsTime() {
+		return gsTime;
+	}
+
+	public void setGsTime(String gsTime) {
+		this.gsTime = gsTime;
+	}
+
 	public Team getWinner(boolean useSpeads)
 	{
 		Team value=null;
@@ -176,7 +187,7 @@ public class Game extends AbstractPersistantObject {
 	}
 
 	
-	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MM/dd/yyyy hh:mm z");
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MM/dd/yyyy HH:mm z");
 	private SimpleDateFormat multiLineDateFormat = new SimpleDateFormat("EEE MM/dd/yyyy \nhh:mm z");
 	public String getGameStartDisplay()
 	{

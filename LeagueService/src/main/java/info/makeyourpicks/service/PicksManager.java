@@ -48,4 +48,5 @@ public interface PicksManager extends ICacheConstants {
 	public WinSummary getWinSummaryForPlayer(League league, Player player);
 	
 	public Picks insertPlayerPickTX(Picks pick, long playerId) throws ValidationException;
+	public void updateDoublePick(long pickId, long profileId) throws ValidationException;
 }

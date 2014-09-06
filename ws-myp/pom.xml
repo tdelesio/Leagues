@@ -5,18 +5,15 @@
 	<groupId>info.makeyourpicks</groupId>
 	<packaging>war</packaging>
 	<name>ws-myp</name>
-
 	<parent>
 		<groupId>com.delesio</groupId>
 		<artifactId>build-ws</artifactId>
 		<version>1.0.0</version>
 	</parent>
-
 	<properties>
 		<web-context>ws</web-context>
 		<eclipse.dependency>true</eclipse.dependency>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.delesio</groupId>
@@ -42,9 +39,7 @@
 			<scope>test</scope>
 			<classifier>tests</classifier>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -92,11 +87,9 @@
 			<!-- </execution> -->
 			<!-- </executions> -->
 			<!-- </plugin> -->
-
 		</plugins>
 		<!-- <pluginManagement> -->
 		<!-- <plugins> -->
-
 		<!-- <plugin> -->
 		<!-- <groupId>org.eclipse.m2e</groupId> -->
 		<!-- <artifactId>lifecycle-mapping</artifactId> -->

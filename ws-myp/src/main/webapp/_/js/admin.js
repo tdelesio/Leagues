@@ -59,6 +59,7 @@ function changePage() {
 		$("#view").load('setupWeek.html', function() {
 			
 			
+
 			
 			
 			var selectedSeason = $("#season").val();
@@ -109,6 +110,12 @@ function changePage() {
 		// alert($("#view").find("#season").val());
 
 		break;
+	case 'clearcache':
+		url = getUrl('/admin/cache');
+		$.getJSON(url,function(json){
+			
+		});
+		break;
 	case 'creategame':
 
 		// CRETE NEW SUBNAV
@@ -127,6 +134,7 @@ function changeWeek() {
 	
 	//setup the game entry page
 	var addgametemplate = _.template($('#addgame').html());
+	
 	// load the subnav
 //	url = server + '/teams';
 	url = getUrl('/admin/teams');
@@ -135,6 +143,21 @@ function changeWeek() {
 			teams : json
 		}));
 
+		
+		var today = new Date(),
+        dow = today.getDay(),
+        toAdd = dow === 0 ? 0 : 7 - dow,
+        thisSunday = new Date(),
+        dateFormat = 'mm/dd/yyyy';
+		
+		thisSunday.setDate(thisSunday.getDate()+toAdd);
+		
+		$( "#gsdate" )
+        .val($.datepicker.formatDate(dateFormat,thisSunday))
+        .datepicker({
+            dateFormat: dateFormat
+        });
+		
 		//set the hidden variable
 		$("#weekid").val(week);
 	});
@@ -142,7 +165,6 @@ function changeWeek() {
 
 	//get all the games
 	var gamestemplate = _.template($('#games').html());
-//	console.log($('#games').html());
 //	var gameUrl = server + '/games/weekid/'+week;
 	var gameUrl = getUrl('/admin/games/weekid/'+week);
 	$.getJSON(gameUrl,function(json){

@@ -2,338 +2,329 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="_/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="_/css/font-awesome.css"/>
+<link rel="stylesheet" type="text/css" href="_/css/font-awesome.css" />
 <link rel="stylesheet" href="_/css/myp.css" />
 <link rel="stylesheet" href="_/css/responsive.css" />
 <script src="_/js/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script src="_/js/underscore-min.js" type="text/javascript"></script>
+<script src="_/js/moment.min.js" type="text/javascript"></script>
+<script src="_/js/moment-timezone-with-data-2010-2020.min.js" type="text/javascript"></script>
 <script src="_/js/util.js" type="text/javascript"></script>
 <script src="_/js/bootstrap.js" type="text/javascript"></script>
 <script src="_/js/test.js" type="text/javascript"></script>
-
 <title>Make Your Picks Mobile</title>
 </head>
-
-<script type="text/template" id="container"> 
-<% 
+<script type="text/template" id="container">
+<%
 var pickmap = {};
 var points = 0;
 var gt = ""
-
 _.each(picks,function(pick,i) {
-	pickmap[pick.game.id] = pick; 
+pickmap[pick.game.id] = pick;
 });
-			
-//console.log(games);
 
-_.each(games,function(game, i) { 
-	//console.log('game='+game);
-	//gamemap[game.id] = data.game.id;	
-	if(gt != game.gameStartDisplay) {			
-%>
-			<div class="gametime"><%=game.gameStartDisplay%></div>
-			
-		
-			 
-				 
-<% 
-	}
+_.each(games,function(game, i) {
+
+	
+var tz = moment(game.gameStart).tz("America/New_York");
+var gsFormatted = tz.format("dddd, MMMM Do YYYY, h:mm A z");
+
+	if(gt != game.gameStartDisplay) {	%>
+		<div class="gametime"><%=gsFormatted%></div>
+	<% }
+
 	gt = game.gameStartDisplay;
-			 //DETERMINE IF WIN OR NOT
+//DETERMINE IF WIN OR NOT
 	var pick;
 	if (pickmap[game.id]) {
 		pick = pickmap[game.id];
-
-		//increament the pouints
+//increament the pouints
 		points += pick.winValue;
 	}
-	
-	
-	//  HAS PICK 
-	//********************************
-	if (pick) {
 
+// HAS PICK
+//********************************
+if (pick) {
 %>
-		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><div class="scoreboard row shadow pickmade <%
-		var winner = "";
-		
-		//need to figure out which row to mark as a loss	 
-		if( pick.fav && (pick.winnerStatus == 2)) {
-			loss = "f";
-		} else if (pick.dog && (pick.winnerStatus == 2) ) {
-			winner = "d";
-		} 
-		
-		if(pick.winnerStatus == 1) {
-			%>win <%
-			if(pick.weight == 2) {
-				%>double <%				  
-			}	
+	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+	<div class="scoreboard row shadow pickmade <%
+	var winner = "";
+	//need to figure out which row to mark as a loss
+	if( pick.fav && (pick.winnerStatus == 2)) {
+		loss = "f";
+	} else if (pick.dog && (pick.winnerStatus == 2) ) {
+		winner = "d";
+	}
+
+	if(pick.winnerStatus == 1) {
+		%>win <%
+		if(pick.weight == 2) {
+			%>double <%
 		}
-		else if (pick.winnerStatus == 2) {
-			%>loss <%
-			if(pick.weight == 2) {
-				%>double <%
+	}
+	else if (pick.winnerStatus == 2) {
+		%>loss <%
+		if(pick.weight == 2) {
+			%>double <%
+		}
+	}
+
+	if (!game.gameStarted) {
+		%>pickable <%
+	}
+	//div closes scoreboard
+	%>">
+
+	<div class="col-sm-12">
+
+	<!-- FAV -->
+	<div class="fav row scorerow <%=i%>" 
+		<%if (!game.gameStarted && update == true) {
+			if (pick.fav) {%>
+				onclick="doublePick(<%=pick.id%>, <%=i%>, 'fav')"
+			<%} else {%>
+				onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.fav.id%>, <%=game.dog.id%>, '<%=game.fav.shortName%>', '<%=game.dog.shortName%>', 'fav', <%=i%>)"
+			<%}
+		}%> 
+	>
+	<div class="col-xs-1 pick-selection">
+	<!-- CHECK OR X -->
+	<%
+	if(pick.fav){
+
+		if (!game.gameStarted && update == true) {%>
+			<i class="fa fa-check-circle-o 
+		<% } else if (!game.gameStarted && update == false) {%>
+			<i class="fa fa-check-circle-o hide
+		<%} else {
+
+			if(pick.winnerStatus == 1 || !game.hasScoresEntered){%>
+				<i class="fa fa-check-circle-o 
+			<%} else {%>
+				<i class="fa fa-thumbs-down 
+			<%}
+		}
+
+			if (pick.weight == 2) {%> 
+			doubled 
+		<%}%>
+		"></i>
+	<%}
+	else {
+		if (!game.gameStarted && update == true) {
+			%><i class="fa fa-check-circle-o hide"></i>
+		<%}
+
+	
+	}%>
+
+	
+	</div>
+
+
+<!-- TEAM ICON -->
+	<div class="col-xs-2"><div class="team-icon <%=pick.game.fav.shortName%>"></div></div>
+
+<!-- TEAM NAME ABBR-->
+	<div class="col-xs-5 col-sm-6"><span class="short-name <%if (game.favHome) {%>home <%}%>"><%=pick.game.fav.shortName%></span><span class="long-name <%if (game.favHome) {%>home <%}%>"><%=pick.game.fav.fullTeamName%></div>
+
+
+
+<!-- SPREAD -->
+	<div class="col-xs-1"><span class="spread">(<%=pick.game.spread%>)</span></div>
+
+<!-- SCORE -->
+	<div class="col-xs-1"><%=pick.game.favScore%></div>
+</div>
+
+	<!-- DOG -->
+	<div class="dog row scorerow <%=i%>" 
+		<%if (!game.gameStarted && update == true) {
+			if (pick.dog) {%>
+				onclick="doublePick(<%=pick.id%>, <%=i%>, 'dog')"
+			<%} else {%>
+				onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.dog.id%>, <%=game.fav.id%>, '<%=game.dog.shortName%>', '<%=game.fav.shortName%>', 'dog', <%=i%>)"
+			<%}
+		}%> 
+	>
+	<div class="col-xs-1 pick-selection">
+	
+	<!-- CHECK OR X -->
+	<% if(pick.dog) {
+		
+		if (!game.gameStarted && update == true) {%>
+			<i class="fa fa-check-circle-o
+		<% } else if (!game.gameStarted && update == false) {%>
+			<i class="fa fa-check-circle-o hide
+		<%} else {
+			if(pick.winnerStatus == 1 || !game.hasScoresEntered){
+				%><i class="fa fa-check-circle-o<%
+			} else {
+				%><i class="fa fa-thumbs-down<%
 			}
 		}
-		
-		if (!game.gameStarted) {
-			%>pickable <%
-		}
-		
-		
-		
-		//div closes scoreboard
-		%>">
-		<div class="col-sm-12">
-		
-		
-		
-		<!-- FAV -->
-		<div class="row scorerow <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.fav.id%>, <%=game.dog.id%>, '<%=game.fav.shortName%>', '<%=game.dog.shortName%>', 'fav', <%=i%>)"<%}%> >
-			<div class="col-xs-1 pick-selection">
-				<!-- CHECK OR X -->
-				<% 
-				if(pick.fav){
-					if(pick.weight == 2){
-						%><span class="hasdouble">D</span><%
-					} 
-					
-					if (!game.gameStarted && update == true) {
-						%><i class="fa fa-check-circle-o"></i><%
-					} else {
-						
-						if(pick.winnerStatus == 1){
-							%><i class="fa fa-check-circle-o"></i><%
-						} else {
-							%><i class="fa fa-exclamation-triangle"></i><%
-						}
-					}
-				} 
-				else {
-					if (!game.gameStarted && update == true) {
-						%><i class="fa fa-check-circle-o hide"></i><%
-					}
-					
-				}%> 
-			</div>
-			
-			<!-- TEAM ICON -->
-			<div class="col-xs-2"><div class="team-icon <%=pick.game.fav.shortName%>"></div></div>
-			
-			<!-- TEAM NAME ABBR-->
-			<div class="col-xs-5 col-sm-6"><span class="short-name"><%=pick.game.fav.shortName%></span><span class="long-name"><%=pick.game.fav.fullTeamName%></div>
-		
-			<!-- SPREAD -->
-			<div class="col-xs-1"><span class="spread">(<%=pick.game.spread%>)</span></div>
-			
-			<!-- SCORE -->
-			<div class="col-xs-1"><%=pick.game.favScore%></div>
-		
-		</div>
-		
-		
-		
-		<!-- DOG -->
-		<div class="row scorerow <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="updatePick(<%=pick.id%>, <%=game.id%>, <%=game.dog.id%>, <%=game.fav.id%>, '<%=game.dog.shortName%>', '<%=game.fav.shortName%>', 'dog', <%=i%>)"<%}%> >
-			
-			
-			
-			<div class="col-xs-1 pick-selection">
-				<!-- CHECK OR X -->
-				<% 
-				if(pick.dog){
-					if(pick.weight == 2){
-						%><span class="hasdouble">D</span><%
-					}
-					
-					if (!game.gameStarted && update == true) {
-						%><i class="fa fa-check-circle-o"></i><%
-					} else {
-						if(pick.winnerStatus == 1){
-							%><i class="fa fa-check-circle-o"></i><%
-						} else {
-							%><i class="fa fa-exclamation-triangle"></i><%
-						}
-					}
-				} 
-				%>
-			</div>
-		
-			<!-- TEAM ICON -->
-			<div class="col-xs-2"><div class="team-icon <%=pick.game.dog.shortName%>"></div></div>
-			
-			<!-- TEAM NAME ABBR-->
-			<div class="col-xs-5 col-sm-6"><span class="short-name"><%=pick.game.dog.shortName%></span><span class="long-name"><%=pick.game.dog.fullTeamName%></div>
-		
-			<!-- SPREAD -->
-			<div class="col-xs-1"><span class="spread">&nbsp;</span></div>
-			
-			<!-- SCORE -->
-			<div class="col-xs-1"><%=pick.game.dogScore%></div>
-		</div>
-		</div>
-		</div>
-		</div>
-	
-<%
-	}
-	
-	
-	
-	//  NO PICK HAS BEEN MADE
-	//********************************
-	
-	else {
-		//no pick was made
-%>
 
-		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-			<div class="scoreboard shadow <%if (game.gameStarted) {%>loss<%}%>">
-		
-				<div class="col-sm-12"> 
-	
-
-					<div class="row scorerow fav <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="makePick(<%=game.id%>, <%=game.fav.id%>, <%=game.dog.id%>, '<%=game.fav.shortName%>', '<%=game.dog.shortName%>', 'fav', <%=i%>)"<%} else {%> loser<%}%>>
-			
-						<!-- PICK TOOL -->
-						<div class="col-xs-1 pick-selection">&nbsp;</div>
-						
-						
-						<!-- TEAM ICON -->
-						<div class="col-xs-2">
-						<div class="team-icon <%=game.fav.shortName%>"></div>
-						</div>
-						
-						<!-- TEAM NAME ABBR-->
-						<div class="col-xs-5 col-sm-6"><span class="short-name"><%=game.fav.shortName%></span><span class="long-name"><%=game.fav.fullTeamName%></div>
-						
-						<!-- SPREAD -->
-						<div class="col-xs-1"><span class="spread">(<%=game.spread%>)</span></div>
-						
-						<!-- SCORE -->
-						<div class="col-xs-1"><%=game.favScore%></div>
-					</div>
-
-
-
-
-
-					<div class="row scorerow dog <%=i%>" <%if (!game.gameStarted && update == true) {%>onclick="makePick(<%=game.id%>, <%=game.dog.id%>, <%=game.fav.id%>, '<%=game.dog.shortName%>', '<%=game.fav.shortName%>', 'dog', <%=i%>)"<%} else {%> loser<%}%>>
-						
-						<!-- PICK TOOL -->
-						<div class="col-xs-1 pick-selection">&nbsp;</div>
-						
-						<!-- TEAM ICON -->
-						<div class="col-xs-2">
-						<div class="team-icon <%=game.dog.shortName%>"></div>
-						</div>
-						
-						<!-- TEAM NAME ABBR-->
-						<div class="col-xs-5 col-sm-6"><span class="short-name"><%=game.dog.shortName%></span><span class="long-name"><%=game.dog.fullTeamName%></div>
-						
-						<!-- SPREAD -->
-						<div class="col-xs-1"><span class="spread">&nbsp;</span></div>
-						
-						<!-- SCORE -->
-						<div class="col-xs-1"><%=game.dogScore%></div>
-					
-					
-					</div>
-					</div>
-					</div>
-					</div>
-<%
-
+		if (pick.weight == 2) {%>
+			doubled
+		<%}%>
+		"></i>
+	<%} else {
+		if (!game.gameStarted && update == true) {
+			%><i class="fa fa-check-circle-o hide"></i><%
+		}	
 	}
 %>
-	
+</div>
+
+<!-- TEAM ICON -->
+<div class="col-xs-2"><div class="team-icon <%=pick.game.dog.shortName%>"></div></div>
+
+<!-- TEAM NAME ABBR-->
+<div class="col-xs-5 col-sm-6"><span class="short-name <%if (!game.favHome) {%>home <%}%>"><%=pick.game.dog.shortName%></span><span class="long-name <%if (!game.favHome) {%>home <%}%>"><%=pick.game.dog.fullTeamName%></div>
+
+<!-- SPREAD -->
+<div class="col-xs-1"><span class="spread">&nbsp;</span></div>
+
+<!-- SCORE -->
+<div class="col-xs-1"><%=pick.game.dogScore%></div>
+</div>
+</div>
+</div>
+</div>
 <%
-	//close gamebox
+}
+// NO PICK HAS BEEN MADE
+//********************************
+else {
+//no pick was made
 %>
+	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+	<div class="scoreboard shadow <%if (game.gameStarted) {%>loss <%} else {%> pickable <%}%>">
+
+	<div class="col-sm-12">
+	<div class="row scorerow fav <%=i%>" 
+	<%if (!game.gameStarted && update == true) {%>
+		onclick="makePick(<%=game.id%>, <%=game.fav.id%>, <%=game.dog.id%>, '<%=game.fav.shortName%>', '<%=game.dog.shortName%>', 'fav', <%=i%>)"
+	<%} else {%> 
+		loser
+	<%}%>>
+
+	<!-- PICK TOOL -->
+	<div class="col-xs-1 pick-selection"><i class="fa fa-check-circle-o hide"></i></div>
+
+	<!-- TEAM ICON -->
+	<div class="col-xs-2">
+	<div class="team-icon <%=game.fav.shortName%>"></div>
 	</div>
-	
 
+	<!-- TEAM NAME ABBR-->
+	<div class="col-xs-5 col-sm-6"><span class="short-name <%if (game.favHome) {%>home <%}%>"><%=game.fav.shortName%></span><span class="long-name <%if (game.favHome) {%>home <%}%>"><%=game.fav.fullTeamName%></div>
+
+	<!-- SPREAD -->
+	<div class="col-xs-1"><span class="spread">(<%=game.spread%>)</span></div>
+
+	<!-- SCORE -->
+	<div class="col-xs-1"><%=game.favScore%></div>
+	</div>
+
+	<div class="row scorerow dog <%=i%>" 
+	<%if (!game.gameStarted && update == true) {%>
+		onclick="makePick(<%=game.id%>, <%=game.dog.id%>, <%=game.fav.id%>, '<%=game.dog.shortName%>', '<%=game.fav.shortName%>', 'dog', <%=i%>)"
+	<%} else {%> 
+		loser
+	<%}%>>
+
+	<!-- PICK TOOL -->
+	<div class="col-xs-1 pick-selection"><i class="fa fa-check-circle-o hide"></i></div>
+
+	<!-- TEAM ICON -->
+	<div class="col-xs-2">
+	<div class="team-icon <%=game.dog.shortName%>"></div>
+	</div>
+
+	<!-- TEAM NAME ABBR-->
+	<div class="col-xs-5 col-sm-6"><span class="short-name <%if (!game.favHome) {%>home <%}%>"><%=game.dog.shortName%></span><span class="long-name <%if (!game.favHome) {%>home <%}%>"><%=game.dog.fullTeamName%></div>
+
+	<!-- SPREAD -->
+	<div class="col-xs-1"><span class="spread">&nbsp;</span></div>
+	
+	<!-- SCORE -->
+	<div class="col-xs-1"><%=game.dogScore%></div>
+</div>
+</div>
+</div>
+</div>
 <%
-	place = "4th";
-	$("#point-total").html('<span>PTS: </span>'+points+' <span style="margin-left:10px;">POS: </span>' + place);
+}
+%>
+<%
+//close gamebox
+%>
+</div>
+<%
+place = "4th";
+$("#point-total").html('<span>PTS: </span>'+points+' <span style="margin-left:10px;">POS: </span>' + place);
 });
 %>
-</script> 
-
-
+</script>
 <body>
-
 	<div id="settings-panel">
-    	<div class="container">
-    	<div class="row">
-        	<div class="col-sm-6">
-    			<div class="subnav" id="season-view"></div>
-    		</div>
-            <div class="col-sm-6">
-            	<div id="logout"><a href="#" onclick="logout()">logout</a></div>
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-	<div class="nav">
-    
-        <div class="container">
-        
-        
-        	<div class="row">
-            
-                <div class="col-xs-3 col-sm-2 col-lg-1">
-                    <img src="_/img/myp.svg" width="75" height="75" id="logo" />
-                </div>
-            
-                <div class="col-xs-9 col-sm-9">
-                
-                    <div class="row" id="navrow">
-                        <div class="col-xs-11 col-sm-12">
-                            <ul>
-                                <li id="nav-make"><a href="#" onclick="getPage('make');">Make Picks</a></li>
-                                <li id="nav-view"><a href="#" onclick="getPage('view');">View Picks</a></li>
-                                <li id="nav-standings"><a href="#" onclick="getPage('standings');">Standings</a></li>
-                            	<li id="nav-settings" onclick="getSettings();"><a href="#"><i class="fa fa-cog"></i></a></li>
-                            </ul>
-                        </div>
-                        
-                      
-                       
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-xs-4" id="mn-view">
-                            <div class="page-select" style="display:none;">
-                                <select name="Page" id="page" onchange="getPage();">
-                                    <option value="make" selected="selected">Make Picks</option>
-                                    <option value="view">View Picks</option>
-                                    <option value="standings">Standings</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-7" id="sn-view">	
-                            
-                        </div>
-                         
-                    </div>
-                </div>
-		
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="subnav" id="season-view"></div>
+				</div>
+				<div class="col-sm-6">
+					<div id="logout">
+						<a href="#" onclick="logout()">logout</a>
+					</div>
+				</div>
 			</div>
+		</div>
 	</div>
-    </div>
-	
-	
-	
+	<div class="nav">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col-sm-2 col-lg-1">
+					<img src="_/img/myp.svg" width="75" height="75" id="logo" />
+				</div>
+				<div class="col-xs-9 col-sm-9">
+					<div class="row" id="navrow">
+						<div class="col-xs-11 col-sm-12">
+							<ul>
+								<li id="nav-make"><a href="#" onclick="getPage('make');">Make
+										Picks</a></li>
+								<li id="nav-view"><a href="#" onclick="getPage('view');">View
+										Picks</a></li>
+								<li id="nav-standings"><a href="#"
+									onclick="getPage('standings');">Standings</a></li>
+								<li id="nav-settings" onclick="getSettings();"><a href="#"><i
+										class="fa fa-cog"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4" id="mn-view">
+							<div class="page-select" style="display: none;">
+								<select name="Page" id="page" onchange="getPage();">
+									<option value="make" selected="selected">Make Picks</option>
+									<option value="view">View Picks</option>
+									<option value="standings">Standings</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-xs-7" id="sn-view"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="results" class="container">
-    <div class="loader" id="loader-page"></div>
-    </div>
-		
-</div>
+		<div class="loader" id="loader-page"></div>
+	</div>
+	</div>
 </body>
 </html>

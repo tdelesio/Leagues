@@ -1,6 +1,10 @@
 *.class
+*/target/**
+*/.settings/**
 
 # Package Files #
 *.jar
 *.war
 *.ear
+Leagues/.settings/org.eclipse.wst.common.component
+

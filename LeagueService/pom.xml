@@ -4,31 +4,24 @@
 	<groupId>info.makeyourpicks</groupId>
 	<artifactId>league-service</artifactId>
 	<packaging>jar</packaging>
-	
 	<parent>
 		<groupId>com.delesio</groupId>
 		<artifactId>build-service</artifactId>
 		<version>1.0.0</version>
 	</parent>
-
 	<properties>
 		<filter.location>../properties/filters</filter.location>
 	</properties>
-
 	<build>
 		<filters>
 			<filter>${filter.location}/${rm.environment}.properties</filter>
 		</filters>
 	</build>
-	
-	<dependencies> 
+	<dependencies>
 		<dependency>
 			<groupId>com.delesio</groupId>
 			<artifactId>service-core</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
-
 	</dependencies>
-
 </project>

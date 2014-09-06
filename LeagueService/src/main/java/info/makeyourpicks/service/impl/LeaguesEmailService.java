@@ -27,12 +27,12 @@ public class LeaguesEmailService extends EmailServiceJavaMail implements ILeague
 		
 		Email email = new Email();
 		email.setTo(address);
-		email.setFrom("admin@makeyourpicks.info");
+		email.setFrom("admin@makeurpicks.com");
 		email.setSubject("Password Recovery");		
 		email.setCode(PASSWORD_RECOVERY);
-		email.setBcc("admin@makeyourpicks.info");
-		email.setCc("admin@makeyourpicks.info");
-		email.setReplyTo("admin@makeyourpicks.info");
+		email.setBcc("admin@makeurpicks.com");
+		email.setCc("admin@makeurpicks.com");
+		email.setReplyTo("admin@makeurpicks.com");
 		email.setText("Your password is: "+((Player)model.get("player")).getPassword());
 		
 		return sendEmail(email, persistOnFail);	
@@ -80,12 +80,12 @@ public class LeaguesEmailService extends EmailServiceJavaMail implements ILeague
 	public boolean sendWeekSetupEmail(Set<Player> players, Week week)
 	{
 		Email email = new Email();
-		email.setFrom("admin@makeyourpicks.info");
+		email.setFrom("admin@makeurpicks.com");
 		email.setSubject("MYP Week "+week.getWeekNumber()+" is setup");		
 		email.setCode(WEEK_SETUP);
-//		email.setBcc("admin@makeyourpicks.info");
-//		email.setCc("admin@makeyourpicks.info");
-		email.setReplyTo("admin@makeyourpicks.info");
+//		email.setBcc("admin@makeurpicks.com");
+//		email.setCc("admin@makeurpicks.com");
+		email.setReplyTo("admin@makeurpicks.com");
 		email.setText("Week "+week.getWeekNumber()+" has been setup for your league.  Go to http://www.makeyourpicks.info/leagues to make your picks.");
 		
 		for (Player player:players)
@@ -103,12 +103,12 @@ public class LeaguesEmailService extends EmailServiceJavaMail implements ILeague
 //		model.put("player", player);		
 		Email email = new Email();
 		email.setTo(emailAddress);
-		email.setFrom("admin@makeyourpicks.info");
+		email.setFrom("admin@makeurpicks.com");
 		email.setSubject("Join This League!");		
 		email.setCode(LEAGUE_INVITE);
-		email.setBcc("admin@makeyourpicks.info");
-		email.setCc("admin@makeyourpicks.info");
-		email.setReplyTo("admin@makeyourpicks.info");
+		email.setBcc("admin@makeurpicks.com");
+		email.setCc("admin@makeurpicks.com");
+		email.setReplyTo("admin@makeurpicks.com");
 		
 		
 		StringBuffer content = new StringBuffer("Hey, ");

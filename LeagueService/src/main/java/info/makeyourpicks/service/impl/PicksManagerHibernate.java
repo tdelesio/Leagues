@@ -688,6 +688,30 @@ public class PicksManagerHibernate extends AbstractLeagueService implements
 		}
 	}
 	
+	@Transactional
+	public void updateDoublePick(long pickId, long profileId) throws ValidationException
+	{
+		Picks pick = dao.loadByPrimaryKey(Picks.class, pickId);
+		if (pick==null)
+			throw new ValidationException(ValidationErrorEnum.PICK_IS_NULL);
+		
+		if (pick.getName().getId() != profileId)
+			throw new ValidationException(ValidationErrorEnum.UNAUTHORIZED_USER);
+		
+		Picks oldPick = getDoublePickForPlayerLeagueAndWeek(pick.getName(), pick.getLeague(), pick.getWeek());
+		
+		if (oldPick!=null)
+		{
+			oldPick.setWeight(1);
+			dao.merge(oldPick);
+		}
+		
+		pick.setWeight(2);
+		dao.merge(pick);
+		
+		clearPickCache();
+	}
+	
 	public void setDoublePick(Player player, League league, Week week, Team team)
 	{
 		

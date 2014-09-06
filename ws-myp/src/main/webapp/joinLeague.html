@@ -13,8 +13,11 @@
 function getPage() {
 	//var url = server + '/seasons/current';
 	var league = getURLParameter('league');
+	if (league)
+		
 	$('input[name=leagueName]').attr('value', league);
 	var password = getURLParameter('password');
+	if (password)
 	$('input[name=password]').attr('value', password);
 }
 
@@ -47,21 +50,24 @@ $(document).ready(function(){
 </head>
 
 <body>
+<div style="width:300px; margin:20px auto;">
+<img src="_/img/myp.svg" style="width:300px; height:auto; text-align:center;" />
+<div class="login shadow">
 
-<!-- <div class="bg"></div> -->
 
-<!-- <div class="screen"> -->
 
 <form id="createleague">
 
-League Name: <input type="text" name="leagueName" size="20"></input>
-<br/>
-League Password: <input type="text" name="password" size="20"></input>
-<br/>
+<p style="text-align:center; color:#fff; font-weight:bold;">League:&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="leagueName"></input></p>
+<p style="text-align:center; color:#fff; font-weight:bold;">Password: <input type="text" name="password"></input></p>
+<br/><br/>
 <input type="button" value="Join League" onclick="joinLeague()"/>
 </form>
 
-<div id="result"></div>
-<!-- </div> -->
+
+
+</div>
+</div>
+
 </body>
 </html>

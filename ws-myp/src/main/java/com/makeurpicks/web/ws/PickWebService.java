@@ -71,7 +71,7 @@ public class PickWebService extends AbstractMYPWebService {
 	{
 		try
 		{
-			return buildSuccessResponse(playerManager.retrievePassword(player));
+			return buildSuccessResponse(playerManager.retrievePasswordTX(player));
 		}
 		catch (Exception exception)
 		{
@@ -289,14 +289,13 @@ public class PickWebService extends AbstractMYPWebService {
 	@PUT
 	@Path("/double/{pickid}")
 @PreAuthorize("hasRole('user')")
-	public Response makeDoublePick(@PathParam("leagueid")long pickId)
+	public Response makeDoublePick(@PathParam("pickid")long pickId)
 	{
 		try
 		{
 			long profileId = getPlayerIdFromSecurityContext();
-			Picks picks = new Picks(pickId, profileId);
 			
-//			picksManager.updateDoublePick(picks, false);
+			picksManager.updateDoublePick(pickId, profileId);
 			return buildSuccessResponse(true);
 		}
 //		catch (ValidationException validationException)

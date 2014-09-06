@@ -95,7 +95,9 @@ p a:hover { color: #F16428; }
 .mainnav{float:left; width:140px; margin-top:5px;}
 .subnav{float:right; width:180px; margin-top:5px;}
 
-.week-container { float:left;}
+#mn-view{ overflow: auto; }
+#week-container { float:left; margin-right: 10px;}
+#player-container { float:left;}
 	
 	.loader{width:16px; height:16px; background-image:url(../img/loader.gif); margin:0; visibility:hidden; float:left;}
 	
@@ -106,6 +108,7 @@ p a:hover { color: #F16428; }
 	
 	.page-select select,
 	#week-container select {background-color:#000000; color:#FFFFFF; font-size:10px;}
+	#player-container select {background-color:#000000; color:#FFFFFF; font-size:10px;}
 
 	.points {font-family:Arial, Helvetica, sans-serif; color:#FFFFFF; font-size:14px; font-weight:bold; float:right;}
 
@@ -159,7 +162,9 @@ p a:hover { color: #F16428; }
 					
 		.hasdouble { color:#353434;}
 		.double .hasdouble { color:#FEB000; font-weight:bold; position:absolute; top:-4px;}			
-					
+		.doubled { color: red; }
+		.doubled:after {content: "x2";}
+		#logout a { color: white; }			
 	/* SEASON STANDINGS  */		
 					
 	.standingsRow {width:320px; background-color:#1e1e1e; margin:0 0 8px 0; clear:both;}
@@ -202,6 +207,13 @@ p a:hover { color: #F16428; }
 }
 
 
+.pick-selection i {
+	padding-top:5px;	
+}
+
+.login {background-image:url(../img/colors/medium-dk.png); padding:25px 20px; margin:15px auto; border-radius:5px;}
+
+.doublebutton {border: 1px; background-color: red; padding: 1px;}
 
 /* REUSABLE CLASSES */
 
@@ -209,9 +221,11 @@ p a:hover { color: #F16428; }
 .hide {display:none}
 .show {display:block}
 
+#errorbox {color: red;  text-align: center;}
 
 .username	{font-weight:bold; color:#fff;}
 .wins 		{font-weight:bold; color:#00ccff;}
+.home {font-weight: bold;}
 
 #logo { margin:5px 0;}
 #navrow { height:60px;}
@@ -272,3 +286,11 @@ box-shadow: 0 0 5px #000000;
 .TEN { background-image:url(../img/teams/TEN.svg);}
 .WAS { background-image:url(../img/teams/WAS.svg);}
 .NOP { background-image:url(../img/teams/NOP.svg);}
+
+
+/* ADMIN */
+
+.admin,
+.admin p {
+	color:#E8E8E8;	
+}

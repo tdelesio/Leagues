@@ -1,5 +1,5 @@
-var server = "http://localhost:8080/ws/rest";
-//var server = "http://makeurpicks.com/ws/rest";
+//var server = "http://localhost:8080/ws/rest";
+var server = "http://makeurpicks.com/ws/rest";
 
 $.fn.serializeObject = function() {
 
@@ -29,7 +29,6 @@ $.fn.serializeObject = function() {
 	});
 
 	arr = JSON.stringify(arr);
-	console.log(arr);
 	return arr;
 };
 
@@ -60,8 +59,6 @@ function getURLParameter(name) {
 	    );
 	}
 
-
-
 function getUrl(context)
 {
 	var url="";
@@ -80,4 +77,6 @@ function getUrl(context)
 	}
 	return url;
 }
+
+
 
